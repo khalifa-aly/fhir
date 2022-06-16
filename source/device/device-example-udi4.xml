@@ -11,15 +11,15 @@
 	<status value="inactive"/>
 	<manufacturer value="GlobalMed, Inc"/>
 	<lotNumber value="RZ12345678"/>
-	<association>
+	<associationState>
 	  <status> 
 	     <coding>
-		   <system value="http://terminology.hl7.org/CodeSystem/device-association-status" />
+		   <system value="http://terminology.hl7.org/CodeSystem/device-associationstatus" />
            <code value="attached"/>
 		 </coding>
 	  </status>
       <humanSubject>
 		<reference value="Patient/example"/>
 	  </humanSubject>
-	</association>
+	</associationState>
 </Device>
