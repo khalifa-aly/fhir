@@ -24,8 +24,13 @@
     <valueCode value=".status = entered-in-error"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/Flag"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1050"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="Flag"/>
+  <title value="Flag"/>
   <status value="draft"/>
   <date value="2021-01-02T08:58:31+11:00"/>
   <publisher value="Health Level Seven International (Patient Care)"/>
@@ -42,7 +47,7 @@
     </telecom>
   </contact>
   <description value="Prospective warnings of potential issues when providing care to the patient."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -130,7 +135,7 @@
     </element>
     <element id="Flag.category">
       <path value="Flag.category"/>
-      <short value="Clinical, administrative, etc."/>
+      <short value="Clinical, administrative, etc"/>
       <definition value="Allows a flag to be divided into different categories like clinical, administrative etc. Intended to be used as a means of filtering which flags are displayed to particular user or in a given context."/>
       <comment value="The value set will often need to be adjusted based on local business rules and usage context."/>
       <min value="0"/>
@@ -186,16 +191,17 @@
     </element>
     <element id="Flag.subject">
       <extension url="http://hl7.org/fhir/build/StructureDefinition/committee-notes">
-        <valueString value="GF#20380."/>
+        <valueString value="GF#20380, J#37950"/>
       </extension>
       <path value="Flag.subject"/>
       <short value="Who/What is flag about?"/>
-      <definition value="The patient, location, group, organization, or practitioner etc. this is about record this flag is associated with."/>
+      <definition value="The patient, related person, location, group, organization, or practitioner etc. this is about record this flag is associated with."/>
       <min value="1"/>
       <max value="1"/>
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization"/>
@@ -213,10 +219,6 @@
       <mapping>
         <identity value="rim"/>
         <map value=".participation[typeCode=SBJ].role[classCode=PAT | LOCE | ASSIGNED]"/>
-      </mapping>
-      <mapping>
-        <identity value="w5"/>
-        <map value="FiveWs.subject"/>
       </mapping>
     </element>
     <element id="Flag.period">
@@ -262,6 +264,7 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole"/>
       </type>

@@ -46,14 +46,14 @@
 		<url>http://hl7.org/v2</url>
     <link>http://www.hl7.org/implement/standards/product_brief.cfm?product_id=185</link>
 		<columnName>v2 Mapping</columnName>
-		<title>HL7 v2 Mapping</title>
+		<title>HL7 V2 Mapping</title>
 		<id>v2</id>
 		<sort>1</sort>
     <publish>true</publish>
 	</space>
 	<space>
 		<url>http://loinc.org</url>
-		<columnName>LOINC Code</columnName>
+		<columnName>LOINC Field Name</columnName>
 		<title>LOINC code for the element</title>
 		<id>loinc</id>
 		<sort>2</sort>
@@ -118,7 +118,7 @@
 	</space>
 	<space>
 		<url>http://nema.org/dicom</url>
-		<link>http://nema.org/dicom</link>
+		<link>https://www.dicomstandard.org/current</link>
 		<columnName>DICOM Mapping</columnName>
 		<title>DICOM Tag Mapping</title>
 		<id>dicom</id>
@@ -135,7 +135,7 @@
     <publish>true</publish>
 	</space>
 	<space>
-		<url>https://profiles.ihe.net/ITI/HIE-Whitepaper</url>
+		<url>http://ihe.net/xds</url>
     <link>http://wiki.ihe.net/index.php/Category:DocShare</link>
 		<columnName>XDS Mapping</columnName>
 		<title>XDS metadata equivalent</title>
@@ -263,7 +263,7 @@
 		<url>http://www.pharmacists.ca/</url>
 		<link>http://www.pharmacists.ca/</link>
 		<columnName>CPhA3 (Pharmacy) Mapping</columnName>
-		<title>Canadian Pharmacy Associaiton eclaims standard</title>
+		<title>Canadian Pharmacy Association eclaims standard</title>
 		<id>cpha3pharm</id>
 		<sort>21</sort>
 		<publish>true</publish>
@@ -438,8 +438,8 @@
 		<publish>true</publish>
 	</space>
 	<space>
-		<url>https://en.wikipedia.org/wiki/Identification_of_medicinal_products</url>
-		<link>https://en.wikipedia.org/wiki/Identification_of_medicinal_products</link>
+		<url>https://www.iso.org/obp/ui/#iso:std:iso:11615</url>
+		<link>https://www.iso.org/obp/ui/#iso:std:iso:11615</link>
 		<columnName>IDMP Mapping</columnName>
 		<title>IDMP Mapping</title>
 		<id>idmp</id>
@@ -465,12 +465,30 @@
 		<publish>true</publish>
 	</space>
 	<space>
+		<url>http://hl7.org/fhir/consent</url>
+    <link>http://hl7.org/fhir/consent.html</link>
+		<columnName>Consent Mapping</columnName>
+		<title>FHIR Consent Mapping</title>
+		<id>fhirconsent</id>
+		<sort>44</sort>
+		<publish>true</publish>
+	</space>
+	<space>
 	    <url>https://www.isbt128.org/uri/</url>
 		<link>https://www.isbt128.org/uri/</link>
 		<columnName>ISBT 128 Code</columnName>
 		<title>ISBT 128 Codes</title>
 		<id>ISBT128Code</id>
 		<sort>51</sort>
+		<publish>true</publish>
+	</space>
+	<space>
+		<url>https://www.iso.org/obp/ui/#iso:std:iso:11238</url>
+		<link>https://www.iso.org/obp/ui/#iso:std:iso:11238</link>
+		<columnName>IDMP Mapping (Substance)</columnName>
+		<title>IDMP Mapping (Substance)</title>
+		<id>idmp-substance</id>
+		<sort>52</sort>
 		<publish>true</publish>
 	</space>
 </mappingSpaces>

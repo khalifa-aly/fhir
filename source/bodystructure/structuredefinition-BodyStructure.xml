@@ -24,8 +24,13 @@
     <valueCode value=".active = false"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/BodyStructure"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1265"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="BodyStructure"/>
+  <title value="Body Structure"/>
   <status value="draft"/>
   <date value="2021-01-02T08:58:31+11:00"/>
   <publisher value="Health Level Seven International (Orders and Observations)"/>
@@ -42,7 +47,7 @@
     </telecom>
   </contact>
   <description value="Record details about an anatomical structure.  This resource may be used when a coded concept does not provide the necessary detail needed for the use case."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -61,7 +66,7 @@
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
-    <name value="HL7 v2 Mapping"/>
+    <name value="HL7 V2 Mapping"/>
   </mapping>
   <kind value="resource"/>
   <abstract value="false"/>
@@ -82,7 +87,7 @@
       </mapping>
       <mapping>
         <identity value="openehr"/>
-        <map value="Archetype ID   openEHR-EHR-CLUSTER.anatomical_location.v1      Concept name   Anatomical Location      Concept description   Record details about an anatomical location.      Keywords   location, site, anatomical      Copyright   &#xA9; openEHR Foundation      Purpose   To record details about anatomical location.      Misuse   Not for specifiying unilateral/bilateral occurrence - this is related to an evaluation which perhaps includes multiple locations.      Author   Author name: Heather Leslie Organization: Ocean Informatics Email: heather.leslie@oceaninformatics.com Date of Origination: 2008-11-10       Translator   Norwegian Bokm&#xE5;l: Lars Bitsch-Larsen, Haukeland University Hospital of Bergen, Norway, MD, DEAA, MBA, spec in anesthesia, spec in tropical medicine. Arabic (Syria): Mona Saleh       Other contributors   Heather Leslie, Ocean Informatics, Australia (Editor) Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (Editor) Dunmail Hodkinson, Black Pear Software Ltd, UK      References   Use cases: - 5LICS, midclavicular line - L forearm, 2cm anterior to the cubital fossa - Right iliac fossa - 5 cm below L tibial tuberosity - 2 cm medial to R nipple - 4 cm below R costal margin in midclavicular line - R femur - midline nose - medial aspect of R great toe nail."/>
+        <map value="Archetype ID   openEHR-EHR-CLUSTER.anatomical_location.v1      Concept name   Anatomical Location      Concept description   Record details about an anatomical location.      Keywords   location, site, anatomical      Copyright   © openEHR Foundation      Purpose   To record details about anatomical location.      Misuse   Not for specifiying unilateral/bilateral occurrence - this is related to an evaluation which perhaps includes multiple locations.      Author   Author name: Heather Leslie Organization: Ocean Informatics Email: heather.leslie@oceaninformatics.com Date of Origination: 2008-11-10       Translator   Norwegian Bokmål: Lars Bitsch-Larsen, Haukeland University Hospital of Bergen, Norway, MD, DEAA, MBA, spec in anesthesia, spec in tropical medicine. Arabic (Syria): Mona Saleh       Other contributors   Heather Leslie, Ocean Informatics, Australia (Editor) Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (Editor) Dunmail Hodkinson, Black Pear Software Ltd, UK      References   Use cases: - 5LICS, midclavicular line - L forearm, 2cm anterior to the cubital fossa - Right iliac fossa - 5 cm below L tibial tuberosity - 2 cm medial to R nipple - 4 cm below R costal margin in midclavicular line - R femur - midline nose - medial aspect of R great toe nail."/>
       </mapping>
       <mapping>
         <identity value="w5"/>
@@ -167,8 +172,8 @@
         <map value="SPM-4/SPM-5"/>
       </mapping>
     </element>
-<element id="BodyStructure.includedStructure">
-  <path value="BodyStructure.includedStructure"/>
+    <element id="BodyStructure.includedStructure">
+      <path value="BodyStructure.includedStructure"/>
       <short value="Included anatomic location(s)"/>
       <definition value="The anatomical location(s) or region(s) of the specimen, lesion, or body structure."/>
       <min value="1"/>
@@ -176,8 +181,8 @@
       <type>
         <code value="BackboneElement"/>
       </type>
-</element>
-<element id="BodyStructure.includedStructure.structure">
+    </element>
+    <element id="BodyStructure.includedStructure.structure">
       <path value="BodyStructure.includedStructure.structure"/>
       <short value="Code that represents the included structure"/>
       <definition value="Code that represents the included structure."/>
@@ -191,7 +196,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="BodySite"/>
         </extension>
-        <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/binding-definition">
           <valueString value="Codes describing anatomical locations. May include laterality."/>
         </extension>
         <strength value="example"/>
@@ -214,8 +219,8 @@
         <identity value="openehr"/>
         <map value="Name of location"/>
       </mapping>
-  </element>
-  <element id="BodyStructure.includedStructure.laterality">
+    </element>
+    <element id="BodyStructure.includedStructure.laterality">
       <path value="BodyStructure.includedStructure.laterality"/>
       <short value="Code that represents the included structure laterality"/>
       <definition value="Code that represents the included structure laterality."/>
@@ -248,8 +253,145 @@
         <identity value="openehr"/>
         <map value="Combines Side, Numerical identifier, Anatomical plane,and Aspect"/>
       </mapping>
-  </element>
-  <element id="BodyStructure.includedStructure.qualifier">
+    </element>
+    <element id="BodyStructure.includedStructure.bodyLandmarkOrientation">
+      <path value="BodyStructure.includedStructure.bodyLandmarkOrientation"/>
+      <short value="Landmark relative location"/>
+      <definition value="Body locations in relation to a specific body landmark (tatoo, scar, other body structure)."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="BackboneElement"/>
+      </type>
+    </element>
+    <element id="BodyStructure.includedStructure.bodyLandmarkOrientation.landmarkDescription">
+      <path value="BodyStructure.includedStructure.bodyLandmarkOrientation.landmarkDescription"/>
+      <short value="Body ]andmark description"/>
+      <definition value="A description of a landmark on the body used as a reference to locate something else."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="bodyLandmarkOrientationLandmarkDescription"/>
+        </extension>
+        <strength value="example"/>
+        <description value="Select SNOMED code system values. Values used in a podiatry setting to decsribe landmarks on the body."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/body-site"/>
+      </binding>
+      <mapping>
+        <identity value="w5"/>
+        <map value="FiveWs.what[x]"/>
+      </mapping>
+    </element>
+    <element id="BodyStructure.includedStructure.bodyLandmarkOrientation.clockFacePosition">
+      <path value="BodyStructure.includedStructure.bodyLandmarkOrientation.clockFacePosition"/>
+      <short value="Clockface orientation"/>
+      <definition value="An description of the direction away from a landmark something is located based on a radial clock dial."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="bodyLandmarkOrientationClockFacePosition"/>
+        </extension>
+        <strength value="example"/>
+        <description value="Select SNOMED CT codes. A set of codes that describe a things orientation based on a hourly positions of a clock face."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/bodystructure-bodylandmarkorientation-clockface-position"/>
+      </binding>
+      <mapping>
+        <identity value="w5"/>
+        <map value="FiveWs.what[x]"/>
+      </mapping>
+    </element>
+    <element id="BodyStructure.includedStructure.bodyLandmarkOrientation.distanceFromLandmark">
+      <path value="BodyStructure.includedStructure.bodyLandmarkOrientation.distanceFromLandmark"/>
+      <short value="Landmark relative location"/>
+      <definition value="The distance in centimeters a certain observation is made from a body landmark."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="BackboneElement"/>
+      </type>
+    </element>
+    <element id="BodyStructure.includedStructure.bodyLandmarkOrientation.distanceFromLandmark.device">
+      <path value="BodyStructure.includedStructure.bodyLandmarkOrientation.distanceFromLandmark.device"/>
+      <short value="Measurement device"/>
+      <definition value="An instrument, tool, analyzer, etc. used in the measurement."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="CodeableReference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device"/>
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="DeviceType"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/build/StructureDefinition/copyright">
+          <valueString value="‘GMDN’ is a registered trade mark owned by GMDN Agency Ltd."/>
+        </extension>
+        <strength value="example"/>
+        <description value="Codes to identify medical devices."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/device-type"/>
+      </binding>
+      <mapping>
+        <identity value="w5"/>
+        <map value="FiveWs.what[x]"/>
+      </mapping>
+    </element>
+    <element id="BodyStructure.includedStructure.bodyLandmarkOrientation.distanceFromLandmark.value">
+      <path value="BodyStructure.includedStructure.bodyLandmarkOrientation.distanceFromLandmark.value"/>
+      <short value="Measured distance from body landmark"/>
+      <definition value="The measured distance (e.g., in cm) from a body landmark."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Quantity"/>
+      </type>
+    </element>
+    <element id="BodyStructure.includedStructure.bodyLandmarkOrientation.surfaceOrientation">
+      <path value="BodyStructure.includedStructure.bodyLandmarkOrientation.surfaceOrientation"/>
+      <short value="Relative landmark surface orientation"/>
+      <definition value="The surface area a body location is in relation to a landmark."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="bodyLandmarkOrientationSurfaceOrientation"/>
+        </extension>
+        <strength value="preferred"/>
+        <description value="Select SNOMED code system values. The surface area a body location is in relation to a landmark."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/bodystructure-relative-location"/>
+      </binding>
+      <mapping>
+        <identity value="w5"/>
+        <map value="FiveWs.what[x]"/>
+      </mapping>
+    </element>
+    <element id="BodyStructure.includedStructure.spatialReference">
+      <path value="BodyStructure.includedStructure.spatialReference"/>
+      <short value="Cartesian reference for structure"/>
+      <definition value="XY or XYZ-coordinate orientation for structure."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ImagingSelection"/>
+      </type>
+      <mapping>
+        <identity value="w5"/>
+        <map value="FiveWs.where[x]"/>
+      </mapping>
+    </element>
+    <element id="BodyStructure.includedStructure.qualifier">
       <path value="BodyStructure.includedStructure.qualifier"/>
       <short value="Code that represents the included structure qualifier"/>
       <definition value="Code that represents the included structure qualifier."/>
@@ -282,123 +424,15 @@
         <identity value="openehr"/>
         <map value="Combines Side, Numerical identifier, Anatomical plane,and Aspect"/>
       </mapping>
-  </element>
-<element id="BodyStructure.excludedStructure">
-  <path value="BodyStructure.excludedStructure"/>
+    </element>
+    <element id="BodyStructure.excludedStructure">
+      <path value="BodyStructure.excludedStructure"/>
       <short value="Excluded anatomic locations(s)"/>
       <definition value="The anatomical location(s) or region(s) not occupied or represented by the specimen, lesion, or body structure."/>
       <min value="0"/>
       <max value="*"/>
-      <type>
-        <code value="BackboneElement"/>
-      </type>   
-</element>
-<element id="BodyStructure.excludedStructure.structure">
-      <path value="BodyStructure.excludedStructure.structure"/>
-      <short value="Code that represents the excluded structure"/>
-      <definition value="Code that represents the excluded structure."/>
-      <min value="1"/>
-      <max value="1"/>
-      <type>
-        <code value="CodeableConcept"/>
-      </type>
-      <isSummary value="true"/> 
-      <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="BodySite"/>
-        </extension>
-        <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
-          <valueString value="Codes describing anatomical locations. May include laterality."/>
-        </extension>
-        <strength value="example"/>
-        <description value="SNOMED CT Body site concepts"/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/body-site"/>
-      </binding>
-      <mapping>
-        <identity value="w5"/>
-        <map value="FiveWs.what[x]"/>
-      </mapping>
-      <mapping>
-        <identity value="v2"/>
-        <map value="OBX-20/SPM-8/SPM-10"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value=".targetSiteCode"/>
-      </mapping>
-      <mapping>
-        <identity value="openehr"/>
-        <map value="Name of location"/>
-      </mapping>
-  </element>
-  <element id="BodyStructure.excludedStructure.laterality">
-      <path value="BodyStructure.excludedStructure.laterality"/>
-      <short value="Code that represents the excluded structure laterality"/>
-      <definition value="Code that represents the excluded structure laterality."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="CodeableConcept"/>
-      </type>
-      <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="BodyStructureQualifier"/>
-        </extension>
-        <strength value="example"/>
-        <description value="Concepts modifying the anatomic location."/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/bodystructure-relative-location"/>
-      </binding>
-      <mapping>
-        <identity value="w5"/>
-        <map value="FiveWs.what[x]"/>
-      </mapping>
-      <mapping>
-        <identity value="v2"/>
-        <map value="No distinct element defined in V2.x. The IHE Radiology Technical Framework directs the use of OBR-15-specimen source to contain laterality for imaging studies./SPM-9"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value=".targetSiteCode"/>
-      </mapping>
-      <mapping>
-        <identity value="openehr"/>
-        <map value="Combines Side, Numerical identifier, Anatomical plane,and Aspect"/>
-      </mapping>
-  </element>
-  <element id="BodyStructure.excludedStructure.qualifier">
-      <path value="BodyStructure.excludedStructure.qualifier"/>
-      <short value="Code that represents the excluded structure qualifier"/>
-      <definition value="Code that represents the excluded structure qualifier."/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="CodeableConcept"/>
-      </type>
-      <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="BodyStructureQualifier"/>
-        </extension>
-        <strength value="example"/>
-        <description value="Concepts modifying the anatomic location."/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/bodystructure-relative-location"/>
-      </binding>
-      <mapping>
-        <identity value="w5"/>
-        <map value="FiveWs.what[x]"/>
-      </mapping>
-      <mapping>
-        <identity value="v2"/>
-        <map value="No distinct element defined in V2.x. The IHE Radiology Technical Framework directs the use of OBR-15-specimen source to contain laterality for imaging studies./SPM-9"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value=".targetSiteCode"/>
-      </mapping>
-      <mapping>
-        <identity value="openehr"/>
-        <map value="Combines Side, Numerical identifier, Anatomical plane,and Aspect"/>
-      </mapping>
-  </element>
+      <contentReference value="#BodyStructure.includedStructure"/>
+    </element>
     <element id="BodyStructure.description">
       <path value="BodyStructure.description"/>
       <short value="Text description"/>
@@ -407,7 +441,7 @@
       <min value="0"/>
       <max value="1"/>
       <type>
-        <code value="string"/>
+        <code value="markdown"/>
       </type>
       <isSummary value="true"/>
       <mapping>
@@ -475,10 +509,6 @@
       <mapping>
         <identity value="rim"/>
         <map value=".scoper or .scoper.playsRole"/>
-      </mapping>
-      <mapping>
-        <identity value="w5"/>
-        <map value="FiveWs.subject"/>
       </mapping>
     </element>
   </differential>

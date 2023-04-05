@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="Ingredient"/>
   <meta>
@@ -23,8 +24,13 @@
     <valueCode value=".status=entered-in-error"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/Ingredient"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1449"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="Ingredient"/>
+  <title value="Ingredient"/>
   <status value="draft"/>
   <date value="2020-12-31T07:32:20+11:00"/>
   <publisher value="Health Level Seven International (Biomedical Research and Regulation)"/>
@@ -41,10 +47,10 @@
     </telecom>
   </contact>
   <description value="An ingredient of a manufactured item or pharmaceutical product."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="idmp"/>
-    <uri value="https://en.wikipedia.org/wiki/Identification_of_medicinal_products"/>
+    <uri value="https://www.iso.org/obp/ui/#iso:std:iso:11615"/>
     <name value="IDMP Mapping"/>
   </mapping>
   <mapping>
@@ -65,7 +71,7 @@
   <differential>
     <element id="Ingredient">
       <extension url="http://hl7.org/fhir/build/StructureDefinition/svg">
-        <valueCode value="0,100"/> <!-- was 0,120 -->
+        <valueCode value="0,106"/>
       </extension>
       <path value="Ingredient"/>
       <short value="An ingredient of a manufactured item or pharmaceutical product"/>
@@ -76,8 +82,7 @@
         <key value="ing-1"/>
         <severity value="error"/>
         <human value="If an ingredient is noted as an allergen (allergenicIndicator) then its substance should be a code. If the substance is a SubstanceDefinition, then the allegen information should be documented in that resource"/>
-        <expression value="(Ingredient.allergenicIndicator.where(value='true').count() + Ingredient.substance.code.reference.count())  &lt; 2"/>
-        <xpath value="count(f:Ingredient.f:allergenicIndicator[@value='true']|f:Ingredient.f:substance.f:code.f:reference) &lt; 2"/>
+        <expression value="Ingredient.where(allergenicIndicator=true).count() + Ingredient.substance.code.reference.count()  &lt; 2"/>
         <source value="http://hl7.org/fhir/StructureDefinition/Ingredient"/>
       </constraint>
       <mapping>
@@ -103,6 +108,10 @@
         <identity value="idmp"/>
         <map value="n/a"/>
       </mapping>
+      <mapping>
+        <identity value="w5"/>
+        <map value="FiveWs.class"/>
+      </mapping>
     </element>
     <element id="Ingredient.status">
       <path value="Ingredient.status"/>
@@ -126,7 +135,7 @@
         </extension>
         <strength value="required"/>
         <description value="The lifecycle status of an artifact."/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/publication-status|4.6.0"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/publication-status"/>
       </binding>
       <mapping>
         <identity value="idmp"/>
@@ -222,23 +231,35 @@
         <code value="boolean"/>
       </type>
       <meaningWhenMissing value="If this value is not present, there is no statement being made about whether this is an allergen or not. No inference can be made"/>
+      <condition value="ing-1"/>
       <isSummary value="true"/>
       <mapping>
         <identity value="idmp"/>
         <map value="Ingredient.Allergenic Indicator"/>
       </mapping>
     </element>
+    <element id="Ingredient.comment">
+      <path value="Ingredient.comment"/>
+      <short value="A place for providing any notes that are relevant to the component, e.g. removed during process, adjusted for loss on drying"/>
+      <definition value="A place for providing any notes that are relevant to the component, e.g. removed during process, adjusted for loss on drying."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="markdown"/>
+      </type>
+      <isSummary value="false"/>
+      <mapping>
+        <identity value="idmp"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
     <element id="Ingredient.manufacturer">
       <extension url="http://hl7.org/fhir/build/StructureDefinition/svg">
-        <valueCode value="160,300"/>
+        <valueCode value="160,325"/>
       </extension>
       <path value="Ingredient.manufacturer"/>
       <short value="An organization that manufactures this ingredient"/>
-      <definition value="The organization(s) that manufacture this ingredient. Can be used to indicate:
-        1) Organizations we are aware of that manufacture this ingredient
-        2) Specific Manufacturer(s) currently being used
-        3) Set of organisations allowed to manufacture this ingredient for this product
-        Users must be clear on the application of context relevant to their use case."/>
+      <definition value="The organization(s) that manufacture this ingredient. Can be used to indicate:         1) Organizations we are aware of that manufacture this ingredient         2) Specific Manufacturer(s) currently being used         3) Set of organisations allowed to manufacture this ingredient for this product         Users must be clear on the application of context relevant to their use case."/>
       <min value="0"/>
       <max value="*"/>
       <type>
@@ -294,7 +315,7 @@
     </element>
     <element id="Ingredient.substance">
       <extension url="http://hl7.org/fhir/build/StructureDefinition/svg">
-        <valueCode value="160,0"/>
+        <valueCode value="160,-15"/>
       </extension>
       <path value="Ingredient.substance"/>
       <short value="The substance that comprises this ingredient"/>
@@ -304,6 +325,7 @@
       <type>
         <code value="BackboneElement"/>
       </type>
+      <condition value="ing-1"/>
       <isSummary value="true"/>
       <mapping>
         <identity value="idmp"/>
@@ -320,6 +342,7 @@
         <code value="CodeableReference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/SubstanceDefinition"/>
       </type>
+      <condition value="ing-1"/>
       <isSummary value="true"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -430,7 +453,6 @@
         <map value="n/a"/>
       </mapping>
     </element>
-        
     <element id="Ingredient.substance.strength.basis">
       <path value="Ingredient.substance.strength.basis"/>
       <short value="A code that indicates if the strength is, for example, based on the ingredient substance as stated or on the substance base (when the ingredient is a salt)"/>
@@ -486,7 +508,7 @@
     </element>
     <element id="Ingredient.substance.strength.referenceStrength">
       <extension url="http://hl7.org/fhir/build/StructureDefinition/svg">
-        <valueCode value="700,117"/>
+        <valueCode value="775,106"/>
       </extension>
       <path value="Ingredient.substance.strength.referenceStrength"/>
       <short value="Strength expressed in terms of a reference substance"/>
@@ -506,7 +528,7 @@
       <path value="Ingredient.substance.strength.referenceStrength.substance"/>
       <short value="Relevant reference substance"/>
       <definition value="Relevant reference substance."/>
-      <min value="0"/>
+      <min value="1"/>
       <max value="1"/>
       <type>
         <code value="CodeableReference"/>

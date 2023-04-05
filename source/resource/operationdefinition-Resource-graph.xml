@@ -12,8 +12,8 @@
     <valueCode value="trial-use"/>
   </extension>
   <url value="http://hl7.org/fhir/build/OperationDefinition/Resource-graph"/>
-  <version value="4.6.0"/>
-  <name value="graph"/>
+  <version value="5.0.0"/>
+  <name value="Graph"/>
   <title value="Return a graph of resources"/>
   <status value="draft"/>
   <kind value="operation"/>

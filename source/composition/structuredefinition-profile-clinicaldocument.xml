@@ -16,8 +16,13 @@
     <valueCode value="trial-use"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/clinicaldocument"/>
-  <version value="4.6.0"/>
-  <name value="Clinical Document"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1178"/>
+  </identifier>
+  <version value="5.0.0"/>
+  <name value="ClinicalDocument"/>
+  <title value="Clinical  Document"/>
   <status value="draft"/>
   <experimental value="false"/>
   <date value="2015-03-17"/>
@@ -29,7 +34,7 @@
     </telecom>
   </contact>
   <description value="The Clinical Document profile constrains Composition to specify a clinical document (matching CDA). &#xA;&#xA;The base Composition is a general resource for compositions or documents about any kind of subject that might be encountered in healthcare including such things as guidelines, medicines, etc. A clinical document is focused on documents related to the provision of care process, where the subject is a patient, a group of patients, or a closely related concept. A clinical document has additional requirements around confidentiality that do not apply in the same way to other kinds of documents."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="workflow"/>
     <uri value="http://hl7.org/fhir/workflow"/>
@@ -65,17 +70,6 @@
       <path value="Composition"/>
       <min value="0"/>
       <max value="*"/>
-    </element>
-    <element id="Composition.extension:versionNumber">
-      <path value="Composition.extension"/>
-      <sliceName value="versionNumber"/>
-      <short value="Version-specific identifier for composition"/>
-      <definition value="Version specific identifier for the composition, assigned when each version is created/updated."/>
-      <comment value="While each resource, including the composition itself, has its own version identifier, this is a formal identifier for the logical version of the composition as a whole. It would remain constant if the resources were moved to a new server, and all got new individual resource versions, for example."/>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://hl7.org/fhir/StructureDefinition/composition-clinicaldocument-versionNumber"/>
-      </type>
     </element>
     <element id="Composition.subject">
       <path value="Composition.subject"/>

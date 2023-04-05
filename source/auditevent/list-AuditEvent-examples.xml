@@ -102,7 +102,7 @@
   </entry>
   <entry>
     <extension url="http://hl7.org/fhir/build/StructureDefinition/description">
-      <valueString value="Export of DocumentManifest to Media"/>
+      <valueString value="Export of DocumentReference to Media"/>
     </extension>
     <extension url="http://hl7.org/fhir/build/StructureDefinition/title">
       <valueString value="audit-event-example-media"/>
@@ -146,6 +146,18 @@
     <item>
       <reference value="AuditEvent/example-consent-permit-authz"/>
       <display value="Consent Permit Authorization"/>
+    </item>
+  </entry>
+  <entry>
+    <extension url="http://hl7.org/fhir/build/StructureDefinition/description">
+      <valueString value="An AuditEvent recording a create of a List resource for a given Patient, Encounter, and CarePlan."/>
+    </extension>
+    <extension url="http://hl7.org/fhir/build/StructureDefinition/title">
+      <valueString value="auditevent-example-advanced-create"/>
+    </extension>
+    <item>
+      <reference value="AuditEvent/example-advanced-create"/>
+      <display value="Advanced audit for a create"/>
     </item>
   </entry>
 </List>

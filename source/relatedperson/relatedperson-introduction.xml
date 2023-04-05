@@ -4,7 +4,7 @@
 <a name="scope"></a>
 <h2>Scope and Usage</h2>
 <p>
-RelatedPersons typically have a personal or non-healthcare-specific professional relationship to the patient. A RelatedPerson 
+RelatedPersons typically have a personal relationship or non-healthcare-specific professional relationship to the patient. A RelatedPerson 
 resource is primarily used for attribution of information, 
 since RelatedPersons are often a source of information about the patient. 
 For keeping information about people for contact purposes for a patient, use a Patient's Contact element. 
@@ -38,7 +38,7 @@ Example RelatedPersons are:
 </li>
 </ul>
 <p>
-	A standard extension <a href="extension-practitioner-animalspecies.html">animalSpecies</a> can be used to indicate the species of a service animal.
+	A standard extension <a href="[%extensions-location%]StructureDefinition-practitioner-animalSpecies.html">animalSpecies</a> can be used to indicate the species of a service animal.
 </p>
 </div>
 </div>

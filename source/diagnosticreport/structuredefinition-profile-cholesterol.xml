@@ -16,8 +16,13 @@
     <valueCode value="trial-use"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/cholesterol"/>
-  <version value="4.6.0"/>
-  <name value="Example Lipid Profile"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1397"/>
+  </identifier>
+  <version value="5.0.0"/>
+  <name value="ExampleLipidProfile"/>
+  <title value="Example  Lipid  Profile"/>
   <status value="draft"/>
   <experimental value="true"/>
   <date value="2012-05-12"/>
@@ -29,7 +34,7 @@
     </telecom>
   </contact>
   <description value="Describes how the lab report is used for a standard Lipid Profile - Cholesterol, Triglyceride and Cholesterol fractions. Uses LOINC codes"/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="workflow"/>
     <uri value="http://hl7.org/fhir/workflow"/>
@@ -43,7 +48,7 @@
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
-    <name value="HL7 v2 Mapping"/>
+    <name value="HL7 V2 Mapping"/>
   </mapping>
   <mapping>
     <identity value="rim"/>
@@ -84,7 +89,7 @@
         <coding>
           <system value="http://loinc.org"/>
           <code value="35200-5"/>
-          <display value="Cholesterol [Moles/&#x200B;volume] in Serum or Plasma"/>
+          <display value="Cholesterol [Moles/​volume] in Serum or Plasma"/>
         </coding>
       </fixedCodeableConcept>
       <mustSupport value="true"/>

@@ -23,6 +23,8 @@
 		<reference value="Group/herd1"/>
 	</subject>
 
+	<combined value = "pooled" />
+	     
 	<collection>
 		<collector>
 			<display value="James Herriot, FRCVS"></display>
@@ -31,7 +33,7 @@
 	</collection>
 	<container>
 	   <device>
-	      <reference value="Specimen/specimen-device-container-example-red-top-vacutainer"/>
+	      <reference value="Device/device-example-specimen-container-red-top-vacutainer"/>
 	   </device>
 	</container>
 	<note>

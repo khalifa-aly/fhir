@@ -37,8 +37,8 @@
     </extension>
   </extension>
   <url value="http://hl7.org/fhir/build/OperationDefinition/CodeSystem-subsumes"/>
-  <version value="4.6.0"/>
-  <name value="subsumes"/>
+  <version value="5.0.0"/>
+  <name value="Subsumes"/>
   <title value="Subsumption Testing"/>
   <status value="draft"/>
   <kind value="operation"/>
@@ -80,6 +80,7 @@
   <parameter>
     <name value="system"/>
     <use value="in"/>
+    <scope value="type"/>
     <min value="0"/>
     <max value="1"/>
     <documentation value="The code system in which subsumption testing is to be performed. This must be provided unless the operation is invoked on a code system instance"/>
@@ -88,6 +89,7 @@
   <parameter>
     <name value="version"/>
     <use value="in"/>
+    <scope value="type"/>
     <min value="0"/>
     <max value="1"/>
     <documentation value="The version of the code system, if one was provided in the source data"/>
@@ -121,7 +123,7 @@
         <valueString value="ConceptSubsumptionOutcome"/>
       </extension>
       <strength value="required"/>
-      <valueSet value="http://hl7.org/fhir/ValueSet/concept-subsumption-outcome|4.6.0"/>
+      <valueSet value="http://hl7.org/fhir/ValueSet/concept-subsumption-outcome"/>
     </binding>
   </parameter>
 </OperationDefinition>

@@ -17,8 +17,7 @@
         <code value="code"/>
         <type value="token"/>
         <expression value="ValueSet.expansion.contains.code | ValueSet.compose.include.concept.code"/>
-        <xpath value="f:ValueSet/f:expansion/f:contains/f:code | f:ValueSet/f:compose/f:include/f:concept/f:code"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -27,7 +26,7 @@
       <SearchParameter>
         <id value="ValueSet-context"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="trial-use"/>
+          <valueCode value="normative"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.useContext.valueCodeableConcept"/>
@@ -36,9 +35,8 @@
         <description value="A use context assigned to the value set"/>
         <code value="context"/>
         <type value="token"/>
-        <expression value="(ValueSet.useContext.value as CodeableConcept)"/>
-        <xpath value="f:ValueSet/f:useContext/f:valueCodeableConcept"/>
-        <xpathUsage value="normal"/>
+        <expression value="(ValueSet.useContext.value.ofType(CodeableConcept))"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -47,7 +45,7 @@
       <SearchParameter>
         <id value="ValueSet-context-quantity"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="trial-use"/>
+          <valueCode value="normative"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.useContext.valueQuantity,{{name}}.useContext.valueRange"/>
@@ -56,9 +54,8 @@
         <description value="A quantity- or range-valued use context assigned to the value set"/>
         <code value="context-quantity"/>
         <type value="quantity"/>
-        <expression value="(ValueSet.useContext.value as Quantity) | (ValueSet.useContext.value as Range)"/>
-        <xpath value="f:ValueSet/f:useContext/f:valueQuantity | f:ValueSet/f:useContext/f:valueRange"/>
-        <xpathUsage value="normal"/>
+        <expression value="(ValueSet.useContext.value.ofType(Quantity)) | (ValueSet.useContext.value.ofType(Range))"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -77,8 +74,7 @@
         <code value="context-type"/>
         <type value="token"/>
         <expression value="ValueSet.useContext.code"/>
-        <xpath value="f:ValueSet/f:useContext/f:code"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -94,14 +90,14 @@
         <code value="context-type-quantity"/>
         <type value="composite"/>
         <expression value="ValueSet.useContext"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
         <component>
           <definition value="context-type"/>
           <expression value="code"/>
         </component>
         <component>
           <definition value="context-quantity"/>
-          <expression value="value.as(Quantity) | value.as(Range)"/>
+          <expression value="value.ofType(Quantity) | value.ofType(Range)"/>
         </component>
       </SearchParameter>
     </resource>
@@ -118,14 +114,14 @@
         <code value="context-type-value"/>
         <type value="composite"/>
         <expression value="ValueSet.useContext"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
         <component>
           <definition value="context-type"/>
           <expression value="code"/>
         </component>
         <component>
           <definition value="context"/>
-          <expression value="value.as(CodeableConcept)"/>
+          <expression value="value.ofType(CodeableConcept)"/>
         </component>
       </SearchParameter>
     </resource>
@@ -145,8 +141,7 @@
         <code value="date"/>
         <type value="date"/>
         <expression value="ValueSet.date"/>
-        <xpath value="f:ValueSet/f:date"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -165,8 +160,7 @@
         <code value="description"/>
         <type value="string"/>
         <expression value="ValueSet.description"/>
-        <xpath value="f:ValueSet/f:description"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -185,8 +179,7 @@
         <code value="expansion"/>
         <type value="uri"/>
         <expression value="ValueSet.expansion.identifier"/>
-        <xpath value="f:ValueSet/f:expansion/f:identifier"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -195,7 +188,7 @@
       <SearchParameter>
         <id value="ValueSet-identifier"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="trial-use"/>
+          <valueCode value="normative"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.identifier"/>
@@ -205,8 +198,7 @@
         <code value="identifier"/>
         <type value="token"/>
         <expression value="ValueSet.identifier"/>
-        <xpath value="f:ValueSet/f:identifier"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -215,7 +207,7 @@
       <SearchParameter>
         <id value="ValueSet-jurisdiction"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="trial-use"/>
+          <valueCode value="normative"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.jurisdiction"/>
@@ -225,8 +217,7 @@
         <code value="jurisdiction"/>
         <type value="token"/>
         <expression value="ValueSet.jurisdiction"/>
-        <xpath value="f:ValueSet/f:jurisdiction"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -245,8 +236,7 @@
         <code value="name"/>
         <type value="string"/>
         <expression value="ValueSet.name"/>
-        <xpath value="f:ValueSet/f:name"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -265,8 +255,7 @@
         <code value="publisher"/>
         <type value="string"/>
         <expression value="ValueSet.publisher"/>
-        <xpath value="f:ValueSet/f:publisher"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -285,8 +274,7 @@
         <code value="reference"/>
         <type value="uri"/>
         <expression value="ValueSet.compose.include.system"/>
-        <xpath value="f:ValueSet/f:compose/f:include/f:system"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -305,8 +293,7 @@
         <code value="status"/>
         <type value="token"/>
         <expression value="ValueSet.status"/>
-        <xpath value="f:ValueSet/f:status"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -325,8 +312,7 @@
         <code value="title"/>
         <type value="string"/>
         <expression value="ValueSet.title"/>
-        <xpath value="f:ValueSet/f:title"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -345,8 +331,7 @@
         <code value="url"/>
         <type value="uri"/>
         <expression value="ValueSet.url"/>
-        <xpath value="f:ValueSet/f:url"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -365,8 +350,7 @@
         <code value="version"/>
         <type value="token"/>
         <expression value="ValueSet.version"/>
-        <xpath value="f:ValueSet/f:version"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -385,8 +369,7 @@
         <code value="effective"/>
         <type value="date"/>
         <expression value="ValueSet.effectivePeriod"/>
-        <xpath value="f:ValueSet/f:effectivePeriod"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -395,12 +378,14 @@
       <SearchParameter>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="ValueSet.relatedArtifact.resource"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+          <valueCode value="trial-use"/>
         </extension>
         <description value="A resource that the ValueSet is derived from"/>
         <code value="derived-from"/>
         <type value="reference"/>
-        <expression value="ValueSet.relatedArtifact.where(type=&#39;derived-from&#39;).resource"/>
-        <xpath value="f:ValueSet/f:relatedArtifact[f:type/@value=&#39;derived-from&#39;]/f:resource"/>
+        <expression value="ValueSet.relatedArtifact.where(type='derived-from').resource"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -410,11 +395,13 @@
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="ValueSet.relatedArtifact.resource"/>
         </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+          <valueCode value="trial-use"/>
+        </extension>
         <description value="The predecessor of the ValueSet"/>
         <code value="predecessor"/>
         <type value="reference"/>
-        <expression value="ValueSet.relatedArtifact.where(type=&#39;predecessor&#39;).resource"/>
-        <xpath value="f:ValueSet/f:relatedArtifact[f:type/@value=&#39;predecessor&#39;]/f:resource"/>
+        <expression value="ValueSet.relatedArtifact.where(type='predecessor').resource"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -424,11 +411,13 @@
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="ValueSet.topic"/>
         </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+          <valueCode value="trial-use"/>
+        </extension>
         <description value="Topics associated with the ValueSet"/>
         <code value="topic"/>
         <type value="token"/>
         <expression value="ValueSet.topic"/>
-        <xpath value="f:ValueSet/f:topic"/>
       </SearchParameter>
     </resource>
   </entry>

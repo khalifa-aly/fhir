@@ -42,7 +42,7 @@
 							title="Codes: {http://ema.europa.eu/example/jurisdictionCode EU}"
 							>EU</span></td>
 						<td><span
-							title="Codes: {http://ema.europa.eu/example/languageCode EN}"
+							title="Codes: {urn:ietf:bcp:47}"
 							>EN</span></td>
 					</tr>
 				</table>
@@ -82,31 +82,31 @@
 	</masterFile>
 	<name>
 		<productName value="Equilidem 2.5 mg film-coated tablets"/>
-		<namePart>
+		<part>
 			<part value="Equilidem"/>
 			<type>
 				<coding>
 					<code value="INV"/>
 				</coding>
 			</type>
-		</namePart>
-		<namePart>
+		</part>
+		<part>
 			<part value="2.5 mg"/>
 			<type>
 				<coding>
 					<code value="STR"/>
 				</coding>
 			</type>
-		</namePart>
-		<namePart>
+		</part>
+		<part>
 			<part value="film-coated tablets"/>
 			<type>
 				<coding>
 					<code value="FRM"/>
 				</coding>
 			</type>
-		</namePart>
-		<countryLanguage>
+		</part>
+		<usage>
 			<country>
 				<coding>
 					<system value="http://ema.europa.eu/example/countryCode"/>
@@ -121,11 +121,11 @@
 			</jurisdiction>
 			<language>
 				<coding>
-					<system value="http://ema.europa.eu/example/languageCode"/>
-					<code value="EN"/>
+					<system value="urn:ietf:bcp:47"/>
+					<code value="en"/>
 				</coding>
 			</language>
-		</countryLanguage>
+		</usage>
 	</name>
 	<operation>
 		<type>

@@ -16,9 +16,8 @@
         <description value="What resource is being referenced"/>
         <code value="composed-of"/>
         <type value="reference"/>
-        <expression value="EventDefinition.relatedArtifact.where(type=&#39;composed-of&#39;).resource"/>
-        <xpath value="f:EventDefinition/f:relatedArtifact[f:type/@value=&#39;composed-of&#39;]/f:resource"/>
-        <xpathUsage value="normal"/>
+        <expression value="EventDefinition.relatedArtifact.where(type='composed-of').resource"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -36,9 +35,8 @@
         <description value="A use context assigned to the event definition"/>
         <code value="context"/>
         <type value="token"/>
-        <expression value="(EventDefinition.useContext.value as CodeableConcept)"/>
-        <xpath value="f:EventDefinition/f:useContext/f:valueCodeableConcept"/>
-        <xpathUsage value="normal"/>
+        <expression value="(EventDefinition.useContext.value.ofType(CodeableConcept))"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -56,9 +54,8 @@
         <description value="A quantity- or range-valued use context assigned to the event definition"/>
         <code value="context-quantity"/>
         <type value="quantity"/>
-        <expression value="(EventDefinition.useContext.value as Quantity) | (EventDefinition.useContext.value as Range)"/>
-        <xpath value="f:EventDefinition/f:useContext/f:valueQuantity | f:EventDefinition/f:useContext/f:valueRange"/>
-        <xpathUsage value="normal"/>
+        <expression value="(EventDefinition.useContext.value.ofType(Quantity)) | (EventDefinition.useContext.value.ofType(Range))"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -77,8 +74,7 @@
         <code value="context-type"/>
         <type value="token"/>
         <expression value="EventDefinition.useContext.code"/>
-        <xpath value="f:EventDefinition/f:useContext/f:code"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -94,14 +90,14 @@
         <code value="context-type-quantity"/>
         <type value="composite"/>
         <expression value="EventDefinition.useContext"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
         <component>
           <definition value="context-type"/>
           <expression value="code"/>
         </component>
         <component>
           <definition value="context-quantity"/>
-          <expression value="value.as(Quantity) | value.as(Range)"/>
+          <expression value="value.ofType(Quantity) | value.ofType(Range)"/>
         </component>
       </SearchParameter>
     </resource>
@@ -118,14 +114,14 @@
         <code value="context-type-value"/>
         <type value="composite"/>
         <expression value="EventDefinition.useContext"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
         <component>
           <definition value="context-type"/>
           <expression value="code"/>
         </component>
         <component>
           <definition value="context"/>
-          <expression value="value.as(CodeableConcept)"/>
+          <expression value="value.ofType(CodeableConcept)"/>
         </component>
       </SearchParameter>
     </resource>
@@ -135,7 +131,7 @@
       <SearchParameter>
         <id value="EventDefinition-date"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.date"/>
@@ -145,8 +141,7 @@
         <code value="date"/>
         <type value="date"/>
         <expression value="EventDefinition.date"/>
-        <xpath value="f:EventDefinition/f:date"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -164,9 +159,8 @@
         <description value="What resource is being referenced"/>
         <code value="depends-on"/>
         <type value="reference"/>
-        <expression value="EventDefinition.relatedArtifact.where(type=&#39;depends-on&#39;).resource"/>
-        <xpath value="f:EventDefinition/f:relatedArtifact[f:type/@value=&#39;depends-on&#39;]/f:resource"/>
-        <xpathUsage value="normal"/>
+        <expression value="EventDefinition.relatedArtifact.where(type='depends-on').resource"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -184,9 +178,8 @@
         <description value="What resource is being referenced"/>
         <code value="derived-from"/>
         <type value="reference"/>
-        <expression value="EventDefinition.relatedArtifact.where(type=&#39;derived-from&#39;).resource"/>
-        <xpath value="f:EventDefinition/f:relatedArtifact[f:type/@value=&#39;derived-from&#39;]/f:resource"/>
-        <xpathUsage value="normal"/>
+        <expression value="EventDefinition.relatedArtifact.where(type='derived-from').resource"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -195,7 +188,7 @@
       <SearchParameter>
         <id value="EventDefinition-description"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.description"/>
@@ -205,8 +198,7 @@
         <code value="description"/>
         <type value="string"/>
         <expression value="EventDefinition.description"/>
-        <xpath value="f:EventDefinition/f:description"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -225,8 +217,7 @@
         <code value="effective"/>
         <type value="date"/>
         <expression value="EventDefinition.effectivePeriod"/>
-        <xpath value="f:EventDefinition/f:effectivePeriod"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -245,8 +236,7 @@
         <code value="identifier"/>
         <type value="token"/>
         <expression value="EventDefinition.identifier"/>
-        <xpath value="f:EventDefinition/f:identifier"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -265,8 +255,7 @@
         <code value="jurisdiction"/>
         <type value="token"/>
         <expression value="EventDefinition.jurisdiction"/>
-        <xpath value="f:EventDefinition/f:jurisdiction"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -275,7 +264,7 @@
       <SearchParameter>
         <id value="EventDefinition-name"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.name"/>
@@ -285,8 +274,7 @@
         <code value="name"/>
         <type value="string"/>
         <expression value="EventDefinition.name"/>
-        <xpath value="f:EventDefinition/f:name"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -304,9 +292,8 @@
         <description value="What resource is being referenced"/>
         <code value="predecessor"/>
         <type value="reference"/>
-        <expression value="EventDefinition.relatedArtifact.where(type=&#39;predecessor&#39;).resource"/>
-        <xpath value="f:EventDefinition/f:relatedArtifact[f:type/@value=&#39;predecessor&#39;]/f:resource"/>
-        <xpathUsage value="normal"/>
+        <expression value="EventDefinition.relatedArtifact.where(type='predecessor').resource"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -315,7 +302,7 @@
       <SearchParameter>
         <id value="EventDefinition-publisher"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.publisher"/>
@@ -325,8 +312,7 @@
         <code value="publisher"/>
         <type value="string"/>
         <expression value="EventDefinition.publisher"/>
-        <xpath value="f:EventDefinition/f:publisher"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -335,7 +321,7 @@
       <SearchParameter>
         <id value="EventDefinition-status"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.status"/>
@@ -345,8 +331,7 @@
         <code value="status"/>
         <type value="token"/>
         <expression value="EventDefinition.status"/>
-        <xpath value="f:EventDefinition/f:status"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -364,9 +349,8 @@
         <description value="What resource is being referenced"/>
         <code value="successor"/>
         <type value="reference"/>
-        <expression value="EventDefinition.relatedArtifact.where(type=&#39;successor&#39;).resource"/>
-        <xpath value="f:EventDefinition/f:relatedArtifact[f:type/@value=&#39;successor&#39;]/f:resource"/>
-        <xpathUsage value="normal"/>
+        <expression value="EventDefinition.relatedArtifact.where(type='successor').resource"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -375,7 +359,7 @@
       <SearchParameter>
         <id value="EventDefinition-title"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.title"/>
@@ -385,8 +369,7 @@
         <code value="title"/>
         <type value="string"/>
         <expression value="EventDefinition.title"/>
-        <xpath value="f:EventDefinition/f:title"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -405,8 +388,7 @@
         <code value="topic"/>
         <type value="token"/>
         <expression value="EventDefinition.topic"/>
-        <xpath value="f:EventDefinition/f:topic"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -415,7 +397,7 @@
       <SearchParameter>
         <id value="EventDefinition-url"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.url"/>
@@ -425,8 +407,7 @@
         <code value="url"/>
         <type value="uri"/>
         <expression value="EventDefinition.url"/>
-        <xpath value="f:EventDefinition/f:url"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -435,7 +416,7 @@
       <SearchParameter>
         <id value="EventDefinition-version"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.version"/>
@@ -445,8 +426,7 @@
         <code value="version"/>
         <type value="token"/>
         <expression value="EventDefinition.version"/>
-        <xpath value="f:EventDefinition/f:version"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>

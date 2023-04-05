@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<CodeSystem xmlns="http://hl7.org/fhir">
+<?xml version="1.0" encoding="UTF-8"?><CodeSystem xmlns="http://hl7.org/fhir">
   <id value="research-study-party-role"/>
   <meta>
     <lastUpdated value="2022-05-12T12:40:00+00:00"/>
@@ -18,9 +16,9 @@
   <url value="http://hl7.org/fhir/research-study-party-role"/>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
-    <value value="urn:oid:2.16.840.1.113883.4.642.1.1684"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.4.1968"/>
   </identifier>
-  <version value="4.6.0"/>
+  <version value="5.0.0"/>
   <name value="ResearchStudyPartyRole"/>
   <title value="Research Study Party Role"/>
   <status value="draft"/>
@@ -37,7 +35,7 @@
       <value value="fhir@lists.hl7.org"/>
     </telecom>
   </contact>
-  <description value="Codes that convey the type of party role that is provided."/>
+  <description value="This is a ResearchStudy's party role."/>
   <caseSensitive value="true"/>
   <valueSet value="http://hl7.org/fhir/ValueSet/research-study-party-role"/>
   <content value="complete"/>
@@ -72,6 +70,11 @@
     <definition value="funding-source"/>
   </concept>
   <concept>
+    <code value="general-contact"/>
+    <display value="general-contact"/>
+    <definition value="general-contact"/>
+  </concept>
+  <concept>
     <code value="recruitment-contact"/>
     <display value="recruitment-contact"/>
     <definition value="recruitment-contact"/>
@@ -91,4 +94,8 @@
     <display value="study-chair"/>
     <definition value="study-chair"/>
   </concept>
+	<concept>
+		<code value="irb"/>
+		<display value="Institutional Review Board"/>
+	</concept>
 </CodeSystem>

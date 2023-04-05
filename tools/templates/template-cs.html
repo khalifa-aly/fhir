@@ -10,37 +10,42 @@
 <body>
 [%file newnavbar%]
 
-<div class="col-12">
-
-<%txheader0 vs%>
-
 <a name="vs"></a>
-<h1>Code System <%vsurl%></h1>
+<h1>CodeSystem <%vsurl%></h1>
 <table class="<%fmm-style%>">
  <tr><td><a href="<%wg%>"><%wgt%></a> Work Group</td><td><%fmm%></td><td><%sstatus%></td><!--!ns!--><td><%profile-context%></td></tr>
 </table>
+
+<%exheader narrative%>
+
 [%normative cs %check%]
 
-<p>
-This is a code system defined <%vssource%><%vsxref%>
-</p>
-
-<p><b>Summary</b></p>
-<table class="grid">
- <tr><td>Defining URL:</td><td><code><%vsurl%></code></td></tr>
- <tr><td>Version:</td><td><%vsver%></td></tr>
- <tr><td>Name:</td><td><%vsnamed%></td></tr>
- <tr><td>Title:</td><td><%vstitle%></td></tr>
- <tr><td>Definition:</td><td><%vsdef%></td></tr>
- <tr><td>Committee:</td><td><%vscommittee%></td></tr>
- <tr><td>OID:</td><td><%txoid%> (for OID based terminology systems)</td></tr>
-<%txsummary%>
- <tr><td>Source Resource</td><td><a href="<%vsref%>.xml.html">XML</a> / <a href="<%vsref%>.json.html">JSON</a></td></tr>
+<table class="<%fmm-style%>">
+  <tr>
+    <td colspan="4">
+      <i>Official URL</i>: <span class="copy-text"><code><%vsurl%></code><button title="Click to copy URL" class="btn-copy" data-clipboard-text="<%vsurl%>" data-original-title="Click to copy URL"></button></span>
+    </td>
+    <td><i>Version</i>: <%csver%></td>
+  </tr>
+  <tr>
+   <td colspan="4"><%csstatus%> as of <%csdate%></td>
+   <td><i>Computable Name</i>: <span style="font-family: monospace;"><%csnamed%></span></td>
+  </tr>
+  <tr>
+    <td colspan="4"><em>Flags</em>: <%csflags%></td>
+    <td colspan="1"><em>OID</em>: <span style="font-family: monospace;"><%csoid%></span></td>
+  </tr>
 </table>
 
 <%res-status-special%>
-
 <%csusage%>
+<hr/>
+
+<a name="definition"></a>
+<h2>Definition</h2>
+
+<%csdef%>
+
 
 <a name="content"></a>
 <h2>Content</h2>
@@ -69,13 +74,14 @@ Explanation of the columns that may appear on this page:
  <tr><td>Comments</td><td>Additional notes about how to use the code</td></tr>
 </table>
 
-</div>
-
 [%file newfooter%]
     
+<script type="text/javascript" src="assets/js/clipboard.min.js"> </script>
+<script type="text/javascript" src="assets/js/clipboard-btn.js"> </script>
     
 <script src="external/jquery/jquery.js"> </script>
 <script src="jquery-ui.min.js"> </script>
+
 <script>
 try {
   var currentTabIndex = sessionStorage.getItem('fhir-cslang-tab-index');

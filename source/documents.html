@@ -22,33 +22,40 @@ Outstanding issues:
 <table class="colstu"><tr><td id="wg"><a _target="blank" href="[%wg fhir%]">[%wgt fhir%]</a> Work Group</td><td id="fmm"><a href="versions.html#maturity">Maturity Level</a>: 3</td><td id="ballot"><a href="versions.html#std-process">Standards Status</a>:<!--!ns!--><a href="versions.html#std-process">Trial Use</a></td></tr></table>
 
 <p>
-FHIR resources can be used to build documents that represent a composition:
-a coherent set of information that is a statement of healthcare information, including clinical observations and services.
-A document is an immutable set of resources with a fixed presentation
-that is authored and/or attested by humans, organizations and devices.
+FHIR resources can be used to build documents that represent a composition: a coherent set of information that is a 
+statement of healthcare information, including clinical observations and services. A document is a set of 
+resources with a fixed presentation that is authored and/or attested by humans, organizations and devices.
 </p>
+<p>
+A FHIR document instance is a <a href="bundle.html">Bundle</a> of type <code>document</code> that 
+starts with a <a href="composition.html">Composition</a> and contains specific frozen versions of other 
+resources. Changes to a document Bundle may risk invalidating the attestation present within the document.  
+Implementations SHOULD have policies around when documents can be 'updated' (new version of the same 
+instance) vs. when a distinct document needs to be created, as well as what types of change are permitted, 
+in order to retain attestation validity.  These rules might vary based on the type of document (e.g. legal 
+documents, clinical documents, etc.).</p>
 <p>
 Documents built in this fashion may be exchanged between systems and
-persisted in document storage and management systems, including systems such as IHE
-XDS.
+persisted in document storage and management systems, including systems such as <a href="https://wiki.ihe.net/index.php/Cross-Enterprise_Document_Sharing">IHE
+XDS</a>.
 </p>
 <p>
-Applications claiming conformance to this framework claim to be conformant to
-"FHIR documents" (see <a href="conformance-rules.html">Conformance</a>).
+Applications that declare support for FHIR documents with <a href="capabilitystatement-definitions.html#CapabilityStatement.document">CapabilityStatement.document</a> 
+are asserting conformance to the rules defined on this page.
 </p>
 <p>
-FHIR documents may be 'clinical' (focused on patient healthcare information) but
-may also serve non-clinical purposes (e.g. FHIR Implementation guides, practice
-guidelines, patient handouts, etc.)
-HL7 will develop profiles in the future giving additional guidance on appropriate
-representation of clinical documents in general as well as specific types of clinical
-documents (e.g. Consolidated CDA).
+FHIR documents may serve clinical purposes (focused on patient healthcare information) and 
+non-clinical purposes (e.g. practice guidelines, patient handouts, etc.). HL7 has plans to 
+develop profiles in the future giving additional guidance on appropriate representation of 
+clinical documents in general, specific types of clinical documents (e.g. Consolidated CDA), 
+and other non-clinical documents (Death Certificate, Medication Registration Information).
 </p>
+<p>FHIR documents are not intended to capture unbounded data sets such as a full EHR. Rather, consider the <a href="http://hl7.org/fhir/uv/bulkdata/">Bulk Data</a> specification for such use cases. </p>
 
 <p>
-Note that FHIR defines both this document format and a <a href="documentreference.html">document reference resource</a>.
-FHIR documents are for documents that are authored and assembled in FHIR, while the document reference resource is for
-general references to pre-existing documents.
+Note that FHIR defines both this document format and a <a href="documentreference.html">DocumentReference resource</a>.
+FHIR documents are for documents that are authored and assembled in FHIR, while the DocumentReference resource is for
+general references to documents (which may include FHIR documents as well as PDFs, CDAs, etc.).
 </p>
 <ul>
  <li><a href="document-example-dischargesummary.html">Example discharge summary</a>: <a href="document-example-dischargesummary.xml.html">XML</a> or <a href="document-example-dischargesummary.json.html">JSON</a></li>
@@ -56,14 +63,14 @@ general references to pre-existing documents.
 
 <a name="content"></a>
 
-<h2>Document Content</h2>
+<h2>Document Structure</h2>
 
 <p>
 All documents have the same structure: a <a href="bundle.html">Bundle</a>
 of resources of <a href="bundle-definitions.html#Bundle.type">type</a> "document"
 that has a <a href="composition.html">Composition</a> resource as the first resource
 in the bundle, followed by a series of other resources, referenced from the <code>Composition</code>
-resource, that provide supporting evidence for the document. The bundle gathers all the content
+resource, that provide the supporting details for the document. The bundle gathers all the content
 of the document into a single XML or JSON document which may be signed and managed as required.
 The resources include both human readable and computer processable portions. In addition, the bundle
 may include <a href="http://www.w3.org/Style/CSS/Overview.en.html">CSS stylesheets</a>,
@@ -82,19 +89,25 @@ Resources referenced by the Composition as listed below SHALL be included in the
 </p>
 <%res-ref-list Composition%>
 <p>
-Other resources that these referenced resources refer to may also be included in the
-bundle if the document construction system chooses to do so. Including these additional resources will
-make the document bigger but will save applications from needing to retrieve the linked resources
-if they need them while processing the document. Thus, whether these linked resources should be included or
-not depends on the implementation environment.
+When these resources reference other resources, the referenced resources SHOULD also be 
+included in the bundle. Omitting referenced resources could compromise the integrity and 
+wholeness of the document, especially when considering that documents have legal retention 
+periods that may be longer than the life of the FHIR server where the reference(s) point to.
+</p>
+<p>
+In rare cases the referenced resources in Composition can also be contained resources 
+within Composition provided that the resource(s) in question meets the restrictions for 
+the use of contained resources (see <a href="references.html#contained">Contained Resources</a>
+for more information).
 </p>
 <p>
 The document bundle SHALL include only:
 </p>
 <ol>
- <li>The Composition resource, and any resources directly or indirectly (e.g. recursively) referenced from it</li>
- <li>A Binary resource containing a stylesheet (as described below)</li>
- <li>Provenance Resources that have a target of Composition or another resource included in the document</li>
+ <li>The composition set: The Composition resource, and the resources it links to</li>
+ <li>The supporting information: Any resources that are part of the graph of resources that reference or 
+  are referenced from the composition set, either directly or indirectly (e.g. recursively in a chain)</li>
+ <li>Supporting Collateral: A Binary resource containing a stylesheet (as described below)</li>
 </ol>
 <p>
 There are two key identifiers in the document:
@@ -120,14 +133,7 @@ The signature SHOULD be provided by a listed attester of the document and the si
 SHOULD contain a <a href="http://www.w3.org/TR/xmldsig-core/#sec-KeyInfo" target="_blank">KeyInfo
 element</a> that contains a KeyName element whose value is a URI that matches the <a href="bundle-definitions.html#Bundle.entry.fullUri">fullUri</a> for the matching attester resource.
 </p>
-<p>
-Once assembled into a bundle, the document is immutable - its content can never be changed,
-and the document id can never be reused. Note that the document may be represented in either
-XML or JSON and interconverted between these or have its character encoding changed, all
-the while remaining the same document. However, the directly referenced content within the
-document and the presentation of the document cannot change substantially (such that it changes the clinical meaning of the content). Any additional
-documents derived from the same composition SHALL have a different document id.
-</p>
+<p>Note that the document may be represented in either XML or JSON and interconverted between these or have its character encoding changed, all the while remaining the same document.  Any additional documents derived from the same Composition SHALL have a different Bundle.identifier.</p>
 
 <a name="presentation"></a>
 <h3>Document Presentation</h3>
@@ -141,10 +147,10 @@ collated narrative portions in order:
  <li>The <a href="composition-definitions.html#Composition.section.text">section.text</a> Narratives</li>
 </ol>
 <p>
-The presentation of the document is called the 'attested content' of the document. Additional
-resources can be included in the bundle (e.g. resources referenced from the List that represent the section.content
-SHOULD be in the bundle, and other additional resources they reference can be included), but these (and any narrative)
-are not attested content. Specifically, the <code>Composition.attester</code> attests to the presented form of the document.
+The presentation of the document is called the 'attested content' of the document. Additional resources 
+included in the document that are not part of the presentation of the document are not considered attested 
+content (e.g. a <a href="condition.html">Condition</a> resource). Specifically, 
+the <code>Composition.attester</code> attests to the presented form of the document.
 </p>
 <p>
 The Composition resource narrative should summarize the important parts of the document header that are required
@@ -166,8 +172,8 @@ XSLT transform that converts an XML document into browser-ready XHTML.
 <a name="css"></a>
 <p>
 In addition to the <a href="narrative.html#css">basic style rules about Narratives</a>, which
-must be followed, a document can reference or contain one or more stylesheets that contains additional styles that
-apply to the collated narrative. This is done by asserting stylesheet links on the feed:
+must be followed, a document can reference or contain one or more stylesheets that contain additional styles that
+apply to the collated narrative. This is done by asserting stylesheet links on the Bundle:
 </p>
 <pre class="xml">
 &lt;Bundle xmlns=&quot;http://hl7.org/fhir&quot;&gt;
@@ -278,11 +284,11 @@ of posting to them:
 </p>
 <table class="grid">
  <tr> <td><b>End-Point</b></td> <td><b>Type of Content</b></td> <td><b>Description</b></td> </tr>
- <tr> <td>[baseurl]/Bundle</td> <td>Document Bundle</td> <td>This works like a normal end-point
+ <tr> <td><a href="bundle.html">[baseurl]/Bundle</a></td> <td>Document Bundle</td> <td>This works like a normal end-point
    for managing a type of resource, but it works with whole document bundles - i.e. a read operation returns a bundle,
    an update gets a bundle and a search returns a bundle of bundles. Note that if documents are POSTed
    using a <a href="http.html#create">create</a> interaction the Bundle.id will change, but the Bundle.identifier will not. See <a href="bundle.html#rest">Serving Bundles using the RESTful API</a> for further comment</td></tr>
- <tr> <td>[baseurl]/Composition</td> <td>Composition Resource</td> <td>The normal end-point for managing
+ <tr> <td><a href="composition.html">[baseurl]/Composition</a></td> <td>Composition Resource</td> <td>The normal end-point for managing
    composition resources. This can be used while building a document or after breaking a document up into
    its constituent resources or when using compositions separately from documents</td> </tr>
 

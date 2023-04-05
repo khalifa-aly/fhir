@@ -3,11 +3,6 @@
 <div> 
 <a name="scope"></a>
 <h2>Scope and Usage</h2> 
-[%dragons-start%]
-<p class="warning">
-As a number of FHIR software components are dependent on the <a href="conceptmap.html">ConceptMap</a> resource in its current form, it is difficult to make significant changes to it without negatively affecting these components. For this reason, it has been agreed that all updates to the <a href="conceptmap.html">ConceptMap</a> resource will be applied to the <a href="conceptmap.html">ConceptMap</a> resource. At some point in the future the content of the <a href="conceptmap.html">ConceptMap</a> resource will replace the content of the <a href="conceptmap.html">ConceptMap</a> resource, impacts on depndent components will be resolved, and the <a href="conceptmap.html">ConceptMap</a> resource will be removed. 
-</p>
-[%dragons-end%]
 <p>
 A concept map defines a mapping from a set of concepts defined in a code system (commonly referred to as the "system") to one or more concepts defined in other code systems.  In the mapping context, a system can be a typical <a href="terminologies.html">code system</a> based on a recognized standard or local terminology (in any of its forms), or in some cases it may be an <a href="conceptmap.html#implicit">"implicit" code system</a> that is not based on a recognized terminology but still represents a set of "concepts" that can be usefully mapped. Mappings are one way - from the source to the target system. In many cases, the reverse mappings are valid, but this cannot be assumed to be the case. 
 </p>
@@ -21,6 +16,15 @@ Note that all code systems (explicit or implicit) represented in FHIR have URI i
 <p>
 Each mapping from a source concept to a target concept includes a <a href="valueset-concept-map-relationship.html">relationship</a> 
 element describing the semantic correspondence between the two (or, in some cases, that there is no valid mapping).
+If none of the relationships in <a href="valueset-concept-map-relationship.html">ConceptMapRelationship</a> is precise enough, then a <code>ConceptMap.group.element.target.property</code>data element can be used with
+<ul>
+<li>a child <code>code</code> value corresponding to the <code>http://hl7.org/fhir/conceptmap-properties#relationshipRefinement</code> concept (from the <a href="codesystem-conceptmap-properties.html">ConceptMap Properties</a> code system) and </li>
+<li>a child <code>valueCode</code> or <code>valueCoding</code> value to indicate the precise relationship. </li>
+</ul>
+In this case, well-known relationships, such as those from the 
+<a href="https://www.w3.org/TR/skos-reference/#mapping">Simple Knowledge Organization System (SKOS)</a>, should be used where possible.
+</p>
+<p>
 There can be an <code>element</code> for each concept or field in the <code>sourceScope</code> value set or <code>group.source</code> code system that needs to be mapped.
 Each source concept may have multiple targets:
 </p>
@@ -94,6 +98,33 @@ Further discussion of the issues involved in mapping between concept definition 
 and the functionality described in the <a href="http://www.omg.org/spec/CTS2/1.0/">OMG CTS 2</a> specification. 
 </p>
 
+[%impl-note%]
+This resource has undergone an extensive redesign between 
+Release 4 and Release 5. Key changes:
+</p>
+<ul>
+ <li>A number of metadata fields have been added (same as <a href="codesystem.html">CodeSystem</a> and <a href="valueset.html">ValueSet</a>)</li>
+ <li><code>source</code> and <code>target</code> were renamed to <code>sourceScope</code> and <code>targetScope</code> for clarity</li>
+ <li><code>ConceptMap.group.element.target.equivalence</code> has been renamed to 
+ <code>ConceptMap.group.element.target.relationship</code> for clarity, and the set of 
+ relationship codes has simplified, and the code <code>umatched</code> has been moved
+ to the <code>noMap</code> element</li>
+ <li><code>ConceptMap.group.element.target.property</code> has been added to support providing additional details about the relationship between 
+   source and target. Like with <a href="codesystem.html">CodeSystem</a> and <a href="valueset.html">ValueSet</a>, properties are 
+   defined using <code>ConceptMap.property</code></li>
+ <li><code>ConceptMap.group.element.target.dependsOn.property</code> was renamed to 
+ <code>ConceptMap.group.element.target.dependsOn.attribute</code> to clarify that 
+ these are not properties of the mapping, but additional attributes of the source
+ or target content. The data type was changed from <code>url</code> to <code>code</code>
+ which references <code>ConceptMap.additionalAttribute</code> to allow for a more 
+ concise representation, along with documentation</li>
+<li><code>ConceptMap.group.element.valueSet</code> was added to facilitate mapping all concepts from a source value set</li>
+<li><code>ConceptMap.group.element.target.valueSet</code> has been added to facilitate mapping to each concept in a target value set</li>
+<li><code>relationship</code> and <code>valueSet</code> have been added to the <code>unmapped</code> element and some other clarifications have been made</li>
+</ul>
+<p>
+
+[%end-note%]
 
 </div>
  

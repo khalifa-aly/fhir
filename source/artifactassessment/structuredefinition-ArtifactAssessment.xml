@@ -20,9 +20,17 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="cds"/>
   </extension>
+  <extension url="http://hl7.org/fhir/build/StructureDefinition/entered-in-error-status">
+    <valueCode value=".workflowStatus = entered-in-error"/>
+  </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/ArtifactAssessment"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1262"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="ArtifactAssessment"/>
+  <title value="Artifact Assessment"/>
   <status value="draft"/>
   <date value="2021-01-05T10:01:24+11:00"/>
   <publisher value="Health Level Seven International (Clinical Decision Support)"/>
@@ -39,7 +47,7 @@
     </telecom>
   </contact>
   <description value="This Resource provides one or more comments, classifiers or ratings about a Resource and supports attribution and rights management metadata for the added content."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="workflow"/>
     <uri value="http://hl7.org/fhir/workflow"/>
@@ -73,10 +81,6 @@
       <min value="0"/>
       <max value="*"/>
       <mapping>
-        <identity value="workflow"/>
-        <map value="Definition"/>
-      </mapping>
-      <mapping>
         <identity value="rim"/>
         <map value="Act[classCode=ACT; moodCode=DEFN]"/>
       </mapping>
@@ -98,10 +102,6 @@
       </type>
       <isSummary value="true"/>
       <mapping>
-        <identity value="workflow"/>
-        <map value="Definition.identifier"/>
-      </mapping>
-      <mapping>
         <identity value="w5"/>
         <map value="FiveWs.identifier"/>
       </mapping>
@@ -113,6 +113,19 @@
         <identity value="objimpl"/>
         <map value="no-gen-base"/>
       </mapping>
+    </element>
+    <element id="ArtifactAssessment.title">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true"/>
+      </extension>
+      <path value="ArtifactAssessment.title"/>
+      <short value="A short title for the assessment for use in displaying and selecting"/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="string"/>
+      </type>
+      <isSummary value="true"/>
     </element>
     <element id="ArtifactAssessment.citeAs[x]">
       <path value="ArtifactAssessment.citeAs[x]"/>
@@ -132,7 +145,7 @@
       <path value="ArtifactAssessment.date"/>
       <short value="Date last changed"/>
       <definition value="The date  (and optionally time) when the artifact assessment was published. The date must change when the disposition changes and it must change if the workflow status code changes. In addition, it should change when the substantive content of the artifact assessment changes."/>
-      <comment value="Note that this is not the same as the resource last-modified-date, since the resource may be a secondary representation of the artifact assessment. Additional specific dates may be added as extensions or be found by consulting Provenances associated with past versions of the resource."/>
+      <comment value="The date is often not tracked until the resource is published, but may be present on draft content. Note that this is not the same as the resource last-modified-date, since the resource may be a secondary representation of the artifact assessment. Additional specific dates may be added as extensions or be found by consulting Provenances associated with past versions of the resource."/>
       <alias value="Revision Date"/>
       <min value="0"/>
       <max value="1"/>
@@ -140,10 +153,6 @@
         <code value="dateTime"/>
       </type>
       <isSummary value="true"/>
-      <mapping>
-        <identity value="workflow"/>
-        <map value="Definition.date"/>
-      </mapping>
       <mapping>
         <identity value="w5"/>
         <map value="FiveWs.recorded"/>
@@ -169,10 +178,6 @@
         <code value="markdown"/>
       </type>
       <mapping>
-        <identity value="workflow"/>
-        <map value="Definition.copyright"/>
-      </mapping>
-      <mapping>
         <identity value="rim"/>
         <map value="N/A (to add?)"/>
       </mapping>
@@ -185,16 +190,12 @@
       <path value="ArtifactAssessment.approvalDate"/>
       <short value="When the artifact assessment was approved by publisher"/>
       <definition value="The date on which the resource content was approved by the publisher. Approval happens once when the content is officially approved for usage."/>
-      <comment value="The &#39;date&#39; element may be more recent than the approval date because of minor changes or editorial corrections."/>
+      <comment value="The 'date' element may be more recent than the approval date because of minor changes or editorial corrections."/>
       <min value="0"/>
       <max value="1"/>
       <type>
-        <code value="dateTime"/>
+        <code value="date"/>
       </type>
-      <mapping>
-        <identity value="workflow"/>
-        <map value="Definition.approvalDate"/>
-      </mapping>
       <mapping>
         <identity value="rim"/>
         <map value=".outboundRelationship[typeCode=&quot;SUBJ&quot;].act[classCode=CACT;moodCode=EVN;code=&quot;approval&quot;].effectiveTime"/>
@@ -206,20 +207,16 @@
     </element>
     <element id="ArtifactAssessment.lastReviewDate">
       <path value="ArtifactAssessment.lastReviewDate"/>
-      <short value="When the artifact assessment was last reviewed"/>
+      <short value="When the artifact assessment was last reviewed by the publisher"/>
       <definition value="The date on which the resource content was last reviewed. Review happens periodically after approval but does not change the original approval date."/>
       <comment value="If specified, this date follows the original approval date."/>
       <requirements value="Gives a sense of how &quot;current&quot; the content is.  Resources that have not been reviewed in a long time may have a risk of being less appropriate/relevant."/>
       <min value="0"/>
       <max value="1"/>
       <type>
-        <code value="dateTime"/>
+        <code value="date"/>
       </type>
       <isSummary value="true"/>
-      <mapping>
-        <identity value="workflow"/>
-        <map value="Definition.lastReviewDate"/>
-      </mapping>
       <mapping>
         <identity value="rim"/>
         <map value=".outboundRelationship[typeCode=&quot;SUBJ&quot;; subsetCode=&quot;RECENT&quot;].act[classCode=CACT;moodCode=EVN;code=&quot;review&quot;].effectiveTime"/>
@@ -271,7 +268,7 @@
           <valueString value="InformationType"/>
         </extension>
         <strength value="required"/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/artifactassessment-information-type|4.6.0"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/artifactassessment-information-type"/>
       </binding>
     </element>
     <element id="ArtifactAssessment.content.summary">
@@ -317,6 +314,16 @@
         <strength value="example"/>
         <valueSet value="http://hl7.org/fhir/ValueSet/certainty-rating"/>
       </binding>
+    </element>
+    <element id="ArtifactAssessment.content.quantity">
+      <path value="ArtifactAssessment.content.quantity"/>
+      <short value="Quantitative rating"/>
+      <definition value="A quantitative rating of the artifact."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Quantity"/>
+      </type>
     </element>
     <element id="ArtifactAssessment.content.author">
       <path value="ArtifactAssessment.content.author"/>
@@ -374,7 +381,7 @@
     </element>
     <element id="ArtifactAssessment.workflowStatus">
       <path value="ArtifactAssessment.workflowStatus"/>
-      <short value="submitted | triaged | waiting-for-input | resolved-no-change | resolved-change-required | deferred | duplicate | applied | published"/>
+      <short value="submitted | triaged | waiting-for-input | resolved-no-change | resolved-change-required | deferred | duplicate | applied | published | entered-in-error"/>
       <definition value="Indicates the workflow status of the comment or change request."/>
       <min value="0"/>
       <max value="1"/>
@@ -387,7 +394,7 @@
           <valueString value="WorkflowStatus"/>
         </extension>
         <strength value="required"/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/artifactassessment-workflow-status|4.6.0"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/artifactassessment-workflow-status"/>
       </binding>
     </element>
     <element id="ArtifactAssessment.disposition">
@@ -405,7 +412,7 @@
           <valueString value="Disposition"/>
         </extension>
         <strength value="required"/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/artifactassessment-disposition|4.6.0"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/artifactassessment-disposition"/>
       </binding>
     </element>
   </differential>

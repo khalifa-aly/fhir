@@ -14,6 +14,8 @@
 <p>Examples of the former could include group therapy or treatment sessions, exposed entities tracked as part of public health, etc.  The latter might be used to define expected subjects for a clinical study.</p>
 
 <p>Both use cases are handled by a single resource because the data elements captured tend to be similar.</p>
+<p>NOTE: While <a href="specimen.html">Specimen</a> does not quite fit with this definition, it is being retained as part of
+Group to avoid making a breaking change to the <a href="observation.html">Observation</a> resource.</p>
 </div>
 
 <div>
@@ -24,10 +26,13 @@ There are a number of mechanisms in FHIR for communicating collections of resour
 </p>
 <ul>
 <li>
-The <a href="list.html">List</a> resource - enumerates a flat collection of resources and provides features for managing the collection.  
+The <a href="list.html">List</a> resource - enumerates a flat collection of resources and provides features for managing the collection.
 While a particular List instance may represent a "snapshot", from a business process perspective the notion of "List" 
 is dynamic – items are added and removed over time.  The List resource references other resources.  Lists may be 
-curated and have specific business meaning.
+curated and have specific business meaning. For use cases where Group is suitable (e.g. for a list of Patients to be
+viewed on a dashboard), the Group resource should be preferred to the List resource. The underlying rationale is that a collection of
+patients, practitioners, etc. is likely to be of interest as the subject of a measure, observation, communication, etc.,
+which Group is intended to support.
 </li>
 <li>
 This Group resource - defines a group of specific people, animals, devices etc. by enumerating them, 

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <CodeSystem xmlns="http://hl7.org/fhir">
   <id value="medicinal-product-manufacturing-activity"/>
   <meta>
@@ -17,11 +18,11 @@
   <url value="http://hl7.org/fhir/medicinal-product-manufacturing-activity"/>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
-     <value value="urn:oid:2.16.840.1.113883.4.642.1.1601"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.4.1920"/>
   </identifier>
-  <version value="4.6.0"/>
-   <name value="IngredientRole"/>
-   <title value="IngredientRole"/>
+  <version value="5.0.0"/>
+  <name value="IngredientRole"/>
+  <title value="Ingredient Role"/>
   <status value="draft"/>
   <experimental value="false"/>
   <date value="2021-01-05T10:01:24+11:00"/>

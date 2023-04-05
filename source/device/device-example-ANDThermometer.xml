@@ -32,10 +32,10 @@
   </udiCarrier>
   <manufacturer value="A&amp;D Medical" />
   <serialNumber value="5160800011" />
-  <deviceName>
-    <name value="A&amp;D_UT201BLEA_321226"/>
+  <name>
+    <value value="A&amp;D_UT201BLEA_321226"/>
     <type value="user-friendly-name"/>
-  </deviceName>
+  </name>
   <modelNumber value="UT-201BLE-A" />
   <type>
     <coding>
@@ -85,16 +85,16 @@
     </type>
     <value value="4.1"/>
   </version>
-  <specialization>
-    <systemType>
+  <conformsTo>
+    <specification>
       <coding>
         <system value="urn:iso:std:iso:11073:10101" />
         <code value="528392" />
       </coding>
       <text value="MDC_DEV_SPEC_PROFILE_TEMP: Thermometer" />
-    </systemType>
+    </specification>
     <version value="1"/>
-  </specialization>
+  </conformsTo>
   <property>
     <type>
       <coding>

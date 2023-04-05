@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PlanDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://hl7.org/fhir ../../schema/plandefinition.xsd"
- xmlns="http://hl7.org/fhir">
+<PlanDefinition xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../schema/plandefinition.xsd">
   <id value="low-suicide-risk-order-set"/>
   <text>
     <status value="generated"/>
@@ -16,7 +14,7 @@
                <td style="padding-left: 25px; padding-right: 25px;">PlanDefinition/low-suicide-risk-order-set</td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -30,7 +28,7 @@
                </td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -41,7 +39,7 @@
                <td style="padding-left: 25px; padding-right: 25px;">Low Suicide Risk Order Set</td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -52,7 +50,7 @@
                <td style="padding-left: 25px; padding-right: 25px;">draft</td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -63,7 +61,7 @@
                <td style="padding-left: 25px; padding-right: 25px;">Orders to be applied to a patient characterized as low suicide risk.</td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -74,7 +72,7 @@
                <td style="padding-left: 25px; padding-right: 25px;">This order set helps ensure consistent application of appropriate orders for the care of low suicide risk patients.</td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -85,7 +83,7 @@
                <td style="padding-left: 25px; padding-right: 25px;">This order set should be applied after assessing a patient for suicide risk, when the findings of that assessment indicate the patient has low suicide risk.</td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -387,7 +385,7 @@
                </td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -403,7 +401,7 @@
                </td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -421,7 +419,7 @@
                <td style="padding-left: 50px; padding-right: 25px;">Motive Medical Intelligence</td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -441,9 +439,9 @@
                </td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <h2>Actions</h2>
-         <p style="width: 100%;" class="hierarchy">
+         <p class="hierarchy" style="width: 100%;">
             <span>
                <b>Step: </b>
                <br/>
@@ -778,6 +776,10 @@
   </contained>
   <url value="http://motivemi.com/artifacts/PlanDefinition/low-suicide-risk-order-set"/>
   <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.11.7"/>
+  </identifier>
+  <identifier>
     <use value="official"/>
     <system value="http://motivemi.com/artifacts"/>
     <value value="mmi:low-suicide-risk-order-set"/>
@@ -963,7 +965,7 @@
           <!-- This expression is code selector syntax in CQL, returning the code from the NPI provider taxonomy -->
           <expression>
             <language value="text/cql"/>
-            <expression value="Code '261QM0850X' from SuicideRiskLogic.&quot;NUCC Provider Taxonomy&quot; display 'Adult Mental Health'"/>
+            <expression value="Code '261QM0850X' from SuicideRiskLogic.&#34;NUCC Provider Taxonomy&#34; display 'Adult Mental Health'"/>
 		  </expression>
         </dynamicValue>
         <dynamicValue>

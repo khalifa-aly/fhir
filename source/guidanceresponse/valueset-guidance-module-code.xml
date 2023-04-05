@@ -18,11 +18,11 @@
   <url value="http://hl7.org/fhir/ValueSet/guidance-module-code"/>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
-    <value value="urn:oid:2.16.840.1.113883.4.642.3.0"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.3.3266"/>
   </identifier>
-  <version value="4.6.0"/>
+  <version value="5.0.0"/>
   <name value="GuidanceModuleCode"/>
-  <title value="GuidanceModuleCode"/>
+  <title value="Guidance Module Code"/>
   <status value="draft"/>
   <experimental value="true"/>
   <date value="2020-12-28T16:55:11+11:00"/>

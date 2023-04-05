@@ -37,8 +37,8 @@
     <valueMarkdown value="Servers handle this request by finding the provided identifier in their known naming systems, and returning the requested identifier type ([NamingSystem.uniqueId.type](namingsystem-definitions.html#NamingSystem.uniqueId.type)).  &#xA;&#xA;If the server wishes, it can also look through all code systems and value sets it knows about when attempting to find the requested identifier"/>
   </extension>
   <url value="http://hl7.org/fhir/build/OperationDefinition/NamingSystem-translate-id"/>
-  <version value="4.6.0"/>
-  <name value="translate-id"/>
+  <version value="5.0.0"/>
+  <name value="Translateid"/>
   <title value="Translate id"/>
   <status value="draft"/>
   <kind value="operation"/>
@@ -54,7 +54,7 @@
       <value value="fhir@lists.hl7.org"/>
     </telecom>
   </contact>
-  <description value="This operation returns an identifier of the target type. The operation takes 5 parameters:     &#xA;&#xA;* a source identifier value - either a URI, an OID, or a v2 table 0396 (other) code  &#xA;*  a code for what type of identifier the source identifier is     &#xA;&#xA;* a code for what kind of identifier is desired (URI, OID, v2 table 0396 identifier)     &#xA;&#xA;* a optional parameter preferredOnly for whether only the preferred identifier is desired     &#xA;&#xA;* an optional date to return only identifiers that have a validity period that includes that date   &#xA;&#xA;and returns either the requested identifier(s), or an HTTP errors response with an OperationOutcome because either the provided identifier was not recognized, or the requested identiifer type is not known."/>
+  <description value="This operation returns an identifier of the target type. The operation takes 5 parameters:     &#xA;&#xA;* a source identifier value - either a URI, an OID, or a v2 table 0396 (other) code  &#xA;*  a code for what type of identifier the source identifier is     &#xA;&#xA;* a code for what kind of identifier is desired (URI, OID, v2 table 0396 identifier)     &#xA;&#xA;* an optional parameter preferredOnly for whether only the preferred identifier is desired     &#xA;&#xA;* an optional date to return only identifiers that have a validity period that includes that date   &#xA;&#xA;and returns either the requested identifier(s), or an HTTP errors response with an OperationOutcome because either the provided identifier was not recognized, or the requested identiifer type is not known."/>
   <affectsState value="false"/>
   <code value="translate-id"/>
   <comment value="Servers handle this request by finding the provided identifier in their known naming systems, and returning the requested identifier type ([NamingSystem.uniqueId.type](namingsystem-definitions.html#NamingSystem.uniqueId.type)). If there are multiple possible identifiers of the specified type (e.g. multiple OIDs) the server returns the preferred identifier if preferredOnly is true and otherwise return all identifiers of that type.    &#xA;&#xA;If the server wishes, it can also look through all code systems and value sets it knows about when attempting to find the requested identifier"/>
@@ -67,7 +67,7 @@
     <use value="in"/>
     <min value="1"/>
     <max value="1"/>
-    <documentation value="The server parses the provided identifier to see what type it is (e.g. a URI, an OID as a URI, a plain OID, or a v2 table 0396 code). If the server can&#39;t tell what type of identifier it is, it can try it as multiple types. It is an error if more than one system matches the provided identifier"/>
+    <documentation value="The server parses the provided identifier to see what type it is (e.g. a URI, an OID as a URI, a plain OID, or a v2 table 0396 code). If the server can't tell what type of identifier it is, it can try it as multiple types. It is an error if more than one system matches the provided identifier"/>
     <type value="string"/>
   </parameter>
   <parameter>
@@ -80,11 +80,11 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
         <valueString value="NamingSystemIdentifierType"/>
       </extension>
-      <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/binding-definition">
         <valueString value="Identifies the style of unique identifier used to identify a namespace."/>
       </extension>
       <strength value="required"/>
-      <valueSet value="http://hl7.org/fhir/ValueSet/namingsystem-identifier-type|4.6.0"/>
+      <valueSet value="http://hl7.org/fhir/ValueSet/namingsystem-identifier-type"/>
     </binding>
   </parameter>
   <parameter>
@@ -97,11 +97,11 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
         <valueString value="NamingSystemIdentifierType"/>
       </extension>
-      <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/binding-definition">
         <valueString value="Identifies the style of unique identifier used to identify a namespace."/>
       </extension>
       <strength value="required"/>
-      <valueSet value="http://hl7.org/fhir/ValueSet/namingsystem-identifier-type|4.6.0"/>
+      <valueSet value="http://hl7.org/fhir/ValueSet/namingsystem-identifier-type"/>
     </binding>
   </parameter>
   <parameter>
@@ -120,7 +120,6 @@
     <documentation value="If 'date' is supplied return only ids that have a validity period that includes that date."/>
     <type value="dateTime"/>
   </parameter>
-  
   <parameter>
     <name value="result"/>
     <use value="out"/>
@@ -135,7 +134,7 @@
     <min value="0"/>
     <max value="*"/>
     <documentation value="The target identifer(s) of the requested type"/>
-    <type value="boolean"/>
+    <type value="string"/>
   </parameter>
   <parameter>
     <name value="targetIdentifer.preferred"/>
@@ -151,6 +150,6 @@
     <min value="0"/>
     <max value="1"/>
     <documentation value="The perioid when the target identifier is valid."/>
-    <type value="boolean"/>
+    <type value="Period"/>
   </parameter>
 </OperationDefinition>

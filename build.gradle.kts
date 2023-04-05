@@ -7,6 +7,7 @@ plugins {
 repositories {
     jcenter()
     google()
+    mavenLocal()
     mavenCentral()
     maven {
         url = uri("https://jitpack.io")
@@ -33,6 +34,16 @@ task("publish", JavaExec::class) {
     }
     main = "org.hl7.fhir.tools.publisher.Publisher"
     classpath = sourceSets["main"].compileClasspath
+}
+
+task("publishFull", JavaExec::class) {
+    dependsOn(":printVersion")
+    if (properties["logback.configurationFile"] != null) {
+        jvmArgs = listOf("-Dlogback.configurationFile=${properties["logback.configurationFile"]}")
+    }
+    main = "org.hl7.fhir.tools.publisher.Publisher"
+    classpath = sourceSets["main"].compileClasspath
+    args("-nopartial")
 }
 
 task("printVersion") {

@@ -4,7 +4,8 @@
   <id value="example"/>
   <url value="http://hl7.org/fhir/us/daf"/>
   <version value="0"/>
-  <name value="Data Access Framework (DAF)"/>
+  <name value="DataAccessFrameworkDAF"/>
+  <title value="Data Access Framework (DAF)"/>
   <status value="draft"/>
   <experimental value="false"/>
   <date value="2015-01-01"/>
@@ -33,7 +34,7 @@
   <copyright value="Published by ONC under the standard FHIR license (CC0)"/>
   <packageId value="hl7.fhir.us.daf"/>
   <license value="CC0-1.0"/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <dependsOn>
     <uri value="http://hl7.org/fhir/ImplementationGuide/uscore"/>
   </dependsOn>
@@ -52,20 +53,23 @@
       </reference>
       <name value="Test Example"/>
       <description value="A test example to show how an implementation guide works"/>
-      <exampleCanonical value="http://hl7.org/fhir/us/core/StructureDefinition/patient"/>
+      <profile value="http://hl7.org/fhir/us/core/StructureDefinition/patient"/>
     </resource>
     <page>
-      <nameUrl value="patient-example.html"/>
+      <name value="patient-example.html"/>
       <title value="Example Patient Page"/>
       <generation value="html"/>
       <page>
-        <nameUrl value="list.html"/>
+        <name value="list.html"/>
         <title value="Value Set Page"/>
         <generation value="html"/>
       </page>
     </page>
     <parameter>
-      <code value="apply"/>
+      <code>
+        <system value="http://hl7.org/fhir/guide-parameter-code"/>
+        <code value="apply"/>
+      </code>
       <value value="version"/>
     </parameter>
   </definition>
@@ -75,13 +79,13 @@
       <reference>
         <reference value="Patient/test"/>
       </reference>
-      <exampleCanonical value="http://hl7.org/fhir/us/core/StructureDefinition/patient"/>
-      <relativePath value="patient-test.html#patient-test"/>
+      <profile value="http://hl7.org/fhir/us/core/StructureDefinition/patient"/>
+      <relativePath value="patient-example.html"/>
     </resource>
     <page>
-      <name value="patient-test.html"/>
+      <name value="patient-example.html"/>
       <title value="Test Patient Example"/>
-      <anchor value="patient-test"/>
+      <anchor value="patient-example"/>
       <anchor value="tx"/>
       <anchor value="uml"/>
     </page>

@@ -32,10 +32,10 @@
   </udiCarrier>
   <manufacturer value="Philips"/>
   <serialNumber value="162502000528"/>
-  <deviceName>
-    <name value="Philips ear thermometer"/>
+  <name>
+    <value value="Philips ear thermometer"/>
     <type value="user-friendly-name"/>
-  </deviceName>
+  </name>
   <modelNumber value="DL8740"/>
   <type>
     <coding>
@@ -85,16 +85,16 @@
     </type>
     <value value="5.1"/>
   </version>
-  <specialization>
-    <systemType>
+  <conformsTo>
+    <specification>
       <coding>
         <system value="urn:iso:std:iso:11073:10101"/>
         <code value="528392"/>
       </coding>
       <text value="MDC_DEV_SPEC_PROFILE_TEMP: Thermometer"/>
-    </systemType>
+    </specification>
     <version value="1"/>
-  </specialization>
+  </conformsTo>
   <property>
     <type>
       <coding>

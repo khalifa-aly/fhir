@@ -24,8 +24,13 @@
     <valueCode value=".verificationStatus = entered-in-error"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/BiologicallyDerivedProduct"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1124"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="BiologicallyDerivedProduct"/>
+  <title value="Biologically Derived Product"/>
   <status value="draft"/>
   <date value="2021-01-02T08:58:31+11:00"/>
   <publisher value="Health Level Seven International (Orders and Observations)"/>
@@ -42,7 +47,7 @@
     </telecom>
   </contact>
   <description value="A biological material originating from a biological entity intended to be transplanted or infused into another (possibly the same) biological entity."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -56,7 +61,7 @@
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
-    <name value="HL7 v2 Mapping"/>
+    <name value="HL7 V2 Mapping"/>
   </mapping>
   <mapping>
     <identity value="udi"/>
@@ -115,18 +120,22 @@
       <min value="0"/>
       <max value="1"/>
       <type>
-        <code value="Coding"/>
+        <code value="CodeableConcept"/>
       </type>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="BiologicallyDerivedProductCodes"/>  
+          <valueString value="BiologicallyDerivedProductCodes"/>
         </extension>
         <strength value="example"/>
         <description value="Biologically-derived Product Codes"/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/biologicallyderived-product-codes"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/biologicallyderived-productcodes"/>
       </binding>
+      <mapping>
+        <identity value="ISBT128Code"/>
+        <map value="Product Description Code. Required for ISBT 128 labeled products"/>
+      </mapping>
     </element>
-     <element id="BiologicallyDerivedProduct.parent">
+    <element id="BiologicallyDerivedProduct.parent">
       <path value="BiologicallyDerivedProduct.parent"/>
       <short value="The parent biologically-derived product"/>
       <definition value="Parent product (if any) for this biologically-derived product."/>
@@ -134,6 +143,9 @@
       <min value="0"/>
       <max value="*"/>
       <type>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-hierarchy">
+          <valueBoolean value="true"/>
+        </extension>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/BiologicallyDerivedProduct"/>
       </type>
@@ -196,14 +208,6 @@
         <identity value="ISBT128Code"/>
         <map value="Donation Identification Number. Required for ISBT 128 labeled products"/>
       </mapping>
-      <!-- <mapping>
-        <identity value="v2"/>
-        <map value="IAM-7"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="id"/>
-      </mapping> -->
     </element>
     <element id="BiologicallyDerivedProduct.processingFacility">
       <path value="BiologicallyDerivedProduct.processingFacility"/>
@@ -230,9 +234,9 @@
         <code value="string"/>
       </type>
       <mapping>
-         <identity value="ISBT128Code"/>
-         <map value="Division Identifier. Required for ISBT 128 labeled products"/>
-     </mapping>
+        <identity value="ISBT128Code"/>
+        <map value="Division Identifier. Required for ISBT 128 labeled products"/>
+      </mapping>
     </element>
     <element id="BiologicallyDerivedProduct.productStatus">
       <path value="BiologicallyDerivedProduct.productStatus"/>
@@ -290,7 +294,7 @@
     </element>
     <element id="BiologicallyDerivedProduct.collection.source">
       <path value="BiologicallyDerivedProduct.collection.source"/>
-      <short value="The patient or entity providing the product"/>
+      <short value="The patient who underwent the medical procedure to collect the product or the organization that facilitated the collection"/>
       <definition value="The patient or entity, such as a hospital or vendor in the case of a processed/manipulated/manufactured product, providing the product."/>
       <min value="0"/>
       <max value="1"/>
@@ -321,7 +325,7 @@
       <path value="BiologicallyDerivedProduct.storageTempRequirements"/>
       <short value="Product storage temperature requirements"/>
       <definition value="The temperature requirements for storage of the biologically-derived product."/>
-      <comment value="May be extracted from information held in the Product Description Code." />
+      <comment value="May be extracted from information held in the Product Description Code."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -347,7 +351,7 @@
       <min value="1"/>
       <max value="1"/>
       <type>
-        <code value="Coding"/>
+        <code value="CodeableConcept"/>
       </type>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -362,7 +366,7 @@
       <path value="BiologicallyDerivedProduct.property.value[x]"/>
       <short value="Property values"/>
       <definition value="Property values."/>
-      <comment value="The value should be provided as a boolean, integer, CodeableConcept, period, quantity, range, ratio, or attachment. The description can be a string only when these others are not available. The type of value will depend on the property type and is specified in ST-027." />
+      <comment value="The value should be provided as a boolean, integer, CodeableConcept, period, quantity, range, ratio, or attachment. The description can be a string only when these others are not available. The type of value will depend on the property type and is specified in ST-027."/>
       <min value="1"/>
       <max value="1"/>
       <type>

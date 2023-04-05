@@ -24,8 +24,13 @@
     <valueCode value=".status = entered-in-error"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/List"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1357"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="List"/>
+  <title value="List"/>
   <status value="draft"/>
   <date value="2021-01-02T08:58:31+11:00"/>
   <publisher value="Health Level Seven International (FHIR Infrastructure)"/>
@@ -41,8 +46,8 @@
       <value value="http://www.hl7.org/Special/committees/fiwg/index.cfm"/>
     </telecom>
   </contact>
-  <description value="A list is a curated collection of resources."/>
-  <fhirVersion value="4.6.0"/>
+  <description value="A List is a curated collection of resources, for things such as problem lists, allergy lists, facility list, organization list, etc."/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -53,6 +58,11 @@
     <uri value="http://hl7.org/fhir/fivews"/>
     <name value="FiveWs Pattern Mapping"/>
   </mapping>
+  <mapping>
+    <identity value="xds"/>
+    <uri value="http://ihe.net/xds"/>
+    <name value="XDS metadata equivalent"/>
+  </mapping>
   <kind value="resource"/>
   <abstract value="false"/>
   <type value="List"/>
@@ -62,34 +72,17 @@
     <element id="List">
       <path value="List"/>
       <short value="A list is a curated collection of resources"/>
-      <definition value="A list is a curated collection of resources."/>
+      <definition value="A List is a curated collection of resources, for things such as problem lists, allergy lists, facility list, organization list, etc."/>
       <alias value="Collection"/>
       <alias value="WorkingList"/>
       <alias value="Organizer"/>
       <min value="0"/>
       <max value="*"/>
       <constraint>
-        <key value="lst-3"/>
-        <severity value="error"/>
-        <human value="An entry date can only be used if the mode of the list is &quot;working&quot;"/>
-        <expression value="mode = &#39;working&#39; or entry.date.empty()"/>
-        <xpath value="(f:mode/@value = &#39;working&#39;) or not(exists(f:entry/f:date))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/List"/>
-      </constraint>
-      <constraint>
-        <key value="lst-2"/>
-        <severity value="error"/>
-        <human value="The deleted flag can only be used if the mode of the list is &quot;changes&quot;"/>
-        <expression value="mode = &#39;changes&#39; or entry.deleted.empty()"/>
-        <xpath value="(f:mode/@value = &#39;changes&#39;) or not(exists(f:entry/f:deleted))"/>
-        <source value="http://hl7.org/fhir/StructureDefinition/List"/>
-      </constraint>
-      <constraint>
         <key value="lst-1"/>
         <severity value="error"/>
         <human value="A list can only have an emptyReason if it is empty"/>
         <expression value="emptyReason.empty() or entry.empty()"/>
-        <xpath value="not(exists(f:emptyReason) and exists(f:entry))"/>
         <source value="http://hl7.org/fhir/StructureDefinition/List"/>
       </constraint>
       <mapping>
@@ -118,6 +111,10 @@
         <identity value="rim"/>
         <map value=".id"/>
       </mapping>
+      <mapping>
+        <identity value="xds"/>
+        <map value="SubmissionSet.uniqueId, SubmissionSet.entryUUID"/>
+      </mapping>
     </element>
     <element id="List.status">
       <path value="List.status"/>
@@ -138,7 +135,7 @@
         </extension>
         <strength value="required"/>
         <description value="The current state of the list."/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/list-status|4.6.0"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/list-status"/>
       </binding>
       <mapping>
         <identity value="w5"/>
@@ -147,6 +144,10 @@
       <mapping>
         <identity value="rim"/>
         <map value=".status[current=active;retired=obsolete;entered-in-error=nullified]"/>
+      </mapping>
+      <mapping>
+        <identity value="xds"/>
+        <map value="SubmissionSet status"/>
       </mapping>
     </element>
     <element id="List.mode">
@@ -169,7 +170,7 @@
         </extension>
         <strength value="required"/>
         <description value="The processing mode that applies to this list."/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/list-mode|4.6.0"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/list-mode"/>
       </binding>
       <mapping>
         <identity value="w5"/>
@@ -192,12 +193,16 @@
       </type>
       <example>
         <label value="General"/>
-        <valueString value="Dr. Jane&#39;s Patients"/>
+        <valueString value="Dr. Jane's Patients"/>
       </example>
       <isSummary value="true"/>
       <mapping>
         <identity value="rim"/>
         <map value=".title"/>
+      </mapping>
+      <mapping>
+        <identity value="xds"/>
+        <map value="SubmissionSet.title"/>
       </mapping>
     </element>
     <element id="List.code">
@@ -228,21 +233,22 @@
         <identity value="rim"/>
         <map value=".code"/>
       </mapping>
+      <mapping>
+        <identity value="xds"/>
+        <map value="SubmissionSet.contentTypeCode"/>
+      </mapping>
     </element>
     <element id="List.subject">
       <path value="List.subject"/>
-      <short value="If all resources have the same subject"/>
-      <definition value="The common subject (or patient) of the resources that are in the list if there is one."/>
-      <comment value="Some purely arbitrary lists do not have a common subject, so this is optional."/>
+      <short value="If all resources have the same subject(s)"/>
+      <definition value="The common subject(s) (or patient(s)) of the resources that are in the list if there is one (or a set of subjects)."/>
+      <comment value="Some purely arbitrary lists do not have a common subject, so this is optional. Lists having multiple subjects may raise challenges for systems that base access control or other security considerations on linkages to 'subject'. E.g. if a List is associated with multiple Patient subjects, then it would be nominally part of multiple patient compartments, which might drive access rights."/>
       <requirements value="The primary purpose of listing the subject explicitly is to help with finding the right list."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="*"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource"/>
       </type>
       <isSummary value="true"/>
       <mapping>
@@ -254,8 +260,8 @@
         <map value=".participation[typeCode&lt;SUB].role (and sometimes .player)"/>
       </mapping>
       <mapping>
-        <identity value="w5"/>
-        <map value="FiveWs.subject"/>
+        <identity value="xds"/>
+        <map value="SubmissionSet.patientId"/>
       </mapping>
     </element>
     <element id="List.encounter">
@@ -280,7 +286,7 @@
     <element id="List.date">
       <path value="List.date"/>
       <short value="When the list was prepared"/>
-      <definition value="The date that the list was prepared."/>
+      <definition value="Date list was last reviewed/revised and determined to be 'current'."/>
       <comment value="The actual important date is the date of currency of the resources that were summarized, but it is usually assumed that these are current when the preparation occurs."/>
       <requirements value="Identifies how current the list is which affects relevance."/>
       <min value="0"/>
@@ -296,6 +302,10 @@
       <mapping>
         <identity value="rim"/>
         <map value=".participation[typeCode&lt;AUT].time[type=TS]"/>
+      </mapping>
+      <mapping>
+        <identity value="xds"/>
+        <map value="SubmissionSet.submissionTime"/>
       </mapping>
     </element>
     <element id="List.source">
@@ -325,6 +335,10 @@
       <mapping>
         <identity value="rim"/>
         <map value=".participation[typeCode&lt;AUT].role[classCode=REL].player[classCode=PSN,determinerCode=INST] or .participation[typeCode&lt;AUT].role[classCode=REL].player[classCode=DEV,determinerCode=INST]"/>
+      </mapping>
+      <mapping>
+        <identity value="xds"/>
+        <map value="SubmissionSet.author"/>
       </mapping>
     </element>
     <element id="List.orderedBy">
@@ -384,12 +398,16 @@
         <identity value="rim"/>
         <map value=".outboundRelationship[typeCode=COMP] or  .participation[typeCode=SBJ]"/>
       </mapping>
+      <mapping>
+        <identity value="xds"/>
+        <map value="SubmissionSet DocumentEntry(s)"/>
+      </mapping>
     </element>
     <element id="List.entry.flag">
       <path value="List.entry.flag"/>
       <short value="Status/Workflow information about this item"/>
       <definition value="The flag allows the system constructing the list to indicate the role and significance of the item in the list."/>
-      <comment value="The flag can only be understood in the context of the List.code. If the flag means that the entry has actually been deleted from the list, the deleted element SHALL be true. Deleted can only be used if the List.mode is &quot;changes&quot;."/>
+      <comment value="The flag can only be understood in the context of the List.code. If the flag means that the entry has actually been deleted from the list, the deleted element SHALL be true"/>
       <requirements value="This field is present to support various clinical uses of lists, such as a discharge summary medication list, where flags specify whether the medication was added, modified, or deleted from the list."/>
       <min value="0"/>
       <max value="1"/>
@@ -413,17 +431,16 @@
       <path value="List.entry.deleted"/>
       <short value="If this item is actually marked as deleted"/>
       <definition value="True if this item is marked as deleted in the list."/>
-      <comment value="If the flag means that the entry has actually been deleted from the list, the deleted element SHALL be true. Both flag and deleted can only be used if the List.mode is &quot;changes&quot;. A deleted entry should be displayed in narrative as deleted.  This element is labeled as a modifier because it indicates that an item is (to be) no longer in the list."/>
+      <comment value="If the flag means that the entry has actually been deleted from the list, the deleted element SHALL be true. A deleted entry should be displayed in narrative as deleted.  This element is labeled as a modifier because it indicates that an item is (to be) no longer in the list."/>
       <requirements value="The flag element may contain codes that an application processing the list does not understand. However there can be no ambiguity if a list item is actually marked as &quot;deleted&quot;."/>
       <min value="0"/>
       <max value="1"/>
       <type>
         <code value="boolean"/>
       </type>
-      <meaningWhenMissing value="List items are generally only treated as deleted when this element explicitly carries a value of true. Systems SHOULD always populate this value when mode is &#39;changes&#39;"/>
-      <condition value="lst-2"/>
+      <meaningWhenMissing value="List items are generally only treated as deleted when this element explicitly carries a value of true. Systems SHOULD always populate this value when mode is 'changes'"/>
       <isModifier value="true"/>
-      <isModifierReason value="If deleted is true, then the item included in the list isn&#39;t actually part of the list anymore"/>
+      <isModifierReason value="If deleted is true, then the item included in the list isn't actually part of the list anymore"/>
       <mapping>
         <identity value="rim"/>
         <map value="added: .updateMode=(&quot;A&quot;,&quot;AR&quot;)  retained: .updateMode=&quot;NC&quot;  updated: .updateMode=&quot;R&quot;  deleted: .updateMode=&quot;D&quot;"/>

@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<StructureDefinition xmlns="http://hl7.org/fhir">
+<?xml version="1.0" encoding="UTF-8"?><StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="executablevalueset"/>
   <text>
     <status value="generated"/>
     <div xmlns="http://www.w3.org/1999/xhtml">to do</div>
   </text>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-summary">
+    <valueMarkdown value="**mustSupport**&#xA;&#xA;When this profile has defined an element as mustSupport, the sender must provide the element value when available, and the receiver must accept the element value, persist the value and when appropriate, provide function as defined in the profile. When mustSupport is defined at a complex element level, all sub-elements inherit mustSupport."/>
+  </extension>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
     <valueInteger value="3"/>
   </extension>
@@ -15,8 +16,15 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
     <valueCode value="trial-use"/>
   </extension>
+  <extension url="http://hl7.org/fhir/tools/StructureDefinition/profile-summary">
+    <valueString value="**mustSupport**&#xA;&#xA;When this profile has defined an element as mustSupport, the sender must provide the element value when available, and the receiver must accept the element value, persist the value and when appropriate, provide function as defined in the profile. When mustSupport is defined at a complex element level, all sub-elements inherit mustSupport."/>
+  </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/executablevalueset"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1203"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="ExecutableValueSet"/>
   <title value="Executable ValueSet"/>
   <status value="draft"/>
@@ -24,7 +32,7 @@
   <date value="2020-12-28T16:55:11+11:00"/>
   <publisher value="HL7"/>
   <description value="Defines an executable value set as one that SHALL have an expansion included, as well as a usage warning indicating the expansion is a point-in-time snapshot and must be maintained over time for production usage. The value set expansion specifies the timestamp when the expansion was produced, SHOULD contain the parameters used for the expansion, and SHALL contain the codes that are obtained by evaluating the value set definition. If this is ONLY an executable value set, a computable definition of the value set must be obtained to compute the updated expansion."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -84,9 +92,8 @@
       <constraint>
         <key value="evs-1"/>
         <severity value="error"/>
-        <human value="For contains, a version SHALL be provided unless the parameters element has a &quot;system-version&quot; parameter corresponding to the system of the entry and the version matches the system-version parameter."/>
+        <human value="For contains, a version SHALL be provided unless the parameters element has a &#34;system-version&#34; parameter corresponding to the system of the entry and the version matches the system-version parameter."/>
         <expression value="contains.version.exists() xor  parameter.where(name = 'system-version').exists()"/>
-        <xpath value="exists(f:expansion.contains.version)"/>
       </constraint>
       <mustSupport value="true"/>
     </element>

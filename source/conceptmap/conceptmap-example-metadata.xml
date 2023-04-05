@@ -1,10 +1,13 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ConceptMap xmlns="http://hl7.org/fhir">
+<?xml version="1.0" encoding="UTF-8"?><ConceptMap xmlns="http://hl7.org/fhir">
   <id value="example-metadata"/>
   <meta>
     <profile value="http://hl7.org/fhir/StructureDefinition/shareableconceptmap"/>
   </meta>
   <url value="http://hl7.org/fhir/ConceptMap/example-metadata"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.14.5"/>
+  </identifier>
   <version value="20210721"/>
 
   <name value="ExampleMetadata"/>
@@ -46,7 +49,7 @@
     <name value="ACME ConceptMap Management"/>
     <telecom>
       <system value="url"/>
-      <value value="http://acme.org/managememnt"/>
+      <value value="http://acme.org/management"/>
     </telecom>
   </editor>
   <reviewer>
@@ -75,16 +78,16 @@
     <target value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
     <element>
       <code value="home"/>
-      <display value="home"/>
+      <display value="Home"/>
       <target>
         <code value="H"/>
-        <display value="home"/>
+        <display value="home address"/>
         <relationship value="equivalent"/>
       </target>
     </element>
     <element>
       <code value="work"/>
-      <display value="work"/>
+      <display value="Work"/>
       <target>
         <code value="WP"/>
         <display value="work place"/>
@@ -93,7 +96,7 @@
     </element>
     <element>
       <code value="temp"/>
-      <display value="temp"/>
+      <display value="Temporary"/>
       <target>
         <code value="TMP"/>
         <display value="temporary address"/>
@@ -102,7 +105,7 @@
     </element>
     <element>
       <code value="old"/>
-      <display value="old"/>
+      <display value="Old / Incorrect"/>
       <target>
         <code value="BAD"/>
         <display value="bad address"/>

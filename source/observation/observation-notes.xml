@@ -16,7 +16,17 @@
 				<a name="obsgrouping">
 		</a>
 		<h3>Observation Grouping</h3>
-		<p>Many observations have important relationships to other observations and need to be grouped together.  These structures have been defined to do this: DiagnosticReport and <code>DiagnosticReport.result</code>, Observation and the elements: <code>Observation.component</code>,  <code>Observation.hasMember</code> and <code>Observation.derivedFrom</code>. The sections below provides guidance around which structure to use.  Because the idea of what to group together is often highly contextual and based upon the end user's point of view, the choice of which structure to use will be driven by jurisdiction, organizational practice and context.  Profiling will normally be necessary for implementation.</p>
+		<p>Many observations need to be grouped together in some fashion to document critical
+		relationships for interpretation of the observations. The methods to do so primarily are
+		through DiagnosticReport using <code>DiagnosticReport.result</code> and Observation using
+		<code>Observation.component</code>, <code>Observation.hasMember</code>, and
+		<code>Observation.derivedFrom</code>. See the <a href="diagnostics-module.html#org-dr-obs">Diagnostics Module</a> for guidance related to
+		Microbiology reporting and relevant relationships necessary to support reflex, follow-up,
+		and add-on orders.</p>
+		<p>Note that Composition may also be used to organize observations and
+		diagnostic reports, but that is only for purpose of readability, not to record critical
+		relationships for interpretations. See DiagnosticReport.composition and Composition for
+		further considerations for that separate purpose.</p>
 		<a name="gr-result"></a>
 	  <h4>DiagnosticReport.result
 		</h4>
@@ -48,8 +58,10 @@
 			<code>Observation.hasMember</code> and <code>Observation.derivedFrom</code> and the core extensions: <a href="http://hl7.org/fhir/StructureDefinition/observation-sequelTo">Observation-sequelTo</a> and <a href="http://hl7.org/fhir/StructureDefinition/observation-replaces">Observation-replaces</a> are used for any supporting result that can be interpreted and used on its own and has one or more different values for method, observation, performer, device, time, and/or error conditions. Two common use cases for using this structure are:
 			</p>
 		<ol>
-			<li>For grouping related observations such as for a "panel" or "battery".  In this case the <code>Observation.code</code> represents the "panel" code, typically <code>Observation.value[x]</code> is not present, and the set of member Observations are listed in <code>Observation.hasMember</code>.  This structure permits <em>nested grouping</em> when used with DiagnosticReport (e.g. <a href="diagnosticreport-micro1.html">complex micro isolate and sensitivities report</a>).
-	        </li>
+			<li>For grouping related observations such as for a "panel" or "battery".  In this case the <code>Observation.code</code> represents the "panel" code, typically <code>Observation.value[x]</code> is not present, and the set of member Observations are listed in <code>Observation.hasMember</code>.  This structure permits <em>nested grouping</em> when used with DiagnosticReport (e.g. <a href="diagnosticreport-micro1.html">complex micro isolate and sensitivities report</a>)
+			as described in the <a href="diagnostics-module.html#org-dr-obs">Diagnostics
+			Module</a> 
+			</li>
 			<li>
 	          When linking to other Observations from which an Observation is derived.  In this case both <code>Observation.code</code> and <code>Observation.value[x]</code> are present,  and the linked observations are listed in <code>Observation.derivedFrom</code>.  An example of this would be a <a href="observation-example-bmi-using-related.html">Body Mass Index (BMI)</a> Observation where the height and weight measurements are referenced.
 	           </li>
@@ -276,15 +288,13 @@
 			</li>
 			</ol>
 
-			<blockquote class="stu-note">
-			<a name="dstu"></a>
-			<p>
-			<b>Note:</b>We are seeking input from the implementer community in evaluating existing <a href="observation-profiles.html#extensions">Observation Extensions</a> for this purpose<br/>
+     [%stu-note dstu%]
+			We are seeking input from the implementer community in evaluating existing <a href="observation-profiles.html#extensions">Observation Extensions</a> for this purpose<br/>
 			</p>
 			<p>
 			Feedback <a href="https://chat.fhir.org/#narrow/stream/103-Orders-and.20Observation.20WG">here</a>.
-			</p>
-			</blockquote>
+     [%end-note%]
+
 
 			<a name="valuex">
 		</a>
@@ -310,11 +320,6 @@
 			</li>
 			<li> The Attachment data type is used to represent an observation result value if the <em>actual</em> value is a binary file such as an image. If the observation result value is <em>derived</em> from the binary file (for example 'X' detected and here is the the proof in this image), the binary file may be directly represented using DocumentReference and referenced in the Observation with <code>derivedFrom</code>.  Images that are referenced as part of a report should be represented with <code>DiagnosticReport.media</code> or, if the entire report is in a binary format such as pdf,  with <code>DiagnosticReport.presentedForm</code>.<br/>
 
-			<ul>Examples Scenarios for using valueAttachment:
-			<li>
-	 ...todo...
-			</li>
-		</ul>
 			</li>
 			<li>		The Boolean data type is rarely used for <code>value[x]</code> because most observations result values are never truly Boolean due to exceptional values such as "unknown", therefore they should use the CodeableConcept data type instead and select codes from <a href="http://terminology.hl7.org/ValueSet/v2-0136">http://terminology.hl7.org/ValueSet/v2-0136</a> (these "yes/no" concepts can be mapped to the display name "true/false" or other mutually exclusive terms that may be needed")	  </li>
 			<li>The special values "E" (error), "L" (below detection limit) and "U" (above detection limit) can be used are in the SampledData data type. However, when using valueQuantity in an observation for above and below detection limit values, valueQuantity should be used by stating the limit along with the comparator.  In addition, when there is an error the dataAbsentReason element should be used with the appropriate value  ('error' or 'NaN').		  For example if the value was below the lower limit of detection of  &lt;2.0 mmol/L the <code>valueQuantity</code> would be:
@@ -356,8 +361,15 @@
 		<a name="observation-operations">
 		</a>
 		<a name="genetics"></a>
-		<h3>Genetic Observations</h3>
-		<p>Genetic reporting makes heavy use of the DiagnosticReport and Observation resources.  An implementation guide describing how to represent genetic results can be found <a href="http://hl7.org/fhir/uv/genomics-reporting/index.html">here</a>.</p>
+		<h3>Genomic Reporting - Trial Use</h3>
+		<p>Genomic reporting makes heavy use of the DiagnosticReport and Observation resources to represent structured, computable genomic data.  An implementation guide describing how to represent genetic results can be found <a href="http://hl7.org/fhir/uv/genomics-reporting/index.html">here</a>.
+		</p>
+		<p>
+		Beyond the structured, computable data available in DiagnosticReport and Observation, metadata about the analysis performed is captured in the <a href="genomicstudy.html">GenomicStudy</a> resource. GenomicStudy aims at delineating relevant information of a genomic study. A genomic study might comprise one or more analyses, each serving a specific purpose. These analyses may vary in method (e.g., karyotyping, CNV, or SNV detection), performer, software, devices used, or regions targeted.
+		</p>
+		<p>
+		When referencing genomic analysis from an Observation, the <code>partOf</code> attribute MAY be used to reference the GenomicStudy that led to this observation being made. Another option is that <code>derivedFrom</code> MAY be used to reference a DocumentReference when the observation was derived from the data in the file, even with that file was produced as part of a GenomicStudy output. Also, <code>derivedFrom</code> MAY be used to reference the GenomicStudy where the data was produced.
+		</p>
 
 	<a name="ops"></a>
 		<h2>Operations defined for Observation</h2>

@@ -53,16 +53,16 @@
 			A change of any of these would usually mean a different product - a different MedicinalProductDefinition instance - and a different approval being needed.
 		</p>
 
-		<a name="authorisations"></a>
-		<h2>Authorisations</h2>
+		<a name="authorizations"></a>
+		<h3>Authorizations</h3>
 		<p id="auth">
-			A key aspect of a regulated medicinal product is the authorisation (marketing authorisation). 
+			A key aspect of a regulated medicinal product is the authorization (marketing authorization). 
 				This is not directly carried on the product resource, but instead a <a href="regulatedauthorization.html">RegulatedAuthorization</a> resource is 
 				created which points back to this resource.
 		</p>
 
 		<a name="contained"></a>
-		<h2>Contained Resources</h2>
+		<h3>Contained Resources</h3>
 		<p>Due to the amount of information, cardinalities, and update granularity necessary for some applications, the full product model
 			is split over several resources.</p>
 		<p>If you need just a coded "package type" list for your product you can use MedicinalProductDefinition.packagedMedicinalProduct. 

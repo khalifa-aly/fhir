@@ -25,8 +25,13 @@
   </extension>
   <extension url="http://hl7.org/fhir/build/StructureDefinition/proposed-order"/>
   <url value="http://hl7.org/fhir/StructureDefinition/Specimen"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1406"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="Specimen"/>
+  <title value="Specimen"/>
   <status value="draft"/>
   <date value="2021-01-02T08:58:31+11:00"/>
   <publisher value="Health Level Seven International (Orders and Observations)"/>
@@ -43,7 +48,7 @@
     </telecom>
   </contact>
   <description value="A sample to be used for analysis."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -57,7 +62,7 @@
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
-    <name value="HL7 v2 Mapping"/>
+    <name value="HL7 V2 Mapping"/>
   </mapping>
   <kind value="resource"/>
   <abstract value="false"/>
@@ -220,10 +225,6 @@
         <identity value="rim"/>
         <map value=".scoper  or  .scoper.playsRole"/>
       </mapping>
-      <mapping>
-        <identity value="w5"/>
-        <map value="FiveWs.subject"/>
-      </mapping>
     </element>
     <element id="Specimen.receivedTime">
       <path value="Specimen.receivedTime"/>
@@ -259,6 +260,9 @@
       <min value="0"/>
       <max value="*"/>
       <type>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-hierarchy">
+          <valueBoolean value="true"/>
+        </extension>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Specimen"/>
       </type>
@@ -294,9 +298,56 @@
         <map value="outboundRelationship[typeCode=FLFS].target"/>
       </mapping>
     </element>
+    <element id="Specimen.combined">
+      <path value="Specimen.combined"/>
+      <short value="grouped | pooled"/>
+      <definition value="This element signifies if the specimen is part of a group or pooled."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="code"/>
+      </type>
+      <isSummary value="true"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="PublicationStatus"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
+          <valueBoolean value="true"/>
+        </extension>
+        <strength value="required"/>
+        <description value="Codes for the combined status of a specimen."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/specimen-combined"/>
+      </binding>
+    </element>
+    <element id="Specimen.role">
+      <path value="Specimen.role"/>
+      <short value="The role the specimen serves"/>
+      <definition value="The role or reason for the specimen in the testing workflow."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="SpecimenRole"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/binding-definition">
+          <valueString value="Codes describing specimen role."/>
+        </extension>
+        <strength value="preferred"/>
+        <description value="Codes describing specimen role."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/specimen-role"/>
+      </binding>
+      <mapping>
+        <identity value="v2"/>
+        <map value="SPM-10"/>
+      </mapping>
+    </element>
     <element id="Specimen.feature">
       <path value="Specimen.feature"/>
-      <short value="The physical feature of a specimen "/>
+      <short value="The physical feature of a specimen"/>
       <definition value="A physical feature or landmark on a specimen, highlighted for context by the collector of the specimen (e.g. surgeon), that identifies the type of feature as well as its meaning (e.g. the red ink indicating the resection margin of the right lobe of the excised prostate tissue or wire loop at radiologically suspected tumor location)."/>
       <min value="0"/>
       <max value="*"/>
@@ -321,7 +372,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="SpecimenFeatureType"/>
         </extension>
-        <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/binding-definition">
           <valueString value="Codes describing anatomical feature."/>
         </extension>
         <strength value="example"/>
@@ -485,7 +536,6 @@
         <map value=".methodCode"/>
       </mapping>
     </element>
-
     <element id="Specimen.collection.device">
       <path value="Specimen.collection.device"/>
       <short value="Device used to perform collection"/>
@@ -541,7 +591,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="BodySite"/>
         </extension>
-        <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/binding-definition">
           <valueString value="Codes describing anatomical locations. May include laterality."/>
         </extension>
         <strength value="example"/>
@@ -564,7 +614,7 @@
       <path value="Specimen.collection.fastingStatus[x]"/>
       <short value="Whether or how long patient abstained from food and/or drink"/>
       <definition value="Abstinence or reduction from some or all food, drink, or both, for a period of time prior to sample collection."/>
-      <comment value="Representing fasting status using this element is preferred to representing it with an observation using a &#39;pre-coordinated code&#39;  such as  LOINC 2005-7 (Calcium [Moles/&#x200B;time] in 2 hour Urine --12 hours fasting), or  using  a component observation ` such as `Observation.component code`  = LOINC 49541-6 (Fasting status - Reported)."/>
+      <comment value="Representing fasting status using this element is preferred to representing it with an observation using a 'pre-coordinated code'  such as  LOINC 2005-7 (Calcium [Moles/​time] in 2 hour Urine --12 hours fasting), or  using  a component observation ` such as `Observation.component code`  = LOINC 49541-6 (Fasting status - Reported)."/>
       <requirements value="Many diagnostic tests require fasting  to facilitate accurate interpretation."/>
       <min value="0"/>
       <max value="1"/>
@@ -695,9 +745,9 @@
       </mapping>
     </element>
     <element id="Specimen.container.device">
-       <path value="Specimen.container.device"/>
+      <path value="Specimen.container.device"/>
       <short value="Device resource for the container"/>
-      <definition value="The device resource for the the container holding the specimen. If the container is in a holder then the referenced device will point to a parent device." />
+      <definition value="The device resource for the the container holding the specimen. If the container is in a holder then the referenced device will point to a parent device."/>
       <min value="1"/>
       <max value="1"/>
       <type>
@@ -751,7 +801,7 @@
       <path value="Specimen.condition"/>
       <short value="State of the specimen"/>
       <definition value="A mode or state of being that describes the nature of the specimen."/>
-      <comment value="Specimen condition is an observation made about the specimen.  It&#39;s a point-in-time assessment.  It can be used to assess its quality or appropriateness for a specific test."/>
+      <comment value="Specimen condition is an observation made about the specimen.  It's a point-in-time assessment.  It can be used to assess its quality or appropriateness for a specific test."/>
       <requirements value="The specimen condition can be used to assess its quality or appropriateness for a specific test."/>
       <min value="0"/>
       <max value="*"/>

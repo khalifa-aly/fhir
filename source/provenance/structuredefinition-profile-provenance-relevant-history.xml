@@ -6,18 +6,29 @@
     <status value="generated"/>
     <div xmlns="http://www.w3.org/1999/xhtml">to do</div>
   </text>
+  <extension url="http://hl7.org/fhir/build/StructureDefinition/introduction">
+    <valueString value="provenance-relevant-history-introduction.xml"/>
+  </extension>
+  <extension url="http://hl7.org/fhir/build/StructureDefinition/notes">
+    <valueString value="provenance-relevant-history-notes.xml"/>
+  </extension>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
     <valueInteger value="3"/>
   </extension>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
-    <valueCode value="sec"/>
+    <valueCode value="fhir"/>
   </extension>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
     <valueCode value="trial-use"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/provenance-relevant-history"/>
-  <version value="4.6.0"/>
-  <name value="Provenance Relevant History"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1318"/>
+  </identifier>
+  <version value="5.0.0"/>
+  <name value="ProvenanceRelevantHistory"/>
+  <title value="Provenance  Relevant  History"/>
   <status value="draft"/>
   <experimental value="false"/>
   <date value="2013-12-03"/>
@@ -28,8 +39,8 @@
       <value value="http://www.hl7.org/Special/Committees/fhir-i"/>
     </telecom>
   </contact>
-  <description value="Guidance on using Provenance for related history elements"/>
-  <fhirVersion value="4.6.0"/>
+  <description value="Guidance on using Provenance for related history elements to provide key events that have happened over the lifespan of the resource  - see the use of this pattern in the [Request Pattern](request.html#history)"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="workflow"/>
     <uri value="http://hl7.org/fhir/workflow"/>
@@ -76,7 +87,7 @@
     <element id="Provenance.occurred[x]">
       <path value="Provenance.occurred[x]"/>
       <definition value="This indicates the time the resource action (creation, revision, deletion, etc.) occurred."/>
-      <comment value="Both low and high will be set to the time the record event occurred.  (In a future version, this element will likely be a choice with dateTime so that multiple values aren&#39;t needed.)."/>
+      <comment value="Both low and high will be set to the time the record event occurred.  (In a future version, this element will likely be a choice with dateTime so that multiple values aren't needed.)."/>
       <min value="1"/>
       <max value="1"/>
       <type>
@@ -86,7 +97,7 @@
     </element>
     <element id="Provenance.authorization">
       <path value="Provenance.authorization"/>
-      <comment value="Plain text reasons can be sent in the &quot;text&quot; component with no codings.  Domains may wish to define a constrained terminology.  The authorization for the resource&#39;s existence of the resource itself will be maintained on the resource, not here."/>
+      <comment value="Plain text reasons can be sent in the &quot;text&quot; component with no codings.  Domains may wish to define a constrained terminology.  The authorization for the resource's existence of the resource itself will be maintained on the resource, not here."/>
       <mustSupport value="true"/>
     </element>
     <element id="Provenance.activity">

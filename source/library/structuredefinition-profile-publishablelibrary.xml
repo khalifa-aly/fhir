@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<StructureDefinition xmlns="http://hl7.org/fhir">
+<?xml version="1.0" encoding="UTF-8"?><StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="publishablelibrary"/>
   <text>
     <status value="generated"/>
@@ -16,7 +14,11 @@
     <valueCode value="trial-use"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/publishablelibrary"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1159"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="PublishableLibrary"/>
   <title value="Publishable Library"/>
   <status value="draft"/>
@@ -24,7 +26,7 @@
   <date value="2020-12-28T16:55:11+11:00"/>
   <publisher value="HL7"/>
   <description value="Supports declaration of the library metadata required by HL7 and other organizations that share and publish libraries with a focus on the aspects of that metadata that are important for post-publication activities including distribution, inclusion in repositories, consumption, and implementation."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -67,17 +69,15 @@
       </type>
       <mustSupport value="true"/>
     </element>
-    <element id="Library.title">
-      <path value="Library.title"/>
-      <min value="1"/>
-      <max value="1"/>
+    <element id="Library.identifier">
+      <path value="Library.identifier"/>
       <mustSupport value="true"/>
     </element>
     <element id="Library.type">
       <path value="Library.type"/>
       <min value="1"/>
       <max value="1"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
     </element>
     <element id="Library.date">
       <path value="Library.date"/>
@@ -85,16 +85,32 @@
       <max value="1"/>
       <mustSupport value="true"/>
     </element>
+    <element id="Library.contact">
+      <path value="Library.contact"/>
+      <mustSupport value="true"/>
+    </element>
+    <element id="Library.useContext">
+      <path value="Library.useContext"/>
+      <mustSupport value="true"/>
+    </element>
+    <element id="Library.jurisdiction">
+      <path value="Library.jurisdiction"/>
+      <mustSupport value="true"/>
+    </element>
     <element id="Library.purpose">
       <path value="Library.purpose"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
     </element>
     <element id="Library.usage">
       <path value="Library.usage"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
     </element>
     <element id="Library.copyright">
       <path value="Library.copyright"/>
+      <mustSupport value="true"/>
+    </element>
+    <element id="Library.copyrightLabel">
+      <path value="Library.copyrightLabel"/>
       <mustSupport value="true"/>
     </element>
     <element id="Library.approvalDate">
@@ -111,28 +127,23 @@
     </element>
     <element id="Library.topic">
       <path value="Library.topic"/>
-      <mustSupport value="false"/>
-      <binding>
-        <strength value="preferred"/>
-        <description value="Topics for categorization and searching of artifacts"/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/definition-topic"/>
-      </binding>
+      <mustSupport value="true"/>
     </element>
     <element id="Library.author">
       <path value="Library.author"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
     </element>
     <element id="Library.editor">
       <path value="Library.editor"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
     </element>
     <element id="Library.reviewer">
       <path value="Library.reviewer"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
     </element>
     <element id="Library.endorser">
       <path value="Library.endorser"/>
-      <mustSupport value="false"/>
+      <mustSupport value="true"/>
     </element>
     <element id="Library.relatedArtifact">
       <path value="Library.relatedArtifact"/>

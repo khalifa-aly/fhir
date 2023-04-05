@@ -16,9 +16,8 @@
         <description value="A use context assigned to the implementation guide"/>
         <code value="context"/>
         <type value="token"/>
-        <expression value="(ImplementationGuide.useContext.value as CodeableConcept)"/>
-        <xpath value="f:ImplementationGuide/f:useContext/f:valueCodeableConcept"/>
-        <xpathUsage value="normal"/>
+        <expression value="(ImplementationGuide.useContext.value.ofType(CodeableConcept))"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -36,9 +35,8 @@
         <description value="A quantity- or range-valued use context assigned to the implementation guide"/>
         <code value="context-quantity"/>
         <type value="quantity"/>
-        <expression value="(ImplementationGuide.useContext.value as Quantity) | (ImplementationGuide.useContext.value as Range)"/>
-        <xpath value="f:ImplementationGuide/f:useContext/f:valueQuantity | f:ImplementationGuide/f:useContext/f:valueRange"/>
-        <xpathUsage value="normal"/>
+        <expression value="(ImplementationGuide.useContext.value.ofType(Quantity)) | (ImplementationGuide.useContext.value.ofType(Range))"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -57,8 +55,7 @@
         <code value="context-type"/>
         <type value="token"/>
         <expression value="ImplementationGuide.useContext.code"/>
-        <xpath value="f:ImplementationGuide/f:useContext/f:code"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -74,14 +71,14 @@
         <code value="context-type-quantity"/>
         <type value="composite"/>
         <expression value="ImplementationGuide.useContext"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
         <component>
           <definition value="context-type"/>
           <expression value="code"/>
         </component>
         <component>
           <definition value="context-quantity"/>
-          <expression value="value.as(Quantity) | value.as(Range)"/>
+          <expression value="value.ofType(Quantity) | value.ofType(Range)"/>
         </component>
       </SearchParameter>
     </resource>
@@ -98,14 +95,14 @@
         <code value="context-type-value"/>
         <type value="composite"/>
         <expression value="ImplementationGuide.useContext"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
         <component>
           <definition value="context-type"/>
           <expression value="code"/>
         </component>
         <component>
           <definition value="context"/>
-          <expression value="value.as(CodeableConcept)"/>
+          <expression value="value.ofType(CodeableConcept)"/>
         </component>
       </SearchParameter>
     </resource>
@@ -115,7 +112,7 @@
       <SearchParameter>
         <id value="ImplementationGuide-date"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.date"/>
@@ -125,8 +122,7 @@
         <code value="date"/>
         <type value="date"/>
         <expression value="ImplementationGuide.date"/>
-        <xpath value="f:ImplementationGuide/f:date"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -135,7 +131,7 @@
       <SearchParameter>
         <id value="ImplementationGuide-depends-on"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="ImplementationGuide.dependsOn.uri"/>
@@ -145,8 +141,7 @@
         <code value="depends-on"/>
         <type value="reference"/>
         <expression value="ImplementationGuide.dependsOn.uri"/>
-        <xpath value="f:ImplementationGuide/f:dependsOn/f:uri"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -155,7 +150,7 @@
       <SearchParameter>
         <id value="ImplementationGuide-description"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.description"/>
@@ -165,8 +160,7 @@
         <code value="description"/>
         <type value="string"/>
         <expression value="ImplementationGuide.description"/>
-        <xpath value="f:ImplementationGuide/f:description"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -175,7 +169,7 @@
       <SearchParameter>
         <id value="ImplementationGuide-experimental"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="ImplementationGuide.experimental"/>
@@ -185,8 +179,7 @@
         <code value="experimental"/>
         <type value="token"/>
         <expression value="ImplementationGuide.experimental"/>
-        <xpath value="f:ImplementationGuide/f:experimental"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -195,7 +188,7 @@
       <SearchParameter>
         <id value="ImplementationGuide-global"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="ImplementationGuide.global.profile"/>
@@ -205,8 +198,45 @@
         <code value="global"/>
         <type value="reference"/>
         <expression value="ImplementationGuide.global.profile"/>
-        <xpath value="f:ImplementationGuide/f:global/f:profile"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
+      </SearchParameter>
+    </resource>
+  </entry>
+  <entry>
+     <resource>
+       <SearchParameter>
+         <id value="ImplementationGuide-identifier"/>
+         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+           <valueCode value="normative"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
+           <valueString value="{{name}}.identifier"/>
+         </extension>
+         <url value="http://hl7.org/fhir/build/SearchParameter/ImplementationGuide-identifier"/>
+         <description value="External identifier for the implementation guide"/>
+         <code value="identifier"/>
+         <type value="token"/>
+         <expression value="ImplementationGuide.identifier"/>
+         <processingMode value="normal"/>
+       </SearchParameter>
+     </resource>
+  </entry>
+  <entry>
+    <resource>
+      <SearchParameter>
+        <id value="ImplementationGuide-identifier"/>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+          <valueCode value="normative"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
+          <valueString value="{{name}}.identifier"/>
+        </extension>
+        <url value="http://hl7.org/fhir/build/SearchParameter/ImplementationGuide-identifier"/>
+        <description value="External identifier for the implementation guide"/>
+        <code value="identifier"/>
+        <type value="token"/>
+        <expression value="ImplementationGuide.identifier"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -225,8 +255,7 @@
         <code value="jurisdiction"/>
         <type value="token"/>
         <expression value="ImplementationGuide.jurisdiction"/>
-        <xpath value="f:ImplementationGuide/f:jurisdiction"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -235,7 +264,7 @@
       <SearchParameter>
         <id value="ImplementationGuide-name"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.name"/>
@@ -245,8 +274,7 @@
         <code value="name"/>
         <type value="string"/>
         <expression value="ImplementationGuide.name"/>
-        <xpath value="f:ImplementationGuide/f:name"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -255,7 +283,7 @@
       <SearchParameter>
         <id value="ImplementationGuide-publisher"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.publisher"/>
@@ -265,8 +293,7 @@
         <code value="publisher"/>
         <type value="string"/>
         <expression value="ImplementationGuide.publisher"/>
-        <xpath value="f:ImplementationGuide/f:publisher"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -285,8 +312,7 @@
         <code value="resource"/>
         <type value="reference"/>
         <expression value="ImplementationGuide.definition.resource.reference"/>
-        <xpath value="f:ImplementationGuide/f:definition/f:resource/f:reference"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -295,7 +321,7 @@
       <SearchParameter>
         <id value="ImplementationGuide-status"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.status"/>
@@ -305,8 +331,7 @@
         <code value="status"/>
         <type value="token"/>
         <expression value="ImplementationGuide.status"/>
-        <xpath value="f:ImplementationGuide/f:status"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -315,7 +340,7 @@
       <SearchParameter>
         <id value="ImplementationGuide-title"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.title"/>
@@ -325,8 +350,7 @@
         <code value="title"/>
         <type value="string"/>
         <expression value="ImplementationGuide.title"/>
-        <xpath value="f:ImplementationGuide/f:title"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -335,7 +359,7 @@
       <SearchParameter>
         <id value="ImplementationGuide-url"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.url"/>
@@ -345,8 +369,7 @@
         <code value="url"/>
         <type value="uri"/>
         <expression value="ImplementationGuide.url"/>
-        <xpath value="f:ImplementationGuide/f:url"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -355,7 +378,7 @@
       <SearchParameter>
         <id value="ImplementationGuide-version"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="{{name}}.version"/>
@@ -365,8 +388,7 @@
         <code value="version"/>
         <type value="token"/>
         <expression value="ImplementationGuide.version"/>
-        <xpath value="f:ImplementationGuide/f:version"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>

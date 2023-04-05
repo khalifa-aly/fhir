@@ -6,17 +6,28 @@
     <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
-    <valueCode value="fm"/>
+    <valueCode value="oo"/>
   </extension>
   <url value="http://hl7.org/fhir/ValueSet/vision-product"/>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:oid:2.16.840.1.113883.4.642.3.658"/>
   </identifier>
-  <version value="4.6.0"/>
+  <identifier>
+    <use value="old"/>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.3.642"/>
+  </identifier>
+  <identifier>
+    <use value="old"/>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.2.343"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="ExampleVisionPrescriptionProductCodes"/>
   <title value="Example Vision Prescription Product Codes"/>
   <status value="draft"/>
+  <experimental value="true"/>
   <publisher value="Financial Management"/>
   <contact>
     <telecom>

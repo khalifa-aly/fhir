@@ -49,7 +49,7 @@ d6bdadc 5 hours ago
                </td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -60,7 +60,7 @@ d6bdadc 5 hours ago
                <td style="padding-left: 25px; padding-right: 25px;">2.0.0</td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -71,7 +71,7 @@ d6bdadc 5 hours ago
                <td style="padding-left: 25px; padding-right: 25px;">Appropriate Testing for Children with Pharyngitis</td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -91,7 +91,7 @@ d6bdadc 5 hours ago
                </td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -102,7 +102,7 @@ d6bdadc 5 hours ago
                <td style="padding-left: 25px; padding-right: 25px;">draft</td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -113,7 +113,7 @@ d6bdadc 5 hours ago
                <td style="padding-left: 25px; padding-right: 25px;">Logic for CMS 146: Appropriate Testing for Children with Pharyngitis</td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -438,7 +438,7 @@ d6bdadc 5 hours ago
                   <div>
                      <p style="margin-bottom: 5px;">
                         <b>type: </b>
-                        <span>MedicationUsage</span>
+                        <span>MedicationStatement</span>
                      </p>
                      <p style="margin-bottom: 5px;">
                         <b>code filter:</b>
@@ -507,7 +507,7 @@ d6bdadc 5 hours ago
   <description value="Logic for CMS 146: Appropriate Testing for Children with Pharyngitis"/>
   <relatedArtifact>
     <type value="depends-on"/>
-    <resource value="Library/library-quick-model-definition"/>
+    <resource value="http://hl7.org/fhir/Library/library-quick-model-definition"/>
   </relatedArtifact>
 
   <dataRequirement>
@@ -605,7 +605,7 @@ d6bdadc 5 hours ago
   </dataRequirement>
 
   <dataRequirement>
-    <type value="MedicationUsage"/>
+    <type value="MedicationStatement"/>
     <codeFilter>
       <path value="status"/>
       <code>

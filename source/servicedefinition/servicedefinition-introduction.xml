@@ -15,9 +15,9 @@
 	<li>Triggers</li>
 </ul>
 
-<p>Input and output parameters are used to specify any named parameters used by the module. These are typically patient-independent configuration parameters such as an A1C threshold for a diabetes control module, but they may also be used to return calculations performed by the module.</p>
+<p>Input and output parameters are used to specify any named parameters used by the module. These are typically patient-independent configuration parameters such as an A1c threshold for a diabetes control module, but they may also be used to return calculations performed by the module.</p>
 
-<p>Data requirements are used to specify the set of data that must be provided (or available) to the module in order to achieve a successful evaluation. For example, if the module requires A1C lab results within the last 6 months, or information on bilateral or both left and right amputation at or below the knee.</p>
+<p>Data requirements are used to specify the set of data that must be provided (or available) to the module in order to achieve a successful evaluation. For example, if the module requires A1c lab results within the last 6 months, or information on bilateral or both left and right amputation at or below the knee.</p>
 
 <p>Triggers are used to advertise when the module should be invoked. On encountering a specific trigger, a clinical application can invoke the modules associated with the trigger using the <a href="servicedefinition-operation-evaluate.html">$evaluate</a> operation. Any data required by the module can be sent as part of the request, and any suggested <i>actions</i> and other output data are returned via the <a href="guidanceresponse.html">GuidanceResponse</a> resource.</p>
 
@@ -31,7 +31,7 @@
 <h2>Boundaries and Relationships</h2>
 <p>The ServiceDefinition is similar in structure and purpose to <a href="operationdefinition.html">OperationDefinition</a>. However, ServiceDefinition also represents more information about <i>what</i> service is being described than an operation definition supports. This information is critical to the effective use of the resource as part of a decision support service repository, as it enables searching and selection of functionality based on this additional information.</p>
 
-<p>In addition, the way the $evaluate operation of the ServiceDefinition resource is defined enables all decision support services to share a common set of parameters without having to redeclare them for every module, while still supporting service-specific paramters on each module.</p>
+<p>In addition, the way the $evaluate operation of the ServiceDefinition resource is defined enables all decision support services to share a common set of parameters without having to redeclare them for every module, while still supporting service-specific parameters on each module.</p>
 </div>
 
 <!-- (optional):

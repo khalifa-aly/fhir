@@ -23,14 +23,14 @@
   </implementation>
 	<!--  while the FHIR infrastructure is turning over prior to development, a version is 
     required.   -->
-	<fhirVersion value="4.6.0"/>
+	<fhirVersion value="5.0.0"/>
 	<!--  this system can do either xml or json. (Listing both implies full support for either, with interconversion)  -->
 	<format value="xml"/>
 	<format value="json"/>
 	<messaging>
 		<endpoint>
 			<protocol>
-				<system value="http://terminology.hl7.org/CodeSystem/message-transport"/>
+				<system value="http://hl7.org/fhir/message-transport"/>
 				<code value="mllp"/>
 			</protocol>
 			<!-- LLP server at 10.1.1.10 on port 9234 -->

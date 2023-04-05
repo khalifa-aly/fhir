@@ -37,8 +37,8 @@
     <valueMarkdown value="The result of this operation is a Specimen resource based on the definition of the specimen as described in the SpecimenDefinition resource and the supplied parameters."/>
   </extension>
   <url value="http://hl7.org/fhir/build/OperationDefinition/SpecimenDefinition-apply"/>
-  <version value="4.6.0"/>
-  <name value="apply"/>
+  <version value="5.0.0"/>
+  <name value="Apply"/>
   <title value="Apply"/>
   <status value="draft"/>
   <kind value="operation"/>
@@ -65,6 +65,7 @@
   <parameter>
     <name value="specimenDefinition"/>
     <use value="in"/>
+    <scope value="type"/>
     <min value="0"/>
     <max value="1"/>
     <documentation value="The specimen definition to be applied. If the operation is invoked at the instance level, this parameter is not allowed; if the operation is invoked at the type level, this parameter is required"/>

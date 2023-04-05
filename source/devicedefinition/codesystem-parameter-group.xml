@@ -6,8 +6,15 @@
     <profile value="http://hl7.org/fhir/StructureDefinition/shareablecodesystem"/>
   </meta>
   <url value="http://hl7.org/fhir/parameter-group"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.1.900"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="DeviceDefinitionParameterGroup"/>
+  <title value="Device Definition Parameter Group"/>
+  <experimental value="true"/>
+  <description value="DeviceDefinitionParameterGroup"/>
   <concept>
     <code value="haemodynamic"/>
     <display value="Haemodynamic Parameter Group"/>

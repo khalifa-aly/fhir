@@ -24,8 +24,13 @@
     <valueCode value=".status = entered-in-error"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/Account"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1423"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="Account"/>
+  <title value="Account"/>
   <status value="draft"/>
   <date value="2021-01-02T08:58:31+11:00"/>
   <publisher value="Health Level Seven International (Patient Administration)"/>
@@ -42,7 +47,7 @@
     </telecom>
   </contact>
   <description value="A financial tool for tracking value accrued for a particular purpose.  In the healthcare field, used to track charges for a patient, cost centers, etc."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -221,10 +226,6 @@
         <identity value="rim"/>
         <map value=".subject"/>
       </mapping>
-      <mapping>
-        <identity value="w5"/>
-        <map value="FiveWs.subject"/>
-      </mapping>
     </element>
     <element id="Account.servicePeriod">
       <extension url="http://hl7.org/fhir/build/StructureDefinition/committee-notes">
@@ -327,7 +328,7 @@
       <min value="0"/>
       <max value="1"/>
       <type>
-        <code value="string"/>
+        <code value="markdown"/>
       </type>
       <isSummary value="true"/>
       <mapping>
@@ -400,15 +401,354 @@
         <map value=".holder.guarantorRole.effectiveTime"/>
       </mapping>
     </element>
-    <element id="Account.partOf">
-      <path value="Account.partOf"/>
-      <short value="Reference to a parent Account"/>
-      <definition value="Reference to a parent Account."/>
+
+    <element id="Account.diagnosis">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+        <valueCode value="trial-use"/>
+      </extension>
+      <path value="Account.diagnosis"/>
+      <short value="The list of diagnoses relevant to this account"/>
+      <definition value="When using an account for billing a specific Encounter the set of diagnoses that are relevant for billing are stored here on the account where they are able to be sequenced appropriately prior to processing to produce claim(s)."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="BackboneElement"/>
+      </type>
+      <constraint>
+        <key value="act-1"/>
+        <severity value="error"/>
+        <human value="The dateOfDiagnosis is not valid when using a reference to a diagnosis"/>
+        <expression value="condition.reference.empty().not() implies dateOfDiagnosis.empty()"/>
+      </constraint>
+      <isSummary value="true"/>
+    </element>
+    <element id="Account.diagnosis.sequence">
+      <path value="Account.diagnosis.sequence"/>
+      <short value="Ranking of the diagnosis (for each type)"/>
+      <definition value="Ranking of the diagnosis (for each type)."/>
       <min value="0"/>
       <max value="1"/>
       <type>
+        <code value="positiveInt"/>
+      </type>
+    </element>
+    <element id="Account.diagnosis.condition">
+      <path value="Account.diagnosis.condition"/>
+      <short value="The diagnosis relevant to the account"/>
+      <alias value="indication"/>
+      <min value="1"/>
+      <max value="1"/>
+      <type>
+        <code value="CodeableReference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition"/>
+      </type>
+      <condition value="act-1"/>
+      <isSummary value="true"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="condition-code"/>
+        </extension>
+        <strength value="example"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/condition-code"/>
+      </binding>
+    </element>
+    <element id="Account.diagnosis.dateOfDiagnosis">
+      <path value="Account.diagnosis.dateOfDiagnosis"/>
+      <short value="Date of the diagnosis (when coded diagnosis)"/>
+      <definition value="Ranking of the diagnosis (for each type)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="dateTime"/>
+      </type>
+      <condition value="act-1"/>
+    </element>
+    <element id="Account.diagnosis.type">
+      <path value="Account.diagnosis.type"/>
+      <short value="Type that this diagnosis has relevant to the account (e.g. admission, billing, discharge …)"/>
+      <definition value="Type that this diagnosis has relevant to the account (e.g. admission, billing, discharge …)."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="DiagnosisUse"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
+          <valueBoolean value="true"/>
+        </extension>
+        <strength value="preferred"/>
+        <description value="The type of diagnosis this condition represents."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/encounter-diagnosis-use"/>
+      </binding>
+    </element>
+    <element id="Account.diagnosis.onAdmission">
+      <path value="Account.diagnosis.onAdmission"/>
+      <short value="Diagnosis present on Admission"/>
+      <definition value="Was the Diagnosis present on Admission in the related Encounter."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="boolean"/>
+      </type>
+    </element>
+    <element id="Account.diagnosis.packageCode">
+      <path value="Account.diagnosis.packageCode"/>
+      <short value="Package Code specific for billing"/>
+      <definition value="The package code can be used to group diagnoses that may be priced or delivered as a single product. Such as DRGs."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="diagnosis-package-code"/>
+        </extension>
+        <strength value="example"/>
+        <description value="Local or Regional package codes, e.g. DRGs"/>
+      </binding>
+    </element>
+
+    <element id="Account.procedure">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+        <valueCode value="trial-use"/>
+      </extension>
+      <path value="Account.procedure"/>
+      <short value="The list of procedures relevant to this account"/>
+      <definition value="When using an account for billing a specific Encounter the set of procedures that are relevant for billing are stored here on the account where they are able to be sequenced appropriately prior to processing to produce claim(s)."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="BackboneElement"/>
+      </type>
+      <constraint>
+        <key value="act-2"/>
+        <severity value="error"/>
+        <human value="The dateOfService is not valid when using a reference to a procedure"/>
+        <expression value="code.reference.empty().not() implies dateOfService.empty()"/>
+      </constraint>
+      <isSummary value="true"/>
+    </element>
+    <element id="Account.procedure.sequence">
+      <path value="Account.procedure.sequence"/>
+      <short value="Ranking of the procedure (for each type)"/>
+      <definition value="Ranking of the procedure (for each type)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="positiveInt"/>
+      </type>
+    </element>
+    <element id="Account.procedure.code">
+      <path value="Account.procedure.code"/>
+      <short value="The procedure relevant to the account"/>
+      <alias value="indication"/>
+      <min value="1"/>
+      <max value="1"/>
+      <type>
+        <code value="CodeableReference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure"/>
+      </type>
+      <condition value="act-2"/>
+      <isSummary value="true"/>
+      <binding>
+        <strength value="example"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/procedure-code"/>
+      </binding>
+    </element>
+    <element id="Account.procedure.dateOfService">
+      <path value="Account.procedure.dateOfService"/>
+      <short value="Date of the procedure (when coded procedure)"/>
+      <definition value="Date of the procedure when using a coded procedure. If using a reference to a procedure, then the date on the procedure should be used."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="dateTime"/>
+      </type>
+      <condition value="act-2"/>
+    </element>
+    <element id="Account.procedure.type">
+      <path value="Account.procedure.type"/>
+      <short value="How this procedure value should be used in charging the account"/>
+      <definition value="How this procedure value should be used in charging the account."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="procedure-type"/>
+        </extension>
+        <strength value="example"/>
+        <description value="Usage for the specific procedure - e.g. billing"/>
+      </binding>
+    </element>
+    <element id="Account.procedure.packageCode">
+      <path value="Account.procedure.packageCode"/>
+      <short value="Package Code specific for billing"/>
+      <definition value="The package code can be used to group procedures that may be priced or delivered as a single product. Such as DRGs."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="procedure-package-code"/>
+        </extension>
+        <strength value="example"/>
+        <description value="Local or Regional package codes, e.g. DRGs"/>
+      </binding>
+    </element>
+    <element id="Account.procedure.device">
+      <path value="Account.procedure.device"/>
+      <short value="Any devices that were associated with the procedure"/>
+      <definition value="Any devices that were associated with the procedure relevant to the account."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device"/>
+      </type>
+      <isSummary value="true"/>
+    </element>
+
+    <element id="Account.relatedAccount">
+      <path value="Account.relatedAccount"/>
+      <short value="Other associated accounts related to this account"/>
+      <definition value="Other associated accounts related to this account."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="BackboneElement"/>
+      </type>
+    </element>
+    <element id="Account.relatedAccount.relationship">
+      <path value="Account.relatedAccount.relationship"/>
+      <short value="Relationship of the associated Account"/>
+      <definition value="Relationship of the associated Account."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="AccountRelationship"/>
+        </extension>
+        <strength value="example"/>
+        <description value="Indicates the relationship between the accounts"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/account-relationship"/>
+      </binding>
+    </element>
+    <element id="Account.relatedAccount.account">
+      <path value="Account.relatedAccount.account"/>
+      <short value="Reference to an associated Account"/>
+      <definition value="Reference to an associated Account."/>
+      <min value="1"/>
+      <max value="1"/>
+      <type>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-hierarchy">
+          <valueBoolean value="false"/>
+        </extension>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Account"/>
+      </type>
+    </element>
+    <element id="Account.currency">
+      <path value="Account.currency"/>
+      <short value="The base or default currency"/>
+      <definition value="The default currency for the account."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="AccountCurrency"/>
+        </extension>
+        <strength value="required"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/currencies"/>
+      </binding>
+    </element>
+    <element id="Account.balance">
+      <path value="Account.balance"/>
+      <short value="Calculated account balance(s)"/>
+      <definition value="The calculated account balances - these are calculated and processed by the finance system.&#xD;&#xD;The balances with a `term` that is not current are usually generated/updated by an invoicing or similar process."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="BackboneElement"/>
+      </type>
+    </element>
+    <element id="Account.balance.aggregate">
+      <path value="Account.balance.aggregate"/>
+      <short value="Who is expected to pay this part of the balance"/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="AccountAggregate"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Indicates the balance was outstanding at the given age."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/account-aggregate"/>
+      </binding>
+    </element>
+    <element id="Account.balance.term">
+      <path value="Account.balance.term"/>
+      <short value="current | 30 | 60 | 90 | 120"/>
+      <definition value="The term of the account balances - The balance value is the amount that was outstanding for this age."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="AccountBalanceTerm"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Indicates the balance was outstanding at the given age."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/account-balance-term"/>
+      </binding>
+    </element>
+    <element id="Account.balance.estimate">
+      <path value="Account.balance.estimate"/>
+      <short value="Estimated balance"/>
+      <definition value="The amount is only an estimated value - this is likely common for `current` term balances, but not with known terms (that were generated by a backend process)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="boolean"/>
+      </type>
+    </element>
+    <element id="Account.balance.amount">
+      <path value="Account.balance.amount"/>
+      <short value="Calculated amount"/>
+      <definition value="The actual balance value calculated for the age defined in the term property."/>
+      <min value="1"/>
+      <max value="1"/>
+      <type>
+        <code value="Money"/>
+      </type>
+    </element>
+    <element id="Account.balance.calculatedAt">
+      <path value="Account.calculatedAt"/>
+      <short value="Time the balance amount was calculated"/>
+      <comment value="The total(s) are not typically updated using the restful API but more often by back-end processes included in a typical finance system."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="instant"/>
       </type>
     </element>
   </differential>

@@ -13,13 +13,19 @@
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:oid:2.16.840.1.113883.4.642.3.155"/>
   </identifier>
-  <version value="4.6.0"/>
+  <identifier>
+    <use value="old"/>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.3.146"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="CareTeamCategory"/>
   <title value="Care Team category"/>
   <status value="draft"/>
+  <experimental value="true"/>
   <publisher value="FHIR Project"/>
   <description value="Indicates the type of care team."/>
-  <copyright value="This content from LOINC&#xAE; is copyright &#xA9; 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use."/>
+  <copyright value="This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use."/>
   <compose>
     <include>
       <system value="http://loinc.org"/>

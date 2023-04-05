@@ -3,11 +3,16 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="example-section-library"/>
   <url value="http://hl7.org/fhir/StructureDefinition/example-section-library"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1041"/>
+  </identifier>
   <name value="DocumentSectionLibrary"/>
   <title value="Document Section Library (For testing section templates)"/>
   <status value="active"/>
   <experimental value="false"/>
   <date value="2018-11-05T17:57:00+11:00"/>
+  <description value="Document Section Library (For testing section templates)"/>
   <kind value="resource"/>
   <abstract value="true"/>
   <type value="Composition"/>

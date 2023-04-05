@@ -11,18 +11,12 @@
         <system value="http://www.somesystemabc.net/identifiers/genomicstudies"/>
         <value value="urn:uuid:1111-1111-1111-1111"/>
     </identifier>
-    <status>
-        <coding>
-            <system value="http://hl7.org/fhir/genomicstudy-status"/>
-            <code value="unknown"/>
-            <display value="Unknown"/>
-        </coding>
-    </status>
+    <status value="unknown"/>
     <type>
         <coding>
-            <system value="http://www.somesystemabc.net/CodeSystem"/>
-            <code value="denovo"/>
-            <display value="De Novo Mutation Analysis"/>
+            <system value="http://hl7.org/fhir/genomicstudy-type"/>
+            <code value="fam-var-segr"/>
+            <display value="Familial variant segregation"/>
         </coding>
     </type>
     <subject>
@@ -63,9 +57,6 @@
         <!-- <instantiatesCanonical>0..1 canonical(PlanDefinition) The defined protocol that describes the analysis</instantiatesCanonical> -->
         <instantiatesUri value="https://pubmed.ncbi.nlm.nih.gov/33927380/"/>
         <title value="Proband Sequence Variation Detection Using Next Generation Sequencing"/>
-        <subject>
-            <reference value="Patient/denovoChild"/>
-        </subject>
         <specimen>
             <reference value="Specimen/denovo-1"/>
         </specimen>
@@ -86,10 +77,6 @@
                  </coding>
             </type>
             <!-- <generatedBy[x]>0..1 Identifier|Reference(GenomicStudy) The analysis event or other GenomicStudy that generated this input file</generatedBy[x]> -->
-            <subject>
-                <reference value="Patient/denovoChild"/>
-            </subject>
-            <!-- <role>0..1 CodeableConcept Role of the subject for this input</role> -->
         </input>
         <performer>  <!-- 0..* Performer for the analysis event -->
             <actor>
@@ -123,9 +110,9 @@
         <!-- <instantiatesCanonical>0..1 canonical(PlanDefinition) The defined protocol that describes the analysis</instantiatesCanonical> -->
         <instantiatesUri value="https://pubmed.ncbi.nlm.nih.gov/33927380/"/>
         <title value="Maternal Sequence Variation Detection Using Next Generation Sequencing"/><!-- 0..1 Name of the analysis event (human friendly) -->
-        <subject>
+        <focus>
             <reference value="Patient/denovoMother"/>
-        </subject>
+        </focus>
         <specimen>
             <reference value="Specimen/denovo-2"/>
         </specimen>
@@ -144,10 +131,6 @@
                  </coding>
             </type>
             <!-- <generatedBy[x]>0..1 Identifier|Reference(GenomicStudy) The analysis event or other GenomicStudy that generated this input file</generatedBy[x]> -->
-            <subject>
-                <reference value="Patient/denovoMother"/>
-            </subject>
-            <!-- <role>0..1 CodeableConcept Role of the subject for this input</role> -->
         </input>
         <performer>  <!-- 0..* Performer for the analysis event -->
             <actor>
@@ -177,9 +160,9 @@
         <!-- <instantiatesCanonical>0..1 canonical(PlanDefinition) The defined protocol that describes the analysis</instantiatesCanonical> -->
         <instantiatesUri value="https://pubmed.ncbi.nlm.nih.gov/33927380/"/>
         <title value="Paternal Sequence Variation Detection Using Next Generation Sequencing"/>
-        <subject>
+        <focus>
             <reference value="Patient/denovoFather"/>
-        </subject>
+        </focus>
         <specimen>
             <reference value="Specimen/denovo-3"/>
         </specimen>
@@ -198,10 +181,6 @@
                  </coding>
             </type>
             <!-- <generatedBy[x]>0..1 Identifier|Reference(GenomicStudy) The analysis event or other GenomicStudy that generated this input file</generatedBy[x]> -->
-            <subject>
-                <reference value="Patient/denovoFather"/>
-            </subject>
-            <!-- <role>0..1 CodeableConcept Role of the subject for this input</role> -->
         </input>
         <performer>  <!-- 0..* Performer for the analysis event -->
             <actor>
@@ -231,10 +210,7 @@
         <!-- <instantiatesCanonical>0..1 canonical(PlanDefinition) The defined protocol that describes the analysis</instantiatesCanonical> -->
         <instantiatesUri value="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6885382/"/>
         <title value="De Novo Mutation Detection and Interpretation"/>
-        <subject>
-            <reference value="Patient/denovoChild"/>
-        </subject>
-        <specimen><!-- 0..1 Reference(Specimen) The specimen used in the analysis event --></specimen>
+        <!-- <specimen> 0..1 Reference(Specimen) The specimen used in the analysis event</specimen> -->
         <date value="2021-01-01T03:01:10-06:00"/><!-- 0..1 The date of the analysis event -->
         <note>
             <text value="This is a next generation sequencing analysis of the comparison analysis of proband and parents sequences."/>
@@ -250,10 +226,6 @@
                  </coding>
             </type>
             <!-- <generatedBy[x]>0..1 Identifier|Reference(GenomicStudy) The analysis event or other GenomicStudy that generated this input file</generatedBy[x]> -->
-            <subject>
-                <reference value="Patient/denovoChild"/>
-            </subject>
-            <!-- <role>0..1 CodeableConcept Role of the subject for this input</role> -->
         </input>
         <input>  <!-- 0..* Inputs for the analysis event of Mother-->
             <file>
@@ -266,10 +238,6 @@
                  </coding>
             </type>
             <!-- <generatedBy[x]>0..1 Identifier|Reference(GenomicStudy) The analysis event or other GenomicStudy that generated this input file</generatedBy[x]> -->
-            <subject>
-                <reference value="Patient/denovoMother"/>
-            </subject>
-            <!-- <role>0..1 CodeableConcept Role of the subject for this input</role> -->
         </input>
         <input>  <!-- 0..* Inputs for the analysis event of Father -->
             <file>
@@ -282,10 +250,6 @@
                  </coding>
             </type>
             <!-- <generatedBy[x]>0..1 Identifier|Reference(GenomicStudy) The analysis event or other GenomicStudy that generated this input file</generatedBy[x]> -->
-            <subject>
-                <reference value="Patient/denovoFather"/>
-            </subject>
-            <!-- <role>0..1 CodeableConcept Role of the subject for this input</role> -->
         </input>
         <performer>  <!-- 0..* Performer for the analysis event -->
             <actor>

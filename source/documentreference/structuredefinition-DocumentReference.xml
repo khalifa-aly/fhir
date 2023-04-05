@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<StructureDefinition xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../publish/StructureDefinition.xsd">
+<StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="DocumentReference"/>
   <meta>
     <lastUpdated value="2022-06-09T08:58:31.578+11:00"/>
@@ -24,8 +24,13 @@
     <valueCode value=".status = entered-in-error"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/DocumentReference"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1063"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="DocumentReference"/>
+  <title value="Document Reference"/>
   <status value="draft"/>
   <date value="2022-06-09T08:58:31+11:00"/>
   <publisher value="Health Level Seven International (Orders and Observations)"/>
@@ -41,8 +46,8 @@
       <value value="http://www.hl7.org/Special/committees/orders/index.cfm"/>
     </telecom>
   </contact>
-  <description value="A reference to a document of any kind for any purpose. While the term “document” implies a more narrow focus, for this resource this &quot;document&quot; encompasses *any* serialized object with a mime-type, it includes formal patient-centric documents (CDA), clinical notes, scanned paper, non-patient specific documents like policy text, as well as a photo, video, or audio recording acquired or used in healthcare.  The DocumentReference resource provides metadata about the document so that the document can be discovered and managed.  The actual content may be inline base64 encoded data or provided by direct reference."/>
-  <fhirVersion value="4.6.0"/>
+  <description value="A reference to a document of any kind for any purpose. While the term “document” implies a more narrow focus, for this resource this “document” encompasses *any* serialized object with a mime-type, it includes formal patient-centric documents (CDA), clinical notes, scanned paper, non-patient specific documents like policy text, as well as a photo, video, or audio recording acquired or used in healthcare.  The DocumentReference resource provides metadata about the document so that the document can be discovered and managed.  The actual content may be inline base64 encoded data or provided by direct reference."/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="workflow"/>
     <uri value="http://hl7.org/fhir/workflow"/>
@@ -71,11 +76,11 @@
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
-    <name value="HL7 v2 Mapping"/>
+    <name value="HL7 V2 Mapping"/>
   </mapping>
   <mapping>
     <identity value="xds"/>
-    <uri value="https://profiles.ihe.net/ITI/HIE-Whitepaper"/>
+    <uri value="http://ihe.net/xds"/>
     <name value="XDS metadata equivalent"/>
   </mapping>
   <kind value="resource"/>
@@ -85,15 +90,26 @@
   <derivation value="specialization"/>
   <differential>
     <element id="DocumentReference">
-      <extension url="http://hl7.org/fhir/build/StructureDefinition/svg">
-        <valueCode value="0,0"/>
-      </extension>
       <path value="DocumentReference"/>
       <short value="A reference to a document"/>
       <definition value="A reference to a document of any kind for any purpose. While the term “document” implies a more narrow focus, for this resource this &quot;document&quot; encompasses *any* serialized object with a mime-type, it includes formal patient-centric documents (CDA), clinical notes, scanned paper, non-patient specific documents like policy text, as well as a photo, video, or audio recording acquired or used in healthcare.  The DocumentReference resource provides metadata about the document so that the document can be discovered and managed.  The actual content may be inline base64 encoded data or provided by direct reference."/>
       <comment value="Usually, this is used for documents other than those defined by FHIR."/>
       <min value="0"/>
       <max value="*"/>
+      <constraint>
+        <key value="docRef-1"/>
+        <severity value="warning"/>
+        <human value="facilityType SHALL only be present if context is not an encounter"/>
+        <expression value="facilityType.empty() or context.where(resolve() is Encounter).empty()"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/DocumentReference"/>
+      </constraint>
+      <constraint>
+        <key value="docRef-2"/>
+        <severity value="warning"/>
+        <human value="practiceSetting SHALL only be present if context is not present"/>
+        <expression value="practiceSetting.empty() or context.where(resolve() is Encounter).empty()"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/DocumentReference"/>
+      </constraint>
       <mapping>
         <identity value="workflow"/>
         <map value="Event"/>
@@ -114,17 +130,17 @@
         <identity value="w5"/>
         <map value="infrastructure.documents"/>
       </mapping>
-	  <mapping>
-	    <identity value="xds"/>
-		<map value="DocumentEntry"/>
-	  </mapping>
+      <mapping>
+        <identity value="xds"/>
+        <map value="DocumentEntry"/>
+      </mapping>
     </element>
     <element id="DocumentReference.identifier">
       <path value="DocumentReference.identifier"/>
       <short value="Business identifiers for the document"/>
       <definition value="Other business identifiers associated with the document, including version independent identifiers."/>
-      <requirements value="Document identifiers usually assigned by the source of the document, or other business identifiers such as XDS DocumentEntry.uniqueId and DocumentEntry.entryUUID. These identifiers are specific to this instance of the document."/>
       <comment value="The structure and format of this identifier would be consistent with the specification corresponding to the format of the document. (e.g. for a DICOM standard document, a 64-character numeric UID; for an HL7 CDA format, the CDA Document Id root and extension)."/>
+      <requirements value="Document identifiers usually assigned by the source of the document, or other business identifiers such as XDS DocumentEntry.uniqueId and DocumentEntry.entryUUID. These identifiers are specific to this instance of the document."/>
       <min value="0"/>
       <max value="*"/>
       <type>
@@ -160,6 +176,25 @@
         <map value="ClinicalDocument/id"/>
       </mapping>
     </element>
+    <element id="DocumentReference.version">
+      <path value="DocumentReference.version"/>
+      <short value="An explicitly assigned identifer of a variation of the content in the DocumentReference"/>
+      <comment value="While each resource, including the DocumentReference itself, has its own version identifier, this is a formal identifier for the logical version of the DocumentReference as a whole. It would remain constant if the resources were moved to a new server, and all got new individual resource versions, for example."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="string"/>
+      </type>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="fhircomposition"/>
+        <map value="Composition.version"/>
+      </mapping>
+      <mapping>
+        <identity value="w5"/>
+        <map value="FiveWs.version"/>
+      </mapping>
+    </element>
     <element id="DocumentReference.basedOn">
       <path value="DocumentReference.basedOn"/>
       <short value="Procedure that caused this media to be created"/>
@@ -179,11 +214,10 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/CoverageEligibilityRequest"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/DeviceRequest"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/EnrollmentRequest"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/EpisodeOfCare"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationRequest"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/NutritionOrder"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RequestGroup"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RequestOrchestration"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/ServiceRequest"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/SupplyRequest"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/VisionPrescription"/>
@@ -281,6 +315,32 @@
         <map value=".statusCode"/>
       </mapping>
     </element>
+    <element id="DocumentReference.modality">
+      <path value="DocumentReference.modality"/>
+      <short value="Imaging modality used"/>
+      <definition value="Imaging modality used. This may include both acquisition and non-acquisition modalities."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <isSummary value="true"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ImagingModality"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/build/StructureDefinition/copyright">
+          <valueString value="These codes are excerpted from Digital Imaging and Communications in Medicine (DICOM) Standard, Part 16: Content Mapping Resource, Copyright 2011 by the National Electrical Manufacturers Association"/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Type of acquired data in the instance."/>
+        <valueSet value="http://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_CID_33.html"/>
+      </binding>
+      <mapping>
+        <identity value="w5"/>
+        <map value="FiveWs.class"/>
+      </mapping>
+    </element>
     <element id="DocumentReference.type">
       <path value="DocumentReference.type"/>
       <short value="Kind of document (LOINC if possible)"/>
@@ -356,7 +416,7 @@
       </mapping>
       <mapping>
         <identity value="fhircomposition"/>
-        <map value="Composition.class"/>
+        <map value="Composition.category"/>
       </mapping>
       <mapping>
         <identity value="rim"/>
@@ -368,7 +428,7 @@
       </mapping>
       <mapping>
         <identity value="cda"/>
-        <map value="Derived from a mapping of /ClinicalDocument/code/@code to an Affinity Domain specified coded value to use and coding system. Affinity Domains are encouraged to use the appropriate value for Type of Service, based on the LOINC Type of Service (see Page 53 of the LOINC User&#39;s Manual). Must be consistent with /ClinicalDocument/code/@code"/>
+        <map value="Derived from a mapping of /ClinicalDocument/code/@code to an Affinity Domain specified coded value to use and coding system. Affinity Domains are encouraged to use the appropriate value for Type of Service, based on the LOINC Type of Service (see Page 53 of the LOINC User's Manual). Must be consistent with /ClinicalDocument/code/@code"/>
       </mapping>
     </element>
     <element id="DocumentReference.subject">
@@ -396,7 +456,7 @@
       </mapping>
       <mapping>
         <identity value="v2"/>
-        <map value="PID-3 (No standard way to define a Practitioner or Group subject in HL7 v2 MDM message)"/>
+        <map value="PID-3 (No standard way to define a Practitioner or Group subject in HL7 V2 MDM message)"/>
       </mapping>
       <mapping>
         <identity value="rim"/>
@@ -409,10 +469,6 @@
       <mapping>
         <identity value="cda"/>
         <map value="ClinicalDocument/recordTarget/"/>
-      </mapping>
-      <mapping>
-        <identity value="w5"/>
-        <map value="FiveWs.subject"/>
       </mapping>
     </element>
     <element id="DocumentReference.context">
@@ -427,9 +483,11 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Encounter"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/EpisodeOfCare"/>
       </type>
+      <condition value="docRef-1"/>
+      <condition value="docRef-2"/>
       <mapping>
         <identity value="workflow"/>
-        <map value="Event.context"/>
+        <map value="Event.encounter"/>
       </mapping>
       <mapping>
         <identity value="w5"/>
@@ -437,7 +495,7 @@
       </mapping>
       <mapping>
         <identity value="fhircomposition"/>
-        <map value="Composition.context"/>
+        <map value="Composition.encounter"/>
       </mapping>
       <mapping>
         <identity value="rim"/>
@@ -464,7 +522,7 @@
       </binding>
       <mapping>
         <identity value="fhircomposition"/>
-        <map value="Composition.event.code"/>
+        <map value="Composition.event.detail"/>
       </mapping>
       <mapping>
         <identity value="rim"/>
@@ -479,6 +537,33 @@
         <map value="DocumentEntry.referenceIdList"/>
       </mapping>
     </element>
+    <element id="DocumentReference.bodySite">
+      <path value="DocumentReference.bodySite"/>
+      <short value="Body part included"/>
+      <definition value="The anatomic structures included in the document."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="CodeableReference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/BodyStructure"/>
+      </type>
+      <isSummary value="true"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="BodySite"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/binding-definition">
+          <valueString value="Codes describing anatomical locations. May include laterality."/>
+        </extension>
+        <strength value="example"/>
+        <description value="SNOMED CT Body site concepts"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/body-site"/>
+      </binding>
+      <mapping>
+        <identity value="rim"/>
+        <map value=".targetSiteCode"/>
+      </mapping>
+    </element>
     <element id="DocumentReference.facilityType">
       <path value="DocumentReference.facilityType"/>
       <short value="Kind of facility where patient was seen"/>
@@ -488,6 +573,7 @@
       <type>
         <code value="CodeableConcept"/>
       </type>
+      <condition value="docRef-1"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="DocumentC80FacilityType"/>
@@ -524,6 +610,7 @@
       <type>
         <code value="CodeableConcept"/>
       </type>
+      <condition value="docRef-2"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="DocumentC80PracticeSetting"/>
@@ -633,7 +720,7 @@
       </mapping>
       <mapping>
         <identity value="v2"/>
-        <map value="TXA-9 (No standard way to indicate a Device in HL7 v2 MDM message)"/>
+        <map value="TXA-9 (No standard way to indicate a Device in HL7 V2 MDM message)"/>
       </mapping>
       <mapping>
         <identity value="rim"/>
@@ -650,7 +737,7 @@
     </element>
     <element id="DocumentReference.attester">
       <extension url="http://hl7.org/fhir/build/StructureDefinition/uml-dir">
-        <valueCode value="down"/>
+        <valueCode value="right"/>
       </extension>
       <path value="DocumentReference.attester"/>
       <short value="Attests to accuracy of the document"/>
@@ -798,8 +885,8 @@
       </mapping>
     </element>
     <element id="DocumentReference.relatesTo">
-      <extension url="http://hl7.org/fhir/build/StructureDefinition/svg">
-        <valueCode value="400,90"/>
+      <extension url="http://hl7.org/fhir/build/StructureDefinition/uml-dir">
+        <valueCode value="right"/>
       </extension>
       <path value="DocumentReference.relatesTo"/>
       <short value="Relationships to other documents"/>
@@ -845,7 +932,7 @@
       </binding>
       <mapping>
         <identity value="fhircomposition"/>
-        <map value="Composition.relatesTo.code"/>
+        <map value="Composition.relatesTo.type"/>
       </mapping>
       <mapping>
         <identity value="rim"/>
@@ -854,6 +941,10 @@
       <mapping>
         <identity value="xds"/>
         <map value="DocumentEntry Associations type"/>
+      </mapping>
+      <mapping>
+        <identity value="cda"/>
+        <map value="ClinicalDocument/relatedDocument/typeCode"/>
       </mapping>
     </element>
     <element id="DocumentReference.relatesTo.target">
@@ -869,7 +960,7 @@
       <isSummary value="true"/>
       <mapping>
         <identity value="fhircomposition"/>
-        <map value="Composition.relatesTo.target"/>
+        <map value="Composition.relatesTo.resourceReference"/>
       </mapping>
       <mapping>
         <identity value="rim"/>
@@ -878,6 +969,10 @@
       <mapping>
         <identity value="xds"/>
         <map value="DocumentEntry Associations reference"/>
+      </mapping>
+      <mapping>
+        <identity value="cda"/>
+        <map value="ClinicalDocument/relatedDocument/parentDocument"/>
       </mapping>
     </element>
     <element id="DocumentReference.description">
@@ -950,8 +1045,8 @@
       </mapping>
     </element>
     <element id="DocumentReference.content">
-      <extension url="http://hl7.org/fhir/build/StructureDefinition/svg">
-        <valueCode value="400,300"/>
+      <extension url="http://hl7.org/fhir/build/StructureDefinition/uml-dir">
+        <valueCode value="down"/>
       </extension>
       <path value="DocumentReference.content"/>
       <short value="Document referenced"/>
@@ -1005,6 +1100,9 @@
       </mapping>
     </element>
     <element id="DocumentReference.content.profile">
+      <extension url="http://hl7.org/fhir/build/StructureDefinition/uml-dir">
+        <valueCode value="right"/>
+      </extension>
       <path value="DocumentReference.content.profile"/>
       <short value="Content profile rules for the document"/>
       <definition value="An identifier of the document constraints, encoding, structure, and template that the document conforms to beyond the base format indicated in the mimeType."/>
@@ -1055,7 +1153,7 @@
         </extension>
         <strength value="preferred"/>
         <description value="Document Format Codes."/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/formatcodes"/>
+        <valueSet value="http://terminology.hl7.org/ValueSet/v3-HL7FormatCodes"/>
       </binding>
       <mapping>
         <identity value="fhircomposition"/>
@@ -1072,33 +1170,6 @@
       <mapping>
         <identity value="cda"/>
         <map value="derived from the IHE Profile or Implementation Guide templateID"/>
-      </mapping>
-    </element>
-    <element id="DocumentReference.sourcePatientInfo">
-      <path value="DocumentReference.sourcePatientInfo"/>
-      <short value="Patient demographics from source"/>
-      <definition value="The Patient Information as known when the document was published. May be a reference to a version specific, or contained."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
-      </type>
-      <mapping>
-        <identity value="fhircomposition"/>
-        <map value="Composition.subject"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value=".participation[typeCode=&quot;SBJ&quot;].role[typeCode=&quot;PAT&quot;]"/>
-      </mapping>
-      <mapping>
-        <identity value="xds"/>
-        <map value="DocumentEntry.sourcePatientInfo, DocumentEntry.sourcePatientId"/>
-      </mapping>
-      <mapping>
-        <identity value="cda"/>
-        <map value="ClinicalDocument/recordTarget/"/>
       </mapping>
     </element>
   </differential>

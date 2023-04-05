@@ -32,7 +32,7 @@
       
     </Medication>
   </contained>
-  <instantiatesUri value="http://www.bccancer.bc.ca/chemotherapy-protocols-site/Documents/Lymphoma-Myeloma/ULYBRENTUX%20Protocol_1Jun2017.pdf"/>
+  
   <status value="completed"/>
   <medication>
   <reference>
@@ -53,8 +53,10 @@
 </occurencePeriod>
   <performer>
     <actor>
-    <reference value="Practitioner/f007"/>
-    <display value="Patrick Pump"/>
+      <reference>
+        <reference value="Practitioner/f007"/>
+        <display value="Patrick Pump"/>
+      </reference>
     </actor>
   </performer>
   <request>
@@ -75,11 +77,17 @@
       <system value="http://unitsofmeasure.org"/>
       <code value="mg/kg"/> 
     </dose>
-    <rateQuantity>
-      <value value="20"/>
-      <unit value="min"/>
-      <system value="http://unitsofmeasure.org"/>
-      <code value="min"/> 
-    </rateQuantity>
+    <rateRatio>
+      <numerator>
+        <value value="250"></value>
+        <unit value="ml"></unit>
+        <system value="http://unitsofmeasure.org"></system>
+      </numerator>
+      <denominator>
+        <value value="30"></value>
+        <unit value="min"></unit>
+        <system value="http://unitsofmeasure.org"></system>
+      </denominator>
+    </rateRatio>
   </dosage>
 </MedicationAdministration>

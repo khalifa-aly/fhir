@@ -12,7 +12,7 @@
     <valueCode value="trial-use"/>
   </extension>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
-    <valueInteger value="0"/>
+    <valueInteger value="1"/>
   </extension>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category">
     <valueCode value="patient"/>
@@ -24,8 +24,13 @@
     <valueCode value=".status = entered-in-error"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/ImmunizationEvaluation"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1275"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="ImmunizationEvaluation"/>
+  <title value="Immunization Evaluation"/>
   <status value="draft"/>
   <date value="2021-01-02T08:58:31+11:00"/>
   <publisher value="Health Level Seven International (Public Health and Emergency Response)"/>
@@ -42,7 +47,7 @@
     </telecom>
   </contact>
   <description value="Describes a comparison of an immunization event against published recommendations to determine if the administration is &quot;valid&quot; in relation to those  recommendations."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="workflow"/>
     <uri value="http://hl7.org/fhir/workflow"/>
@@ -51,7 +56,7 @@
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
-    <name value="HL7 v2 Mapping"/>
+    <name value="HL7 V2 Mapping"/>
   </mapping>
   <mapping>
     <identity value="w5"/>
@@ -161,10 +166,6 @@
         <identity value="v2"/>
         <map value="PID-3"/>
       </mapping>
-      <mapping>
-        <identity value="w5"/>
-        <map value="FiveWs.subject"/>
-      </mapping>
     </element>
     <element id="ImmunizationEvaluation.date">
       <path value="ImmunizationEvaluation.date"/>
@@ -177,7 +178,7 @@
       </type>
       <mapping>
         <identity value="workflow"/>
-        <map value="Event.occurrenceDateTime"/>
+        <map value="Event.occurrence"/>
       </mapping>
       <mapping>
         <identity value="w5"/>
@@ -293,7 +294,7 @@
       <min value="0"/>
       <max value="1"/>
       <type>
-        <code value="string"/>
+        <code value="markdown"/>
       </type>
       <mapping>
         <identity value="workflow"/>

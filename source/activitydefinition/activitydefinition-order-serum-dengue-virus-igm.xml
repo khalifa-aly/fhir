@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ActivityDefinition xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://hl7.org/fhir ../../schema/activitydefinition.xsd">
+<?xml version="1.0" encoding="UTF-8"?><ActivityDefinition xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../schema/activitydefinition.xsd">
   <id value="serum-dengue-virus-igm"/>
   <text>
     <status value="generated"/>
@@ -15,7 +13,7 @@
                <td style="padding-left: 25px; padding-right: 25px;">ActivityDefinition/serum-dengue-virus-igm</td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -26,7 +24,7 @@
                <td style="padding-left: 25px; padding-right: 25px;">draft</td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -37,7 +35,7 @@
                <td style="padding-left: 25px; padding-right: 25px;">Order Serum Dengue Virus IgM</td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -57,7 +55,7 @@
                </td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -68,7 +66,7 @@
                <td style="padding-left: 25px; padding-right: 25px;">diagnostic</td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -85,7 +83,7 @@
                </td>
             </tr>
          </table>
-         <p/>
+         <p></p>
          <table class="grid dict">
             <tr>
                <td>
@@ -99,6 +97,10 @@
       </div>
   </text>
   <url value="http://example.org/ActivityDefinition/serum-dengue-virus-igm"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.19.7"/>
+  </identifier>
   <status value="draft"/>
   <description value="Order Serum Dengue Virus IgM"/>
   <relatedArtifact>

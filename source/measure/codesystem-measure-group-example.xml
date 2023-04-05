@@ -8,16 +8,16 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="cqi"/>
   </extension>
-  <url value="http://terminology.hl7.org/CodeSystem/measure-group-example"/>
+  <url value="http://hl7.org/fhir/measure-group-example"/>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
-    <value value="urn:oid:2.16.840.1.113883.4.642.1.0"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.4.2045"/>
   </identifier>
-  <version value="4.6.0"/>
+  <version value="5.0.0"/>
   <name value="MeasureGroupExample"/>
-  <title value="MeasureGroupExample"/>
+  <title value="Measure Group Example"/>
   <status value="draft"/>
-  <experimental value="false"/>
+  <experimental value="true"/>
   <publisher value="Clinical Quality Information Workgroup"/>
   <description value="Example Measure Groups for the Measure Resource."/>
   <caseSensitive value="true"/>

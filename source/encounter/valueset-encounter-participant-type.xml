@@ -13,9 +13,21 @@
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:oid:2.16.840.1.113883.4.642.3.250"/>
   </identifier>
-  <version value="4.6.0"/>
+  <identifier>
+    <use value="old"/>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.3.245"/>
+  </identifier>
+  <identifier>
+    <use value="old"/>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.2.139"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="ParticipantType"/>
+  <title value="Participant Type"/>
   <status value="draft"/>
+  <experimental value="true"/>
   <publisher value="FHIR Project team"/>
   <contact>
     <telecom>
@@ -32,18 +44,6 @@
         <op value="is-a"/>
         <value value="_ParticipationAncillary"/>
       </filter>
-    </include>
-    <include>
-      <system value="http://terminology.hl7.org/CodeSystem/v3-ParticipationType"/>
-      <concept>
-        <code value="SPRF"/>
-      </concept>
-      <concept>
-        <code value="PPRF"/>
-      </concept>
-      <concept>
-        <code value="PART"/>
-      </concept>
     </include>
     <include>
       <system value="http://terminology.hl7.org/CodeSystem/participant-type"/>

@@ -11,17 +11,18 @@
   <url value="http://hl7.org/fhir/ValueSet/measurereport-stratifier-value-example"/>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
-    <value value="urn:oid:2.16.840.1.113883.4.642.3.0"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.3.3054"/>
   </identifier>
-  <version value="4.6.0"/>
+  <version value="5.0.0"/>
   <name value="MeasureReportStratifierValueExample"/>
-  <title value="MeasureReportStratifierValueExample"/>
+  <title value="Measure Report Stratifier Value Example"/>
   <status value="draft"/>
+  <experimental value="true"/>
   <publisher value="Clinical Quality Information Workgroup"/>
   <description value="Example Measure Stratification Value for MeasureReports Resource."/>
   <compose>
     <include>
-      <system value="http://terminology.hl7.org/CodeSystem/measurereport-stratifier-value-example"/>
+      <system value="http://hl7.org/fhir/measurereport-stratifier-value-example"/>
     </include>
   </compose>
 </ValueSet>

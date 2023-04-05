@@ -34,8 +34,8 @@
     </extension>
   </extension>
   <url value="http://hl7.org/fhir/build/OperationDefinition/ConceptMap-closure"/>
-  <version value="4.6.0"/>
-  <name value="closure"/>
+  <version value="5.0.0"/>
+  <name value="Closure"/>
   <title value="Closure Table Maintenance"/>
   <status value="draft"/>
   <kind value="operation"/>

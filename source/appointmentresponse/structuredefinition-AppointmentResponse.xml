@@ -24,8 +24,13 @@
     <valueCode value=".participantStatus=entered-in-error"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/AppointmentResponse"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1128"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="AppointmentResponse"/>
+  <title value="Appointment Response"/>
   <status value="draft"/>
   <date value="2021-01-02T08:58:31+11:00"/>
   <publisher value="Health Level Seven International (Patient Administration)"/>
@@ -42,7 +47,7 @@
     </telecom>
   </contact>
   <description value="A reply to an appointment request for a patient and/or practitioner(s), such as a confirmation or rejection."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="workflow"/>
     <uri value="http://hl7.org/fhir/workflow"/>
@@ -66,7 +71,7 @@
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
-    <name value="HL7 v2 Mapping"/>
+    <name value="HL7 V2 Mapping"/>
   </mapping>
   <kind value="resource"/>
   <abstract value="false"/>
@@ -85,7 +90,6 @@
         <severity value="error"/>
         <human value="Either the participantType or actor must be specified"/>
         <expression value="participantType.exists() or actor.exists()"/>
-        <xpath value="(exists(f:participantType) or exists(f:actor))"/>
         <source value="http://hl7.org/fhir/StructureDefinition/AppointmentResponse"/>
       </constraint>
       <mapping>
@@ -94,7 +98,7 @@
       </mapping>
       <mapping>
         <identity value="rim"/>
-        <map value="Act[@moodCode &amp;lt;= &#39;PRMS&#39;]"/>
+        <map value="Act[@moodCode &amp;lt;= 'PRMS']"/>
       </mapping>
       <mapping>
         <identity value="ical"/>
@@ -149,7 +153,7 @@
       </mapping>
       <mapping>
         <identity value="rim"/>
-        <map value="scheduleRequest.ActAppointmentRequest[@moodCode &amp;lt;= &#39;ARQ&#39;]"/>
+        <map value="scheduleRequest.ActAppointmentRequest[@moodCode &amp;lt;= 'ARQ']"/>
       </mapping>
     </element>
     <element id="AppointmentResponse.proposedNewTime">
@@ -163,18 +167,14 @@
       </type>
       <isSummary value="true"/>
       <mapping>
-        <identity value="workflow"/>
-        <map value="n/a"/>
-      </mapping>	  
-      <mapping>
         <identity value="rim"/>
         <map value="n/a"/>
       </mapping>
       <mapping>
         <identity value="ical"/>
         <map value="n/a"/>
-      </mapping>	  
-    </element>	
+      </mapping>
+    </element>
     <element id="AppointmentResponse.start">
       <extension url="http://hl7.org/fhir/build/StructureDefinition/committee-notes">
         <valueString value="Should we include the existing times, or rely on resource histories. Decision to wait for implementer feedback to see if these are used."/>
@@ -236,6 +236,7 @@
       <type>
         <code value="CodeableConcept"/>
       </type>
+      <condition value="apr-1"/>
       <isSummary value="true"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -275,6 +276,7 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/HealthcareService"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location"/>
       </type>
+      <condition value="apr-1"/>
       <isSummary value="true"/>
       <mapping>
         <identity value="workflow"/>
@@ -299,7 +301,7 @@
     </element>
     <element id="AppointmentResponse.participantStatus">
       <path value="AppointmentResponse.participantStatus"/>
-      <short value="accepted | declined | tentative | needs-action"/>
+      <short value="accepted | declined | tentative | needs-action | entered-in-error"/>
       <definition value="Participation status of the participant. When the status is declined or tentative if the start/end times are different to the appointment, then these times should be interpreted as a requested time change. When the status is accepted, the times can either be the time of the appointment (as a confirmation of the time) or can be empty."/>
       <comment value="This element is labeled as a modifier because the status contains the code entered-in-error that marks the participant as not currently valid."/>
       <min value="1"/>
@@ -308,7 +310,7 @@
         <code value="code"/>
       </type>
       <isModifier value="true"/>
-      <isModifierReason value="Not known why this is labelled a modifier"/>
+      <isModifierReason value="This element is labelled as a modifier because it is a status element that contains status entered-in-error which means that the resource should not be treated as valid"/>
       <isSummary value="true"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -316,7 +318,7 @@
         </extension>
         <strength value="required"/>
         <description value="The Participation status of an appointment."/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/participationstatus"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/appointmentresponse-status"/>
       </binding>
       <mapping>
         <identity value="workflow"/>
@@ -339,7 +341,7 @@
       <min value="0"/>
       <max value="1"/>
       <type>
-        <code value="string"/>
+        <code value="markdown"/>
       </type>
       <mapping>
         <identity value="workflow"/>
@@ -347,12 +349,48 @@
       </mapping>
       <mapping>
         <identity value="rim"/>
-        <map value=".subjectOf.observation[@moodCode = &#39;EVN&#39;][code = &#39;annotation&#39;].value"/>
+        <map value=".subjectOf.observation[@moodCode = 'EVN'][code = 'annotation'].value"/>
       </mapping>
       <mapping>
         <identity value="ical"/>
         <map value="COMMENT"/>
       </mapping>
+    </element>
+    <element id="AppointmentResponse.recurring">
+      <path value="AppointmentResponse.recurring"/>
+      <short value="This response is for all occurrences in a recurring request"/>
+      <definition value="Indicates that this AppointmentResponse applies to all occurrences in a recurring request."/>
+      <comment value="When a recurring appointment is requested, the participant may choose to respond to each individual occurrence, in which case AppointmentResponse.recurring should be false.  If the participant chooses to respond the same way for all occurrences, they may instead use a single AppointmentResponse with recurring set to true.  These may be combined as the participant chooses.  For example, they may accept all occurrences (recurring = true), but then send a decline for a specific occurrence (recurring=false)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="boolean"/>
+      </type>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A"/>
+      </mapping>
+    </element>
+    <element id="AppointmentResponse.occurrenceDate">
+      <path value="AppointmentResponse.occurrenceDate"/>
+      <short value="Original date within a recurring request"/>
+      <definition value="The original date within a recurring request. This could be used in place of the recurrenceId to be more direct (or where the template is provided through the simple list of dates in `Appointment.occurrenceDate`)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="date"/>
+      </type>
+    </element>
+    <element id="AppointmentResponse.recurrenceId">
+      <path value="AppointmentResponse.recurrenceId"/>
+      <short value="The recurrence ID of the specific recurring request"/>
+      <definition value="The recurrence ID (sequence number) of the specific appointment when responding to a recurring request."/>
+      <comment value="If the recurrence template was defined using the list of occurrenceDates then this property might not be used."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="positiveInt"/>
+      </type>
     </element>
   </differential>
 </StructureDefinition>

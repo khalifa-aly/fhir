@@ -24,8 +24,13 @@
     <valueCode value=".status = entered-in-error"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/RiskAssessment"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1167"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="RiskAssessment"/>
+  <title value="Risk Assessment"/>
   <status value="draft"/>
   <date value="2021-01-02T08:58:31+11:00"/>
   <publisher value="Health Level Seven International (Clinical Decision Support)"/>
@@ -42,7 +47,7 @@
     </telecom>
   </contact>
   <description value="An assessment of the likely outcome(s) for a patient or other subject as well as the likelihood of each outcome."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="workflow"/>
     <uri value="http://hl7.org/fhir/workflow"/>
@@ -51,7 +56,7 @@
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
-    <name value="HL7 v2 Mapping"/>
+    <name value="HL7 V2 Mapping"/>
   </mapping>
   <mapping>
     <identity value="rim"/>
@@ -260,10 +265,6 @@
         <identity value="openehr"/>
         <map value="Subject of Care"/>
       </mapping>
-      <mapping>
-        <identity value="w5"/>
-        <map value="FiveWs.subject"/>
-      </mapping>
     </element>
     <element id="RiskAssessment.encounter">
       <path value="RiskAssessment.encounter"/>
@@ -421,9 +422,8 @@
       <constraint>
         <key value="ras-2"/>
         <severity value="error"/>
-        <human value="Must be &lt;= 100"/>
-        <expression value="probability is decimal implies (probability as decimal) &lt;= 100"/>
-        <xpath value="not(f:probabilityDecimal) or f:probabilityDecimal/@value &lt;= 100"/>
+        <human value="Probability as a deciml must be &lt;= 100"/>
+        <expression value="probability.empty() or ((probability is decimal) implies ((probability as decimal) &lt;= 100))"/>
         <source value="http://hl7.org/fhir/StructureDefinition/RiskAssessment"/>
       </constraint>
       <mapping>
@@ -469,12 +469,12 @@
       <type>
         <code value="Range"/>
       </type>
+      <condition value="ras-2"/>
       <constraint>
         <key value="ras-1"/>
         <severity value="error"/>
         <human value="low and high must be percentages, if present"/>
-        <expression value="(low.empty() or ((low.code = &#39;%&#39;) and (low.system = %ucum))) and (high.empty() or ((high.code = &#39;%&#39;) and (high.system = %ucum)))"/>
-        <xpath value="(not(f:low) or f:low[f:code/@value=&#39;%&#39; and f:system/@value=&#39;http://unitsofmeasure.org&#39;]) and (not(f:high) or f:high[f:code/@value=&#39;%&#39; and f:system/@value=&#39;http://unitsofmeasure.org&#39;])"/>
+        <expression value="(low.empty() or ((low.code = '%') and (low.system = %ucum))) and (high.empty() or ((high.code = '%') and (high.system = %ucum)))"/>
         <source value="http://hl7.org/fhir/StructureDefinition/RiskAssessment"/>
       </constraint>
       <mapping>
@@ -523,7 +523,7 @@
       <path value="RiskAssessment.prediction.when[x]"/>
       <short value="Timeframe or age range"/>
       <definition value="Indicates the period of time or age range of the subject to which the specified probability applies."/>
-      <comment value="If not specified, the risk applies &quot;over the subject&#39;s lifespan&quot;."/>
+      <comment value="If not specified, the risk applies &quot;over the subject's lifespan&quot;."/>
       <min value="0"/>
       <max value="1"/>
       <type>

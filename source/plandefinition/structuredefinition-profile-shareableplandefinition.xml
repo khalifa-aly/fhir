@@ -16,14 +16,19 @@
     <valueCode value="trial-use"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/shareableplandefinition"/>
-  <version value="4.6.0"/>
-  <name value="Shareable PlanDefinition"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1077"/>
+  </identifier>
+  <version value="5.0.0"/>
+  <name value="ShareablePlanDefinition"/>
+  <title value="Shareable PlanDefinition"/>
   <status value="draft"/>
   <experimental value="false"/>
   <date value="2020-12-28T16:55:11+11:00"/>
   <publisher value="HL7"/>
   <description value="Enforces the minimum information set for the plan definition metadata required by HL7 and other organizations that share and publish plan definitions"/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -55,86 +60,77 @@
       <min value="1"/>
       <max value="1"/>
     </element>
+		<element id="PlanDefinition.extension:knowledgeCapability">
+			<path value="PlanDefinition.extension"/>
+			<sliceName value="knowledgeCapability"/>
+			<min value="0"/>
+			<max value="*"/>
+			<type>
+				<code value="Extension"/>
+				<profile value="http://hl7.org/fhir/StructureDefinition/cqf-knowledgeCapability"/>
+			</type>
+			<mustSupport value="true"/>
+		</element>
+		<element id="PlanDefinition.extension:knowledgeRepresentationLevel">
+			<path value="PlanDefinition.extension"/>
+			<sliceName value="knowledgeRepresentationLevel"/>
+			<min value="0"/>
+			<max value="*"/>
+			<type>
+				<code value="Extension"/>
+				<profile value="http://hl7.org/fhir/StructureDefinition/cqf-knowledgeRepresentationLevel"/>
+			</type>
+			<mustSupport value="true"/>
+		</element>
+		<element id="PlanDefinition.extension:artifactComment">
+			<path value="PlanDefinition.extension"/>
+			<sliceName value="artifactComment"/>
+			<min value="0"/>
+			<max value="*"/>
+			<type>
+				<code value="Extension"/>
+				<profile value="http://hl7.org/fhir/StructureDefinition/cqf-artifactComment"/>
+			</type>
+			<mustSupport value="true"/>
+		</element>
     <element id="PlanDefinition.url">
       <path value="PlanDefinition.url"/>
       <min value="1"/>
       <max value="1"/>
-      <type>
-        <code value="uri"/>
-      </type>
-    </element>
-    <element id="PlanDefinition.identifier">
-      <path value="PlanDefinition.identifier"/>
       <mustSupport value="true"/>
     </element>
     <element id="PlanDefinition.version">
       <path value="PlanDefinition.version"/>
       <min value="1"/>
       <max value="1"/>
-      <type>
-        <code value="string"/>
-      </type>
+      <mustSupport value="true"/>
+    </element>
+    <element id="PlanDefinition.versionAlgorithm[x]">
+      <path value="PlanDefinition.versionAlgorithm[x]"/>
+      <mustSupport value="true"/>
     </element>
     <element id="PlanDefinition.name">
       <path value="PlanDefinition.name"/>
-      <min value="1"/>
-      <max value="1"/>
-      <type>
-        <code value="string"/>
-      </type>
+      <mustSupport value="true"/>
     </element>
     <element id="PlanDefinition.title">
       <path value="PlanDefinition.title"/>
-      <min value="0"/>
+      <min value="1"/>
       <max value="1"/>
       <mustSupport value="true"/>
     </element>
     <element id="PlanDefinition.experimental">
       <path value="PlanDefinition.experimental"/>
-      <min value="1"/>
-      <max value="1"/>
-      <type>
-        <code value="boolean"/>
-      </type>
-    </element>
-    <element id="PlanDefinition.date">
-      <path value="PlanDefinition.date"/>
-      <min value="0"/>
-      <max value="1"/>
       <mustSupport value="true"/>
     </element>
     <element id="PlanDefinition.publisher">
       <path value="PlanDefinition.publisher"/>
-      <alias value="steward"/>
-      <min value="1"/>
-      <max value="1"/>
-      <type>
-        <code value="string"/>
-      </type>
-    </element>
-    <element id="PlanDefinition.contact">
-      <path value="PlanDefinition.contact"/>
       <mustSupport value="true"/>
     </element>
     <element id="PlanDefinition.description">
       <path value="PlanDefinition.description"/>
-      <alias value="scope"/>
       <min value="1"/>
       <max value="1"/>
-      <type>
-        <code value="markdown"/>
-      </type>
-      <mapping>
-        <identity value="rim"/>
-        <map value="N/A"/>
-      </mapping>
-    </element>
-    <element id="PlanDefinition.useContext">
-      <path value="PlanDefinition.useContext"/>
-      <mustSupport value="true"/>
-    </element>
-    <element id="PlanDefinition.jurisdiction">
-      <path value="PlanDefinition.jurisdiction"/>
       <mustSupport value="true"/>
     </element>
   </differential>

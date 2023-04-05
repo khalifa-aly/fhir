@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<PractitionerRole xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://hl7.org/fhir ../../schema/practitionerrole.xsd">
+<PractitionerRole xmlns="http://hl7.org/fhir"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../schema/practitionerrole.xsd">
 	<id value="example"/>
 
 	<text>
@@ -52,39 +52,63 @@
 	<healthcareService>
 		<reference value="HealthcareService/example"/>
 	</healthcareService>
-	<telecom>
-		<system value="phone" />
-		<value value="(03) 5555 6473" />
-		<use value="work"/>
-	</telecom>
-	<telecom>
-		<system value="email" />
-		<value value="adam.southern@example.org" />
-		<use value="work"/>
-	</telecom>
-	<availableTime>
-		<daysOfWeek value="mon"/>
-		<daysOfWeek value="tue"/>
-		<daysOfWeek value="wed"/>
-		<availableStartTime value="09:00:00"/>
-		<availableEndTime value="16:30:00"/>
-	</availableTime>
-	<availableTime>
-		<daysOfWeek value="thu"/>
-		<daysOfWeek value="fri"/>
-		<availableStartTime value="09:00:00"/>
-		<availableEndTime value="12:00:00"/>
-	</availableTime>
-	<notAvailable>
-		<description value="Adam will be on extended leave during May 2017"/>
-		<during>
-			<start value="2017-05-01"/>
-			<end value="2017-05-20"/>
-		</during>
-	</notAvailable>
-	<availabilityExceptions value="Adam is generally unavailable on public holidays and during the Christmas/New Year break"/>
+	<contact>
+		<telecom>
+			<system value="phone" />
+			<value value="(03) 5555 6473" />
+			<use value="work"/>
+		</telecom>
+		<telecom>
+			<system value="email" />
+			<value value="adam.southern@example.org" />
+			<use value="work"/>
+		</telecom>
+	</contact>
+	<characteristic>
+		<coding>
+			<system value="http://hl7.org/fhir/service-mode" />
+			<code value="in-person"/>
+			<display value="In Person"/>
+		</coding>
+		<coding>
+			<system value="http://hl7.org/fhir/service-mode" />
+			<code value="videoconference"/>
+			<display value="Video Conference"/>
+		</coding>
+	</characteristic>
+	<communication>
+		<coding>
+			<system value="urn:ietf:bcp:47"/>
+			<code value="en"/>
+		</coding>
+	</communication>
+	<availability>
+		<availableTime>
+			<daysOfWeek value="mon"/>
+			<daysOfWeek value="tue"/>
+			<daysOfWeek value="wed"/>
+			<availableStartTime value="09:00:00"/>
+			<availableEndTime value="16:30:00"/>
+		</availableTime>
+		<availableTime>
+			<daysOfWeek value="thu"/>
+			<daysOfWeek value="fri"/>
+			<availableStartTime value="09:00:00"/>
+			<availableEndTime value="12:00:00"/>
+		</availableTime>
+		<notAvailableTime>
+			<description value="Adam will be on extended leave during May 2017"/>
+			<during>
+				<start value="2017-05-01"/>
+				<end value="2017-05-20"/>
+			</during>
+		</notAvailableTime>
+		<notAvailableTime>
+			<description value="Adam is generally unavailable on public holidays and during the Christmas/New Year break"/>
+		</notAvailableTime>
+	</availability>
 	<endpoint>
-    <!-- Endpoint that handles the v2 messaging for the external organization -->
-    <reference value="Endpoint/example"/>
-  </endpoint>
+		<!-- Endpoint that handles the v2 messaging for the external organization -->
+		<reference value="Endpoint/example"/>
+	</endpoint>
 </PractitionerRole>

@@ -34,8 +34,8 @@
     </extension>
   </extension>
   <url value="http://hl7.org/fhir/build/OperationDefinition/Resource-meta-add"/>
-  <version value="4.6.0"/>
-  <name value="meta-add"/>
+  <version value="5.0.0"/>
+  <name value="Metaadd"/>
   <title value="Add profiles, tags, and security labels to a resource"/>
   <status value="draft"/>
   <kind value="operation"/>

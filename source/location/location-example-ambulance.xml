@@ -18,18 +18,20 @@
       <display value="Ambulance" />
     </coding>
   </type>
-  <telecom>
-    <system value="phone" />
-    <value value="2329" />
-		<use value="mobile" />
-  </telecom>
-  <physicalType>
+  <contact>
+    <telecom>
+      <system value="phone" />
+      <value value="2329" />
+      <use value="mobile" />
+    </telecom>
+  </contact>
+  <form>
     <coding>
       <system value="http://terminology.hl7.org/CodeSystem/location-physical-type" />
       <code value="ve" />
       <display value="Vehicle" />
     </coding>
-  </physicalType>  
+  </form>  
   <managingOrganization>
     <reference value="Organization/f001" />
   </managingOrganization>

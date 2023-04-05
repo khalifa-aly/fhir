@@ -11,7 +11,12 @@
   <url value="http://hl7.org/fhir/fm-status"/>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
-    <value value="urn:oid:2.16.840.1.113883.4.642.1.593"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.4.593"/>
+  </identifier>
+  <identifier>
+    <use value="old"/>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.1.585"/>
   </identifier>
   <name value="FinancialResourceStatusCodes"/>
   <title value="Financial Resource Status Codes"/>

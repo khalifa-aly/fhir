@@ -7,7 +7,7 @@
       <SearchParameter>
         <id value="DeviceMetric-category"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="DeviceMetric.category"/>
@@ -17,8 +17,7 @@
         <code value="category"/>
         <type value="token"/>
         <expression value="DeviceMetric.category"/>
-        <xpath value="f:DeviceMetric/f:category"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -37,48 +36,26 @@
         <code value="identifier"/>
         <type value="token"/>
         <expression value="DeviceMetric.identifier"/>
-        <xpath value="f:DeviceMetric/f:identifier"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
   <entry>
     <resource>
       <SearchParameter>
-        <id value="DeviceMetric-parent"/>
+        <id value="DeviceMetric-device"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
           <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
-          <valueString value="DeviceMetric.parent"/>
+          <valueString value="DeviceMetric.device"/>
         </extension>
         <url value="http://hl7.org/fhir/build/SearchParameter/DeviceMetric-parent"/>
-        <description value="The parent DeviceMetric resource"/>
-        <code value="parent"/>
-        <type value="reference"/>
-        <expression value="DeviceMetric.parent"/>
-        <xpath value="f:DeviceMetric/f:parent"/>
-        <xpathUsage value="normal"/>
-      </SearchParameter>
-    </resource>
-  </entry>
-  <entry>
-    <resource>
-      <SearchParameter>
-        <id value="DeviceMetric-source"/>
-        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="trial-use"/>
-        </extension>
-        <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
-          <valueString value="DeviceMetric.source"/>
-        </extension>
-        <url value="http://hl7.org/fhir/build/SearchParameter/DeviceMetric-source"/>
         <description value="The device resource"/>
-        <code value="source"/>
+        <code value="device"/>
         <type value="reference"/>
-        <expression value="DeviceMetric.source"/>
-        <xpath value="f:DeviceMetric/f:source"/>
-        <xpathUsage value="normal"/>
+        <expression value="DeviceMetric.device"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -93,12 +70,11 @@
           <valueString value="DeviceMetric.type"/>
         </extension>
         <url value="http://hl7.org/fhir/build/SearchParameter/DeviceMetric-type"/>
-        <description value="The component type"/>
+        <description value="The type of metric"/>
         <code value="type"/>
         <type value="token"/>
         <expression value="DeviceMetric.type"/>
-        <xpath value="f:DeviceMetric/f:type"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>

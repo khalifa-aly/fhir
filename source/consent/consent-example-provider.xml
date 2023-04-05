@@ -9,12 +9,12 @@
   <category>
     <text value="conditional release (per DUA)"/>
   </category>
-  <dateTime value="2017-12-18"/>
+  <date value="2017-12-18"/>
   <sourceAttachment>
     <uri value="http://example.org/federal/policy#womans-shelter"/>
   </sourceAttachment>
+  <decision value="deny"/>
   <provision>
-    <type value="permit"/>
     <actor>
       <role>
         <coding>

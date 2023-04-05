@@ -13,9 +13,16 @@
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:oid:2.16.840.1.113883.4.642.3.518"/>
   </identifier>
-  <version value="4.6.0"/>
+  <identifier>
+    <use value="old"/>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.3.512"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="ServiceType"/>
+  <title value="Service Type"/>
   <status value="draft"/>
+  <experimental value="true"/>
   <publisher value="FHIR Project team"/>
   <contact>
     <telecom>

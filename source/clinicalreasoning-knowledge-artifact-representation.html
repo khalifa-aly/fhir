@@ -10,7 +10,7 @@
 
 
 
-<table class="cols"><tbody><tr><td id="wg">Work Group <a _target="blank" href="[%wg cds%]">[%wgt cds%]</a></td><td id="fmm"><a href="versions.html#maturity">Maturity Level</a>: 2</td><td id="ballot"><a href="versions.html#std-process">Standards Status</a>:  <!-- !ns! --><a href="versions.html#std-process">Trial Use</a></td></tr></tbody></table>
+<table class="colstu"><tbody><tr><td id="wg">Work Group <a _target="blank" href="[%wg cds%]">[%wgt cds%]</a></td><td id="fmm"><a href="versions.html#maturity">Maturity Level</a>: 2</td><td id="ballot"><a href="versions.html#std-process">Standards Status</a>:  <!-- !ns! --><a href="versions.html#std-process">Trial Use</a></td></tr></tbody></table>
 
 <a name="knowledge-artifact-representation"> </a>
 <h3>Representing Knowledge Artifacts</h3>
@@ -331,7 +331,7 @@
   &lt;id value=&quot;example&quot;/&gt;
   &lt;identifier&gt;
     &lt;use value=&quot;official&quot;/&gt;
-    &lt;value value=&quot;ChalmydiaScreening_Common&quot;/&gt;
+    &lt;value value=&quot;ChlamydiaScreening_Common&quot;/&gt;
   &lt;/identifier&gt;
   &lt;version value=&quot;2.0.0&quot;/&gt;
   &lt;title value=&quot;Chlamydia Screening Common Library&quot;/&gt;
@@ -348,7 +348,7 @@
   &lt;/topic&gt;
   &lt;relatedArtifact&gt;
     &lt;type value=&quot;depends-on&quot;/&gt;
-    &lt;resource value=&quot;Library/library-quick-model-definition&quot;/&gt;
+    &lt;resource value=&quot;http://example.org/Library/library-quick-model-definition&quot;/&gt;
   &lt;/relatedArtifact&gt;
   &lt;dataRequirement&gt;
     &lt;type value=&quot;Condition&quot;/&gt;
@@ -382,14 +382,14 @@
     &lt;value value=&quot;ChlamydiaScreening_CDS_UsingCommon&quot;/&gt;
   &lt;/identifier&gt;
   &lt;version value=&quot;2.0.0&quot;/&gt;
-  &lt;title value=&quot;Chalmydia Screening CDS Example Using Common&quot;/&gt;
+  &lt;title value=&quot;Chlamydia Screening CDS Example Using Common&quot;/&gt;
   &lt;status value=&quot;draft&quot;/&gt;
   &lt;date value=&quot;2015-07-22&quot;/&gt;
   &lt;description value=&quot;Chlamydia Screening CDS Example Using Common&quot;/&gt;
   &lt;topic&gt;
     &lt;text value=&quot;Chlamydia Screening&quot;/&gt;
   &lt;/topic&gt;
-  &lt;library value=&quot;Library/example&quot;/&gt;
+  &lt;library value=&quot;http://example.org/Library/example&quot;/&gt;
   &lt;action&gt;
     &lt;title value=&quot;Patient has not had chlamydia screening within the recommended timeframe...&quot;/&gt;
     &lt;condition&gt;
@@ -417,7 +417,7 @@
 <pre><code>&lt;CarePlan&gt;
   &lt;id value=&quot;chlamydia-screening-intervention-cp&quot;/&gt;
   &lt;contained&gt;
-    &lt;RequestGroup&gt;
+    &lt;RequestOrchestration&gt;
       &lt;id value=&quot;chlamydia-screening-intervention-rg&quot;/&gt;
       &lt;contained&gt;
         &lt;ServiceRequest&gt;
@@ -449,7 +449,7 @@
           &lt;reference value=&quot;#chlamydia-screening-service-request&quot;/&gt;
         &lt;/resource&gt;
       &lt;/action&gt;
-    &lt;/RequestGroup&gt;
+    &lt;/RequestOrchestration&gt;
   &lt;/contained&gt;
   &lt;status value=&quot;active&quot;/&gt;
   &lt;intent value=&quot;order&quot;/&gt;
@@ -650,7 +650,7 @@
       &lt;code value=&quot;57024-2&quot;/&gt;
     &lt;/coding&gt;
   &lt;/topic&gt;
-  &lt;library value=&quot;Library/cbp-logic&quot;/&gt;
+  &lt;library value=&quot;http://example.org/Library/cbp-logic&quot;/&gt;
   &lt;group&gt;
     &lt;population&gt;
       &lt;code value=&quot;initial-population&quot;/&gt;

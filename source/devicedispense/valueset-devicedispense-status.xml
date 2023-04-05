@@ -6,16 +6,18 @@
     <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
-    <valueCode value="phx"/>
+    <valueCode value="oo"/>
   </extension>
   <url value="http://hl7.org/fhir/ValueSet/devicedispense-status"/>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
-    <value value="urn:oid:2.16.840.1.113883.4.642.3.0"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.3.3153"/>
   </identifier>
-  <version value="4.5.0"/>
-  <name value="DeviceDispense Status Codes"/>
+  <version value="5.0.0"/>
+  <name value="DeviceDispenseStatusCodes"/>
+  <title value="DeviceDispense Status Codes"/>
   <status value="draft"/>
+  <experimental value="true"/>
   <publisher value="FHIR Project team"/>
   <contact>
     <telecom>
@@ -26,7 +28,7 @@
   <description value="DeviceDispense Status Codes"/>
   <compose>
     <include>
-      <system value="http://terminology.hl7.org/CodeSystem/devicedispense-status"/>
+      <system value="http://hl7.org/fhir/devicedispense-status"/>
     </include>
   </compose>
 </ValueSet>

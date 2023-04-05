@@ -12,7 +12,7 @@
     <valueCode value="trial-use"/>
   </extension>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
-    <valueInteger value="0"/>
+    <valueInteger value="1"/>
   </extension>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category">
     <valueCode value="patient"/>
@@ -24,8 +24,13 @@
     <valueCode value=".status = entered-in-error"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/ChargeItem"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1384"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="ChargeItem"/>
+  <title value="Charge Item"/>
   <status value="draft"/>
   <date value="2021-01-02T08:58:31+11:00"/>
   <publisher value="Health Level Seven International (Patient Administration)"/>
@@ -42,7 +47,7 @@
     </telecom>
   </contact>
   <description value="The resource ChargeItem describes the provision of healthcare provider products for a certain patient, therefore referring not only to the product, but containing in addition details of the provision, like date, time, amounts and participating organizations and persons. Main Usage of the ChargeItem is to enable the billing process and internal cost allocation."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="workflow"/>
     <uri value="http://hl7.org/fhir/workflow"/>
@@ -51,7 +56,7 @@
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
-    <name value="HL7 v2 Mapping"/>
+    <name value="HL7 V2 Mapping"/>
   </mapping>
   <mapping>
     <identity value="rim"/>
@@ -131,10 +136,6 @@
       </type>
       <isSummary value="false"/>
       <mapping>
-        <identity value="workflow"/>
-        <map value="Event.instantiates"/>
-      </mapping>
-      <mapping>
         <identity value="v2"/>
         <map value="Varies by domain"/>
       </mapping>
@@ -154,10 +155,6 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/ChargeItemDefinition"/>
       </type>
       <isSummary value="false"/>
-      <mapping>
-        <identity value="workflow"/>
-        <map value="Event.instantiates"/>
-      </mapping>
       <mapping>
         <identity value="v2"/>
         <map value="Varies by domain"/>
@@ -214,6 +211,9 @@
       <min value="0"/>
       <max value="*"/>
       <type>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-hierarchy">
+          <valueBoolean value="true"/>
+        </extension>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/ChargeItem"/>
       </type>
@@ -246,7 +246,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ChargeItemCode"/>
         </extension>
-        <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/binding-definition">
           <valueString value="Example set of codes that can be used for billing purposes."/>
         </extension>
         <strength value="example"/>
@@ -300,28 +300,22 @@
         <identity value="rim"/>
         <map value=".participation[typeCode=SBJ].role"/>
       </mapping>
-      <mapping>
-        <identity value="w5"/>
-        <map value="FiveWs.subject"/>
-      </mapping>
     </element>
-    <element id="ChargeItem.context">
-      <path value="ChargeItem.context"/>
-      <short value="Encounter / Episode associated with event"/>
-      <definition value="The encounter or episode of care that establishes the context for this event."/>
-      <requirements value="Links the request to the Encounter context."/>
-      <alias value="encounter"/>
+    <element id="ChargeItem.encounter">
+      <path value="ChargeItem.encounter"/>
+      <short value="Encounter associated with this ChargeItem"/>
+      <definition value="This ChargeItem has the details of how the associated Encounter should be billed or otherwise be handled by finance systems."/>
+      <comment value="This ChargeItem may be recorded during planning, execution or after the actual encounter takes place."/>
       <min value="0"/>
       <max value="1"/>
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Encounter"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/EpisodeOfCare"/>
       </type>
       <isSummary value="true"/>
       <mapping>
         <identity value="workflow"/>
-        <map value="Event.context"/>
+        <map value="Event.encounter"/>
       </mapping>
       <mapping>
         <identity value="w5"/>
@@ -436,6 +430,7 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/HealthcareService"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/CareTeam"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device"/>
@@ -462,7 +457,7 @@
     <element id="ChargeItem.performingOrganization">
       <path value="ChargeItem.performingOrganization"/>
       <short value="Organization providing the charged service"/>
-      <definition value="The organization requesting the service."/>
+      <definition value="The organization performing the service."/>
       <comment value="Practitioners and Devices can be associated with multiple organizations. It has to be made clear, on behalf of which Organization the services have been rendered."/>
       <min value="0"/>
       <max value="1"/>
@@ -487,7 +482,7 @@
     <element id="ChargeItem.requestingOrganization">
       <path value="ChargeItem.requestingOrganization"/>
       <short value="Organization requesting the charged service"/>
-      <definition value="The organization performing the service."/>
+      <definition value="The organization requesting the service."/>
       <comment value="The rendered Service might not be associated with a Request. This property indicates which Organization requested the services to be rendered. (In many cases, this may just be the Department associated with the Encounter.location)."/>
       <min value="0"/>
       <max value="1"/>
@@ -542,7 +537,7 @@
       <path value="ChargeItem.bodysite"/>
       <short value="Anatomical location, if relevant"/>
       <definition value="The anatomical location where the related service has been applied."/>
-      <comment value="Only used if not implicit in code found in Condition.code. If the use case requires attributes from the BodySite resource (e.g. to identify and track separately) then use the standard extension [bodySite](extension-bodysite.html).  May be a summary code, or a reference to a very precise definition of the location, or both."/>
+      <comment value="Only used if not implicit in code found in Condition.code. If the use case requires attributes from the BodySite resource (e.g. to identify and track separately) then use the standard extension [[[http://hl7.org/fhir/StructureDefinition/bodySite]]].  May be a summary code, or a reference to a very precise definition of the location, or both."/>
       <min value="0"/>
       <max value="*"/>
       <type>
@@ -553,7 +548,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="BodySite"/>
         </extension>
-        <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/binding-definition">
           <valueString value="Codes describing anatomical locations. May include laterality."/>
         </extension>
         <strength value="example"/>
@@ -565,31 +560,31 @@
         <map value=".targetBodySiteCode"/>
       </mapping>
     </element>
-    <element id="ChargeItem.factorOverride">
-      <path value="ChargeItem.factorOverride"/>
-      <short value="Factor overriding the associated rules"/>
-      <definition value="Factor overriding the factor determined by the rules associated with the code."/>
-      <comment value="There is no reason to carry the factor in the instance of a ChargeItem unless special circumstances require a manual override. The factors are usually defined by a set of rules in a back catalogue of the billing codes  (see ChargeItem.definition). Derived profiles may require a ChargeItem.overrideReason to be provided if either factor or price are manually overridden."/>
+    <element id="ChargeItem.unitPriceComponent">
+      <path value="ChargeItem.unitPriceComponent"/>
+      <short value="Unit price overriding the associated rules"/>
+      <definition value="The unit price of the chargable item."/>
+      <comment value="This could be communicated in ChargeItemDefinition. But if ChargeItemDefinition is not supported or not available, the unit price can be communicated in this property."/>
       <min value="0"/>
       <max value="1"/>
       <type>
-        <code value="decimal"/>
+        <code value="MonetaryComponent"/>
       </type>
       <isSummary value="false"/>
       <mapping>
         <identity value="v2"/>
-        <map value="FT1.26"/>
+        <map value="FT1.22"/>
       </mapping>
     </element>
-    <element id="ChargeItem.priceOverride">
-      <path value="ChargeItem.priceOverride"/>
-      <short value="Price overriding the associated rules"/>
-      <definition value="Total price of the charge overriding the list price associated with the code."/>
-      <comment value="There is no reason to carry the price in the instance of a ChargeItem unless circumstances require a manual override. The list prices or are usually defined in a back catalogue of the billing codes  (see ChargeItem.definition). Derived profiles may require a ChargeItem.overrideReason to be provided if either factor or price are manually overridden."/>
+    <element id="ChargeItem.totalPriceComponent">
+      <path value="ChargeItem.totalPriceComponent"/>
+      <short value="Total price overriding the associated rules"/>
+      <definition value="The total price for the chargable item, accounting for the quantity."/>
+      <comment value=" Often, the total price may be be calculated and recorded on the Invoice, but if a calculated total price must be exchanged prior to Invoice creation, it can be communicated in this property."/>
       <min value="0"/>
       <max value="1"/>
       <type>
-        <code value="Money"/>
+        <code value="MonetaryComponent"/>
       </type>
       <isSummary value="false"/>
       <mapping>
@@ -601,13 +596,19 @@
       <path value="ChargeItem.overrideReason"/>
       <short value="Reason for overriding the list price/factor"/>
       <definition value="If the list price or the rule-based factor associated with the code is overridden, this attribute can capture a text to indicate the  reason for this action."/>
-      <comment value="Derived Profiles may choose to add invariants requiring this field to be populated if either priceOverride or factorOverride have been filled."/>
       <min value="0"/>
       <max value="1"/>
       <type>
-        <code value="string"/>
+        <code value="CodeableConcept"/>
       </type>
       <isSummary value="false"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="override-reason"/>
+        </extension>
+        <strength value="example"/>
+        <description value="Local or regional codes covering why a price was overridden"/>
+      </binding>
     </element>
     <element id="ChargeItem.enterer">
       <path value="ChargeItem.enterer"/>
@@ -666,7 +667,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ChargeItemReason"/>
         </extension>
-        <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/binding-definition">
           <valueString value="Example binding for reason."/>
         </extension>
         <strength value="example"/>
@@ -675,7 +676,7 @@
       </binding>
       <mapping>
         <identity value="workflow"/>
-        <map value="Event.reasonCode"/>
+        <map value="Event.reason"/>
       </mapping>
       <mapping>
         <identity value="w5"/>
@@ -697,20 +698,22 @@
       <min value="0"/>
       <max value="*"/>
       <type>
-        <code value="Reference"/>
+        <code value="CodeableReference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/ImagingStudy"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Immunization"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationAdministration"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationDispense"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationRequest"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ServiceRequest"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/SupplyDelivery"/>
       </type>
       <isSummary value="false"/>
       <mapping>
         <identity value="workflow"/>
-        <map value="Event.reasonReference"/>
+        <map value="Event.reason"/>
       </mapping>
       <mapping>
         <identity value="w5"/>
@@ -798,10 +801,6 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource"/>
       </type>
       <isSummary value="false"/>
-      <mapping>
-        <identity value="workflow"/>
-        <map value="Event.supportingInfo"/>
-      </mapping>
     </element>
   </differential>
 </StructureDefinition>

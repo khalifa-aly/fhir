@@ -8,12 +8,13 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="fhir"/>
   </extension>
-  <url value="http://terminology.hl7.org/CodeSystem/subscription-status"/>
+  <url value="http://hl7.org/fhir/subscription-status"/>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
-    <value value="urn:oid:2.16.840.1.113883.4.642.1.1522"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.4.2022"/>
   </identifier>
   <name value="SubscriptionStatus"/>
+  <title value="Subscription Status"/>
   <status value="active"/>
   <experimental value="false"/>
   <description value="This codesystem defines a set of codes that can be used to filter Subscription triggers."/>

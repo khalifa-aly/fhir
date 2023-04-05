@@ -12,7 +12,7 @@
     <valueCode value="trial-use"/>
   </extension>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
-    <valueInteger value="2"/>
+    <valueInteger value="4"/>
   </extension>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category">
     <valueCode value="patient"/>
@@ -24,8 +24,13 @@
     <valueCode value=".active = false"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/Person"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1096"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="Person"/>
+  <title value="Person"/>
   <status value="draft"/>
   <date value="2021-01-02T08:58:31+11:00"/>
   <publisher value="Health Level Seven International (Patient Administration)"/>
@@ -43,7 +48,7 @@
   </contact>
   <description value="Demographics and administrative information about a person independent of a specific health-related context."/>
   <purpose value="Need to track persons potentially across multiple roles."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -57,7 +62,7 @@
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
-    <name value="HL7 v2 Mapping"/>
+    <name value="HL7 V2 Mapping"/>
   </mapping>
   <kind value="resource"/>
   <abstract value="false"/>
@@ -97,6 +102,7 @@
       <type>
         <code value="Identifier"/>
       </type>
+      <isSummary value="true"/>
       <mapping>
         <identity value="w5"/>
         <map value="FiveWs.identifier"/>
@@ -107,13 +113,13 @@
       </mapping>
       <mapping>
         <identity value="rim"/>
-        <map value=".plays:Role(classCode=&#39;IDENT&#39;).id"/>
+        <map value=".plays:Role(classCode='IDENT').id"/>
       </mapping>
     </element>
     <element id="Person.active">
       <path value="Person.active"/>
-      <short value="This person&#39;s record is in active use"/>
-      <definition value="Whether this person&#39;s record is in active use."/>
+      <short value="This person's record is in active use"/>
+      <definition value="Whether this person's record is in active use."/>
       <requirements value="Need to be able to mark a person record as not to be used because it was created in error."/>
       <min value="0"/>
       <max value="1"/>
@@ -182,12 +188,12 @@
     </element>
     <element id="Person.gender">
       <extension url="http://hl7.org/fhir/build/StructureDefinition/committee-notes">
-        <valueString value="&#39;gender&#39; is still the administrative gender, but this is reflected in its description rather than its name."/>
+        <valueString value="'gender' is still the administrative gender, but this is reflected in its description rather than its name."/>
       </extension>
       <path value="Person.gender"/>
       <short value="male | female | other | unknown"/>
       <definition value="Administrative Gender."/>
-      <comment value="The gender might not match the biological sex as determined by genetics, or the individual&#39;s preferred identification. Note that for both humans and particularly animals, there are other legitimate possibilities than M and F, though a clear majority of systems and contexts only support M and F."/>
+      <comment value="The gender might not match the biological sex as determined by genetics, or the individual's preferred identification. Note that for both humans and particularly animals, there are other legitimate possibilities than M and F, though a clear majority of systems and contexts only support M and F."/>
       <requirements value="Needed for identification of the person, in combination with (at least) name and birth date. Gender of person drives many clinical processes."/>
       <min value="0"/>
       <max value="1"/>
@@ -249,7 +255,7 @@
       <path value="Person.deceased[x]"/>
       <short value="Indicates if the individual is deceased or not"/>
       <definition value="Indicates if the individual is deceased or not."/>
-      <comment value="If there&#39;s no value in the instance, it means there is no statement on whether or not the individual is deceased. Most systems will interpret the absence of a value as a sign of the person being alive."/>
+      <comment value="If there's no value in the instance, it means there is no statement on whether or not the individual is deceased. Most systems will interpret the absence of a value as a sign of the person being alive."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -273,12 +279,13 @@
       <short value="One or more addresses for the person"/>
       <definition value="One or more addresses for the person."/>
       <comment value="Person may have multiple addresses with different uses or applicable periods."/>
-      <requirements value="May need to keep track of person&#39;s addresses for contacting, billing or reporting requirements and also to help with identification."/>
+      <requirements value="May need to keep track of person's addresses for contacting, billing or reporting requirements and also to help with identification."/>
       <min value="0"/>
       <max value="*"/>
       <type>
         <code value="Address"/>
       </type>
+      <isSummary value="true"/>
       <mapping>
         <identity value="v2"/>
         <map value="PID-11"/>
@@ -291,8 +298,8 @@
     <element id="Person.maritalStatus">
       <path value="Person.maritalStatus"/>
       <short value="Marital (civil) status of a person"/>
-      <definition value="This field contains a person&#39;s most recent marital (civil) status."/>
-      <comment value="Many contries maintain a register of births, deaths and marriages, and this would simplify that interaction"/>
+      <definition value="This field contains a person's most recent marital (civil) status."/>
+      <comment value="Many countries maintain a register of births, deaths and marriages, and this would simplify that interaction"/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -336,23 +343,6 @@
         <map value="player[classCode=PSN|ANM and determinerCode=INSTANCE]/desc"/>
       </mapping>
     </element>
-    <element id="Person.managingOrganization">
-      <path value="Person.managingOrganization"/>
-      <short value="The organization that is the custodian of the person record"/>
-      <definition value="The organization that is the custodian of the person record."/>
-      <requirements value="Need to know who recognizes this person record, manages and updates it."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization"/>
-      </type>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="scoper"/>
-      </mapping>
-    </element>
     <element id="Person.communication">
       <extension url="http://hl7.org/fhir/build/StructureDefinition/committee-notes">
         <valueString value="Rationale for putting this in the core is based on input from Canada. Other persons on call are from single language countries. Committee felt uncomfortable with leaving any of the 3 optional attributes modeCode, proficiencyLevelCode, or preferenceInd up to extensions. Instead we said that isModifier is &quot;no&quot; on modeCode and preferenceInd."/>
@@ -378,7 +368,7 @@
     <element id="Person.communication.language">
       <path value="Person.communication.language"/>
       <short value="The language which can be used to communicate with the person about his or her health"/>
-      <definition value="The ISO-639-1 alpha 2 code in lower case for the language, optionally followed by a hyphen and the ISO-3166-1 alpha 2 code for the region in upper case; e.g. &quot;en&quot; for English, or &quot;en-US&quot; for American English versus &quot;en-EN&quot; for England English."/>
+      <definition value="The ISO-639-1 alpha 2 code in lower case for the language, optionally followed by a hyphen and the ISO-3166-1 alpha 2 code for the region in upper case; e.g. &quot;en&quot; for English, or &quot;en-US&quot; for American English versus &quot;en-AU&quot; for Australian English."/>
       <comment value="The structure aa-BB with this exact casing is one the most widely used notations for locale. However not all systems actually code this but instead have it as free text. Hence CodeableConcept instead of code as the data type."/>
       <requirements value="Most systems in multilingual countries will want to convey language. Not all systems actually need the regional dialect."/>
       <min value="1"/>
@@ -393,15 +383,13 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
           <valueBoolean value="true"/>
         </extension>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet">
-          <valueCanonical value="http://hl7.org/fhir/ValueSet/all-languages"/>
-        </extension>
-        <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
-          <valueString value="A human language."/>
-        </extension>
-        <strength value="preferred"/>
-        <description value="IETF language tag"/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/languages"/>
+        <strength value="required"/>
+        <description value="IETF language tag for a human language"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/all-languages"/>
+        <additional>
+          <purpose value="starter"/>
+          <valueSet value="http://hl7.org/fhir/ValueSet/languages"/>
+        </additional>
       </binding>
       <mapping>
         <identity value="v2"/>
@@ -432,6 +420,23 @@
         <map value="preferenceInd"/>
       </mapping>
     </element>
+    <element id="Person.managingOrganization">
+      <path value="Person.managingOrganization"/>
+      <short value="The organization that is the custodian of the person record"/>
+      <definition value="The organization that is the custodian of the person record."/>
+      <requirements value="Need to know who recognizes this person record, manages and updates it."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization"/>
+      </type>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="scoper"/>
+      </mapping>
+    </element>
     <element id="Person.link">
       <extension url="http://hl7.org/fhir/build/StructureDefinition/svg">
         <valueCode value="350,40"/>
@@ -456,6 +461,9 @@
       <min value="1"/>
       <max value="1"/>
       <type>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-hierarchy">
+          <valueBoolean value="false"/>
+        </extension>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner"/>

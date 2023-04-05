@@ -10,8 +10,10 @@
     <div xmlns="http://www.w3.org/1999/xhtml">Each definition includes usage notes explaining
             the precedence order in contract lifecycle - i.e., while only some stages are required,
             the order in which they may occur is deterministic; and a map to comparable FHIR and v.3
-            status codes. It follows guidance about use of status codes in FHIR at
-            http://build.fhir.org/sc.html.</div>
+            status codes. It follows guidance about use of status codes in FHIR in
+            
+      <a href="sc.html">the Status Codes Grid</a>.
+    </div>
   </text>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="fm"/>
@@ -19,10 +21,16 @@
   <url value="http://hl7.org/fhir/contract-status"/>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
-    <value value="urn:oid:2.16.840.1.113883.4.642.1.744"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.4.744"/>
   </identifier>
-  <version value="4.6.0"/>
+  <identifier>
+    <use value="old"/>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.1.732"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="ContractStatus"/>
+  <title value="Contract Status"/>
   <status value="draft"/>
   <experimental value="true"/>
   <date value="2017-02-13"/>
@@ -34,7 +42,7 @@
       <value value="http://hl7.org/fhir"/>
     </telecom>
   </contact>
-  <description value="This CodeSystem contains FHIR-defined contract status types. Each definition includes usage notes explaining the precedence order in contract lifecycle - i.e., while only some stages are required, the order in which they may occur is deterministic; and a map to comparable FHIR and v.3 status codes. It follows guidance about use of status codes in FHIR at http://build.fhir.org/sc.html."/>
+  <description value="This CodeSystem contains FHIR-defined contract status types. Each definition includes usage notes explaining the precedence order in contract lifecycle - i.e., while only some stages are required, the order in which they may occur is deterministic; and a map to comparable FHIR and v.3 status codes. It follows guidance about use of status codes in FHIR in [the Status Codes Grid](sc.html)."/>
   <caseSensitive value="true"/>
   <content value="complete"/>
   <concept>
@@ -55,7 +63,7 @@
   <concept>
     <code value="disputed"/>
     <display value="Disputed"/>
-    <definition value="Contract is pended to rectify failure of the Grantor or the Grantee to fulfil contract provision(s). E.g., Grantee complaint about Grantor&#39;s failure to comply with contract provisions. Usage: Contract pended. Precedence Order = 7. Comparable FHIR and v.3 status codes: on hold; pended; suspended."/>
+    <definition value="Contract is pended to rectify failure of the Grantor or the Grantee to fulfil contract provision(s). E.g., Grantee complaint about Grantor's failure to comply with contract provisions. Usage: Contract pended. Precedence Order = 7. Comparable FHIR and v.3 status codes: on hold; pended; suspended."/>
   </concept>
   <concept>
     <code value="entered-in-error"/>
@@ -65,7 +73,7 @@
   <concept>
     <code value="executable"/>
     <display value="Executable"/>
-    <definition value="Contract execution pending; may be executed when either the Grantor or the Grantee accepts the contract provisions by signing. I.e., where either the Grantor or the Grantee has signed, but not both. E.g., when an insurance applicant signs the insurers application, which references the policy.&#xA0;Usage: Optional first step of contract execution activity.  May be skipped and contracting activity moves directly to executed state. Precedence Order = 3. Comparable FHIR and v.3 status codes: draft; preliminary; planned; intended; active."/>
+    <definition value="Contract execution pending; may be executed when either the Grantor or the Grantee accepts the contract provisions by signing. I.e., where either the Grantor or the Grantee has signed, but not both. E.g., when an insurance applicant signs the insurers application, which references the policy. Usage: Optional first step of contract execution activity.  May be skipped and contracting activity moves directly to executed state. Precedence Order = 3. Comparable FHIR and v.3 status codes: draft; preliminary; planned; intended; active."/>
   </concept>
   <concept>
     <code value="executed"/>
@@ -80,7 +88,7 @@
   <concept>
     <code value="offered"/>
     <display value="Offered"/>
-    <definition value="Contract is a proposal by either the Grantor or the Grantee. Aka - A Contract hard copy or electronic &#39;template&#39;, &#39;form&#39; or &#39;application&#39;. E.g., health insurance application; consent directive form. Usage: Beginning of contract negotiation, which may have been completed as a precondition because used for 0..* contracts. Precedence Order = 2. Comparable FHIR and v.3 status codes: requested; new."/>
+    <definition value="Contract is a proposal by either the Grantor or the Grantee. Aka - A Contract hard copy or electronic 'template', 'form' or 'application'. E.g., health insurance application; consent directive form. Usage: Beginning of contract negotiation, which may have been completed as a precondition because used for 0..* contracts. Precedence Order = 2. Comparable FHIR and v.3 status codes: requested; new."/>
   </concept>
   <concept>
     <code value="policy"/>
@@ -105,11 +113,11 @@
   <concept>
     <code value="resolved"/>
     <display value="Resolved"/>
-    <definition value="Contract is reactivated after being pended because of faulty execution. *E.g., competency of the signer(s), or where the policy is substantially different from and did not accompany the application/form so that the applicant could not compare them. Aka - &#39;&#39;reactivated&#39;&#39;. Usage: Optional stage where a pended contract is reactivated. Precedence Order = 8. Comparable FHIR and v.3 status codes: reactivated."/>
+    <definition value="Contract is reactivated after being pended because of faulty execution. *E.g., competency of the signer(s), or where the policy is substantially different from and did not accompany the application/form so that the applicant could not compare them. Aka - ''reactivated''. Usage: Optional stage where a pended contract is reactivated. Precedence Order = 8. Comparable FHIR and v.3 status codes: reactivated."/>
   </concept>
   <concept>
     <code value="terminated"/>
     <display value="Terminated"/>
-    <definition value="Contract reaches its expiry date.&#xA0;It might or might not be renewed or renegotiated. Usage: Normal end of contract period. Precedence Order = 12. Comparable FHIR and v.3 status codes: Obsoleted."/>
+    <definition value="Contract reaches its expiry date. It might or might not be renewed or renegotiated. Usage: Normal end of contract period. Precedence Order = 12. Comparable FHIR and v.3 status codes: Obsoleted."/>
   </concept>
 </CodeSystem>

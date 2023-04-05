@@ -13,10 +13,21 @@
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:oid:2.16.840.1.113883.4.642.3.205"/>
   </identifier>
-  <version value="4.6.0"/>
+  <identifier>
+    <use value="old"/>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.3.195"/>
+  </identifier>
+  <identifier>
+    <use value="old"/>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.2.104"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="DetectedIssueMitigationAction"/>
   <title value="Detected Issue Mitigation Action"/>
   <status value="draft"/>
+  <experimental value="true"/>
   <publisher value="FHIR Project team"/>
   <contact>
     <telecom>
@@ -24,7 +35,7 @@
       <value value="http://hl7.org/fhir"/>
     </telecom>
   </contact>
-  <description value="Kinds of mitigating actions and observations that can be associated with a detected issue or contraindication, such as &#39;added concurrent therapy&#39;, &#39;prior therapy documented&#39;, etc."/>
+  <description value="Kinds of mitigating actions and observations that can be associated with a detected issue or contraindication, such as 'added concurrent therapy', 'prior therapy documented', etc."/>
   <compose>
     <include>
       <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>

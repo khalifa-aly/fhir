@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <CodeSystem xmlns="http://hl7.org/fhir">
   <id value="device-productidentifierinudi"/>
   <meta>
@@ -14,15 +15,10 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
     <valueInteger value="0"/>
   </extension>
-  <url value="http://hl7.org/fhir/devicedefinition-productidentifierinudi"/>
-  <identifier>
-    <system value="urn:ietf:rfc:3986"/>
-    <value value="urn:oid:2.16.840.1.113883.4.642.1.0"/>
-  </identifier>
-  <url value="http://terminology.hl7.org/CodeSystem/device-productidentifierinudi"/>
-  <version value="4.6.0"/>
+  <url value="http://hl7.org/fhir/device-productidentifierinudi"/>
+  <version value="5.0.0"/>
   <name value="DeviceProductionIdentifierInUDI"/>
-  <title value="DeviceProductionIdentifierInUDI"/>
+  <title value="Device Production Identifier In UDI"/>
   <status value="draft"/>
   <experimental value="false"/>
   <date value="2021-01-05T10:01:24+11:00"/>

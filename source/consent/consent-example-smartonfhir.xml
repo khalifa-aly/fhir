@@ -39,7 +39,7 @@
   <subject>
     <reference value="Patient/xcda"/>
   </subject>
-  <dateTime value="2016-06-23T17:02:33+10:00"/>
+  <date value="2016-06-23"/>
   <grantor>
     <!-- this is the patient record that matches the person
       making the decision. note: it's not always a related person -->
@@ -58,15 +58,14 @@
     </coding>
   </regulatoryBasis>
   <!-- each scope that relates to FHIR resource access is represented as an exception -->
+  <decision value="permit"/>
   <provision>
-    <type value="deny"/>
     <period>
       <start value="2016-06-23T17:02:33+10:00"/>
       <end value="2016-06-23T17:32:33+10:00"/>
     </period>
     <provision>
       <!-- this rule corresponds to MedicationRequest/read -->
-      <type value="permit"/>
       <!-- no actors here, or anything, just read/write and the resource type -->
       <action>
         <coding>
@@ -80,10 +79,10 @@
           <code value="correct"/>
         </coding>
       </action>
-      <class>
+      <resourceType>
         <system value="http://hl7.org/fhir/resource-types"/>
         <code value="MedicationRequest"/>
-      </class>
+      </resourceType>
     </provision>
   </provision>
 </Consent>

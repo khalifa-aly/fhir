@@ -24,8 +24,13 @@
     <valueCode value=".verificationStatus = entered-in-error"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/AllergyIntolerance"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1299"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="AllergyIntolerance"/>
+  <title value="Allergy Intolerance"/>
   <status value="draft"/>
   <date value="2021-01-02T08:58:31+11:00"/>
   <publisher value="Health Level Seven International (Patient Care)"/>
@@ -43,7 +48,7 @@
   </contact>
   <description value="Risk of harmful or undesirable, physiological response which is unique to an individual and associated with exposure to a substance."/>
   <purpose value="To record a clinical assessment of a propensity, or potential risk to an individual, of an adverse reaction upon future exposure to the specified substance, or class of substance."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -57,7 +62,7 @@
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
-    <name value="HL7 v2 Mapping"/>
+    <name value="HL7 V2 Mapping"/>
   </mapping>
   <kind value="resource"/>
   <abstract value="false"/>
@@ -119,7 +124,7 @@
       <path value="AllergyIntolerance.clinicalStatus"/>
       <short value="active | inactive | resolved"/>
       <definition value="The clinical status of the allergy or intolerance."/>
-      <comment value="AllergyIntolerance.clinicalStatus should be present if verificationStatus is not entered-in-error and the AllergyIntolerance.code isn&#39;t negated (No Known Allergy, No Drug Allergy, No Food Allergy, No Latex Allergy).&#xA;Refer to [discussion](extensibility.html#Special-Case) if clincalStatus is missing data.&#xA;The data type is CodeableConcept because clinicalStatus has some clinical judgment involved, such that there might need to be more specificity than the required FHIR value set allows. For example, a SNOMED coding might allow for additional specificity."/>
+      <comment value="AllergyIntolerance.clinicalStatus should be present if verificationStatus is not entered-in-error and the AllergyIntolerance.code isn't negated (No Known Allergy, No Drug Allergy, No Food Allergy, No Latex Allergy).&#xA;Refer to [discussion](extensibility.html#Special-Case) if clinicalStatus is missing data.&#xA;The data type is CodeableConcept because clinicalStatus has some clinical judgment involved, such that there might need to be more specificity than the required FHIR value set allows. For example, a SNOMED coding might allow for additional specificity."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -182,7 +187,7 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
         <valueCode value="trial-use"/>
       </extension>
-	  <path value="AllergyIntolerance.type"/>
+      <path value="AllergyIntolerance.type"/>
       <short value="allergy | intolerance - Underlying mechanism (if known)"/>
       <definition value="Identification of the underlying physiological mechanism for the reaction risk."/>
       <comment value="Allergic (typically immune-mediated) reactions have been traditionally regarded as an indicator for potential escalation to significant future risk. Contemporary knowledge suggests that some reactions previously thought to be immune-mediated are, in fact, non-immune, but in some cases can still pose a life threatening risk. It is acknowledged that many clinicians might not be in a position to distinguish the mechanism of a particular reaction. Often the term &quot;allergy&quot; is used rather generically and may overlap with the use of &quot;intolerance&quot; - in practice the boundaries between these two concepts might not be well-defined or understood. This data element is included nevertheless, because many legacy systems have captured this attribute. Immunologic testing may provide supporting evidence for the basis of the reaction and the causative substance, but no tests are 100% sensitive or specific for sensitivity to a particular substance. If, as is commonly the case, it is unclear whether the reaction is due to an allergy or an intolerance, then the type element should be omitted from the resource."/>
@@ -191,14 +196,14 @@
       <min value="0"/>
       <max value="1"/>
       <type>
-        <code value="code"/>
+        <code value="CodeableConcept"/>
       </type>
       <isSummary value="true"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="AllergyIntoleranceType"/>
         </extension>
-        <strength value="required"/>
+        <strength value="preferred"/>
         <description value="Identification of the underlying physiological mechanism for a Reaction Risk."/>
         <valueSet value="http://hl7.org/fhir/ValueSet/allergy-intolerance-type"/>
       </binding>
@@ -222,7 +227,7 @@
       <path value="AllergyIntolerance.category"/>
       <short value="food | medication | environment | biologic"/>
       <definition value="Category of the identified substance."/>
-      <comment value="This data element has been included because it is currently being captured in some clinical systems. This data can be derived from the substance where coding systems are used, and is effectively redundant in that situation.  When searching on category, consider the implications of AllergyIntolerance resources without a category.  For example, when searching on category = medication, medication allergies that don&#39;t have a category valued will not be returned.  Refer to [search](search.html) for more information on how to search category with a :missing modifier to get allergies that don&#39;t have a category.  Additionally, category should be used with caution because category can be subjective based on the sender."/>
+      <comment value="This data element has been included because it is currently being captured in some clinical systems. This data can be derived from the substance where coding systems are used, and is effectively redundant in that situation.  When searching on category, consider the implications of AllergyIntolerance resources without a category.  For example, when searching on category = medication, medication allergies that don't have a category valued will not be returned.  Refer to [search](search.html) for more information on how to search category with a :missing modifier to get allergies that don't have a category.  Additionally, category should be used with caution because category can be subjective based on the sender."/>
       <alias value="Category"/>
       <alias value="Type"/>
       <alias value="Reaction Type"/>
@@ -261,7 +266,7 @@
       <path value="AllergyIntolerance.criticality"/>
       <short value="low | high | unable-to-assess"/>
       <definition value="Estimate of the potential clinical harm, or seriousness, of the reaction to the identified substance."/>
-      <comment value="The default criticality value for any propensity to an adverse reaction should be &#39;Low Risk&#39;, indicating at the very least a relative contraindication to deliberate or voluntary exposure to the substance. &#39;High Risk&#39; is flagged if the clinician has identified a propensity for a more serious or potentially life-threatening reaction, such as anaphylaxis, and implies an absolute contraindication to deliberate or voluntary exposure to the substance. If this element is missing, the criticality is unknown (though it may be known elsewhere).  Systems that capture a severity at the condition level are actually representing the concept of criticality whereas the severity documented at the reaction level is representing the true reaction severity.  Existing systems that are capturing both condition criticality and reaction severity may use the term &quot;severity&quot; to represent both.  Criticality is the worst it could be in the future (i.e. situation-agnostic) whereas severity is situation-dependent."/>
+      <comment value="The default criticality value for any propensity to an adverse reaction should be 'Low Risk', indicating at the very least a relative contraindication to deliberate or voluntary exposure to the substance. 'High Risk' is flagged if the clinician has identified a propensity for a more serious or potentially life-threatening reaction, such as anaphylaxis, and implies an absolute contraindication to deliberate or voluntary exposure to the substance. If this element is missing, the criticality is unknown (though it may be known elsewhere).  Systems that capture a severity at the condition level are actually representing the concept of criticality whereas the severity documented at the reaction level is representing the true reaction severity.  Existing systems that are capturing both condition criticality and reaction severity may use the term &quot;severity&quot; to represent both.  Criticality is the worst it could be in the future (i.e. situation-agnostic) whereas severity is situation-dependent."/>
       <alias value="Severity"/>
       <alias value="Seriousness"/>
       <alias value="Contra-indication"/>
@@ -296,8 +301,8 @@
     <element id="AllergyIntolerance.code">
       <path value="AllergyIntolerance.code"/>
       <short value="Code that identifies the allergy or intolerance"/>
-      <definition value="Code for an allergy or intolerance statement (either a positive or a negated/excluded statement).  This may be a code for a substance or pharmaceutical product that is considered to be responsible for the adverse reaction risk (e.g., &quot;Latex&quot;), an allergy or intolerance condition (e.g., &quot;Latex allergy&quot;), or a negated/excluded code for a specific substance or class (e.g., &quot;No latex allergy&quot;) or a general or categorical negated statement (e.g.,  &quot;No known allergy&quot;, &quot;No known drug allergies&quot;).  Note: the substance for a specific reaction may be different from the substance identified as the cause of the risk, but it must be consistent with it. For instance, it may be a more specific substance (e.g. a brand medication) or a composite product that includes the identified substance. It must be clinically safe to only process the &#39;code&#39; and ignore the &#39;reaction.substance&#39;.  If a receiving system is unable to confirm that AllergyIntolerance.reaction.substance falls within the semantic scope of AllergyIntolerance.code, then the receiving system should ignore AllergyIntolerance.reaction.substance."/>
-      <comment value="It is strongly recommended that this element be populated using a terminology, where possible. For example, some terminologies used include RxNorm, SNOMED CT, DM+D, NDFRT, ICD-9, IDC-10, UNII, and ATC. Plain text should only be used if there is no appropriate terminology available. Additional details can be specified in the text.&#xD;&#xD;When a substance or product code is specified for the &#39;code&#39; element, the &quot;default&quot; semantic context is that this is a positive statement of an allergy or intolerance (depending on the value of the &#39;type&#39; element, if present) condition to the specified substance/product.  In the corresponding SNOMED CT allergy model, the specified substance/product is the target (destination) of the &quot;Causative agent&quot; relationship.&#xD;&#xD;The &#39;substanceExposureRisk&#39; extension is available as a structured and more flexible alternative to the &#39;code&#39; element for making positive or negative allergy or intolerance statements.  This extension provides the capability to make &quot;no known allergy&quot; (or &quot;no risk of adverse reaction&quot;) statements regarding any coded substance/product (including cases when a pre-coordinated &quot;no allergy to x&quot; concept for that substance/product does not exist).  If the &#39;substanceExposureRisk&#39; extension is present, the AllergyIntolerance.code element SHALL be omitted."/>
+      <definition value="Code for an allergy or intolerance statement (either a positive or a negated/excluded statement).  This may be a code for a substance or pharmaceutical product that is considered to be responsible for the adverse reaction risk (e.g., &quot;Latex&quot;), an allergy or intolerance condition (e.g., &quot;Latex allergy&quot;), or a negated/excluded code for a specific substance or class (e.g., &quot;No latex allergy&quot;) or a general or categorical negated statement (e.g.,  &quot;No known allergy&quot;, &quot;No known drug allergies&quot;).  Note: the substance for a specific reaction may be different from the substance identified as the cause of the risk, but it must be consistent with it. For instance, it may be a more specific substance (e.g. a brand medication) or a composite product that includes the identified substance. It must be clinically safe to only process the 'code' and ignore the 'reaction.substance'.  If a receiving system is unable to confirm that AllergyIntolerance.reaction.substance falls within the semantic scope of AllergyIntolerance.code, then the receiving system should ignore AllergyIntolerance.reaction.substance."/>
+      <comment value="It is strongly recommended that this element be populated using a terminology, where possible. For example, some terminologies used include RxNorm, SNOMED CT, DM+D, NDFRT, ICD-9, IDC-10, UNII, and ATC. Plain text should only be used if there is no appropriate terminology available. Additional details can be specified in the text.&#xD;&#xD;When a substance or product code is specified for the 'code' element, the &quot;default&quot; semantic context is that this is a positive statement of an allergy or intolerance (depending on the value of the 'type' element, if present) condition to the specified substance/product.  In the corresponding SNOMED CT allergy model, the specified substance/product is the target (destination) of the &quot;Causative agent&quot; relationship.&#xD;&#xD;The 'substanceExposureRisk' extension is available as a structured and more flexible alternative to the 'code' element for making positive or negative allergy or intolerance statements.  This extension provides the capability to make &quot;no known allergy&quot; (or &quot;no risk of adverse reaction&quot;) statements regarding any coded substance/product (including cases when a pre-coordinated &quot;no allergy to x&quot; concept for that substance/product does not exist).  If the 'substanceExposureRisk' extension is present, the AllergyIntolerance.code element SHALL be omitted."/>
       <alias value="Code"/>
       <min value="0"/>
       <max value="1"/>
@@ -328,7 +333,7 @@
     </element>
     <element id="AllergyIntolerance.patient">
       <path value="AllergyIntolerance.patient"/>
-      <short value="Who the sensitivity is for"/>
+      <short value="Who the allergy or intolerance is for"/>
       <definition value="The patient who has the allergy or intolerance."/>
       <alias value="Patient"/>
       <min value="1"/>
@@ -349,10 +354,6 @@
       <mapping>
         <identity value="rim"/>
         <map value=".participation[typeCode=SBJ].role[classCode=PAT]"/>
-      </mapping>
-      <mapping>
-        <identity value="w5"/>
-        <map value="FiveWs.subject"/>
       </mapping>
     </element>
     <element id="AllergyIntolerance.encounter">
@@ -384,6 +385,7 @@
       <path value="AllergyIntolerance.onset[x]"/>
       <short value="When allergy or intolerance was identified"/>
       <definition value="Estimated or actual date,  date-time, or age when allergy or intolerance was identified."/>
+      <comment value="Age is generally used when the patient reports an age at which the AllergyIntolerance was noted. Period is generally used to convey an imprecise onset that occurred within the time period.  Range is generally used to convey an imprecise age range (e.g. 4 to 6 years old)."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -512,7 +514,7 @@
       <path value="AllergyIntolerance.lastOccurrence"/>
       <short value="Date(/time) of last known occurrence of a reaction"/>
       <definition value="Represents the date and/or time of the last known occurrence of a reaction event."/>
-      <comment value="This date may be replicated by one of the Onset of Reaction dates. Where a textual representation of the date of last occurrence is required e.g. &#39;In Childhood, &#39;10 years ago&#39; the AllergyIntolerance.note element should be used."/>
+      <comment value="This date may be replicated by one of the Onset of Reaction dates. Where a textual representation of the date of last occurrence is required e.g. 'In Childhood, '10 years ago' the AllergyIntolerance.note element should be used."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -527,7 +529,7 @@
       <path value="AllergyIntolerance.note"/>
       <short value="Additional text not captured in other fields"/>
       <definition value="Additional narrative about the propensity for the Adverse Reaction, not captured in other fields."/>
-      <comment value="For example: including reason for flagging a seriousness of &#39;High Risk&#39;; and instructions related to future exposure or administration of the substance, such as administration within an Intensive Care Unit or under corticosteroid cover. The notes should be related to an allergy or intolerance as a condition in general and not related to any particular episode of it. For episode notes and descriptions, use AllergyIntolerance.event.description and  AllergyIntolerance.event.notes."/>
+      <comment value="For example: including reason for flagging a seriousness of 'High Risk'; and instructions related to future exposure or administration of the substance, such as administration within an Intensive Care Unit or under corticosteroid cover. The notes should be related to an allergy or intolerance as a condition in general and not related to any particular episode of it. For episode notes and descriptions, use AllergyIntolerance.event.description and  AllergyIntolerance.event.notes."/>
       <min value="0"/>
       <max value="*"/>
       <type>
@@ -542,7 +544,7 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
         <valueCode value="trial-use"/>
       </extension>
-	  <extension url="http://hl7.org/fhir/build/StructureDefinition/uml-dir">
+      <extension url="http://hl7.org/fhir/build/StructureDefinition/uml-dir">
         <valueCode value="right"/>
       </extension>
       <path value="AllergyIntolerance.reaction"/>
@@ -561,8 +563,8 @@
     <element id="AllergyIntolerance.reaction.substance">
       <path value="AllergyIntolerance.reaction.substance"/>
       <short value="Specific substance or pharmaceutical product considered to be responsible for event"/>
-      <definition value="Identification of the specific substance (or pharmaceutical product) considered to be responsible for the Adverse Reaction event. Note: the substance for a specific reaction may be different from the substance identified as the cause of the risk, but it must be consistent with it. For instance, it may be a more specific substance (e.g. a brand medication) or a composite product that includes the identified substance. It must be clinically safe to only process the &#39;code&#39; and ignore the &#39;reaction.substance&#39;.  If a receiving system is unable to confirm that AllergyIntolerance.reaction.substance falls within the semantic scope of AllergyIntolerance.code, then the receiving system should ignore AllergyIntolerance.reaction.substance."/>
-      <comment value="Coding of the specific substance (or pharmaceutical product) with a terminology capable of triggering decision support should be used wherever possible.  The &#39;code&#39; element allows for the use of a specific substance or pharmaceutical product, or a group or class of substances. In the case of an allergy or intolerance to a class of substances, (for example, &quot;penicillins&quot;), the &#39;reaction.substance&#39; element could be used to code the specific substance that was identified as having caused the reaction (for example, &quot;amoxycillin&quot;). Duplication of the value in the &#39;code&#39; and &#39;reaction.substance&#39; elements is acceptable when a specific substance has been recorded in &#39;code&#39;."/>
+      <definition value="Identification of the specific substance (or pharmaceutical product) considered to be responsible for the Adverse Reaction event. Note: the substance for a specific reaction may be different from the substance identified as the cause of the risk, but it must be consistent with it. For instance, it may be a more specific substance (e.g. a brand medication) or a composite product that includes the identified substance. It must be clinically safe to only process the 'code' and ignore the 'reaction.substance'.  If a receiving system is unable to confirm that AllergyIntolerance.reaction.substance falls within the semantic scope of AllergyIntolerance.code, then the receiving system should ignore AllergyIntolerance.reaction.substance."/>
+      <comment value="Coding of the specific substance (or pharmaceutical product) with a terminology capable of triggering decision support should be used wherever possible.  The 'code' element allows for the use of a specific substance or pharmaceutical product, or a group or class of substances. In the case of an allergy or intolerance to a class of substances, (for example, &quot;penicillins&quot;), the 'reaction.substance' element could be used to code the specific substance that was identified as having caused the reaction (for example, &quot;amoxycillin&quot;). Duplication of the value in the 'code' and 'reaction.substance' elements is acceptable when a specific substance has been recorded in 'code'."/>
       <min value="0"/>
       <max value="1"/>
       <type>

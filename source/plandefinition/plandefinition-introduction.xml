@@ -12,7 +12,7 @@
 
 <p>In addition to describing what should take place, each action in a plan definition can specify <i>when</i> and <i>whether</i> the action should take place. For when the action should be taken, the <code>trigger</code> element specifies the action should be taken in response to some trigger occurring (such as a particular point in a workflow being reached, or as the result of a prescription being ordered). For whether the action should be taken, the <code>condition</code> element can be used to provide an expression that evaluates to true or false to indicate the applicability of the action to the specific context.</p>
 
-<p>The process of applying a PlanDefinition to a particular context typically produces request resources representing the actions that should be performed, typically grouped within a <a href="careplan.html">CarePlan</a> and/or <a href="requestgroup.html">RequestGroup</a> to capture relationships between the resulting request resources.</p>
+<p>The process of applying a PlanDefinition to a particular context typically produces request resources representing the actions that should be performed, grouped within a <a href="requestorchestration.html">RequestOrchestration</a> to capture relationships between the resulting request resources.</p>
 
 <p>Each ActivityDefinition is used to construct a specific resource, based on the definition of the activity and combined with contextual information for the particular patient that the plan definition is being applied to.</p>
 
@@ -25,6 +25,8 @@
 <p>As an example, the Low Suicide Risk example order set from the Clinical Decision Support Knowledge Artifact Specification can be represented using the PlanDefinition and ActivityDefinition structures: <a href="plandefinition-example.html">Low Suicide Risk Example Order Set</a>.</p>
 
 <p>In addition to the representation of PlanDefinitions, the <a href="plandefinition-operation-apply.html">$apply</a> operation allows PlanDefinitions to be applied to a specific context such as a patient, practitioner, or institution. For Order Sets specifically, this operation is expected to place the orders defined by the order set, consistent with the service functional requirements defined by the <a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=287">Order Set specification</a>.</p>
+
+<p>Plan definitions also allow for the definition of goals. Actions in the plan definition can then reference these goals in order to indicate that the action should be taken in fulfillment of the goal. Note that the goal-relationship extension can be used to describe relationships between goal definitions, and the satisfies-requirement extension can be used to indicate that the goal satisfies a particular requirement. </p>
 
 </div>
 

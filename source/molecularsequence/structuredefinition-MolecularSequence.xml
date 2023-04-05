@@ -20,12 +20,17 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="cg"/>
   </extension>
-    <extension url="http://hl7.org/fhir/build/StructureDefinition/entered-in-error-status">
+  <extension url="http://hl7.org/fhir/build/StructureDefinition/entered-in-error-status">
     <valueCode value=".status = entered-in-error"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/MolecularSequence"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1301"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="MolecularSequence"/>
+  <title value="Molecular Sequence"/>
   <status value="draft"/>
   <date value="2021-01-02T08:58:31+11:00"/>
   <publisher value="Health Level Seven International (Clinical Genomics)"/>
@@ -42,7 +47,7 @@
     </telecom>
   </contact>
   <description value="Representation of a molecular sequence."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="w5"/>
     <uri value="http://hl7.org/fhir/fivews"/>
@@ -105,15 +110,31 @@
         <valueSet value="http://hl7.org/fhir/ValueSet/sequence-type"/>
       </binding>
     </element>
-    <element id="MolecularSequence.patient">
-      <path value="MolecularSequence.patient"/>
-      <short value="Patient this sequence is associated too"/>
-      <definition value="Indicates the patient this sequence is associated too."/>
+    <element id="MolecularSequence.subject">
+      <path value="MolecularSequence.subject"/>
+      <short value="Subject this sequence is associated too"/>
+      <definition value="Indicates the subject this sequence is associated too."/>
       <min value="0"/>
       <max value="1"/>
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Substance"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/BiologicallyDerivedProduct"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/NutritionProduct"/>
+      </type>
+      <isSummary value="true"/>
+    </element>
+    <element id="MolecularSequence.focus">
+      <path value="MolecularSequence.focus"/>
+      <short value="What the molecular sequence is about, when it is not about the subject of record"/>
+      <definition value="The actual focus of a molecular sequence when it is not the patient of record representing something or someone associated with the patient such as a spouse, parent, child, or sibling. For example, in trio testing, the subject would be the child (proband) and the focus would be the parent."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource"/>
       </type>
       <isSummary value="true"/>
     </element>
@@ -240,16 +261,14 @@
         <key value="msq-6"/>
         <severity value="error"/>
         <human value="Have and only have one of the following elements in startingSequence: 1. genomeAssembly; 2 sequence"/>
-        <expression value="(genomeAssembly.count()+sequenceCodeableConcept.count()+ sequenceReference.count()+ sequenceString.count()) = 1"/>
-        <xpath value="count(f:genomeAssembly)+count(f:sequenceCodeableConcept)+count(f:sequenceReference)+count(f:sequenceString)=1"/>
+        <expression value="genomeAssembly.exists() xor sequence.exists()"/>
         <source value="http://hl7.org/fhir/StructureDefinition/MolecularSequence"/>
       </constraint>
       <constraint>
         <key value="msq-5"/>
         <severity value="error"/>
         <human value="Both genomeAssembly and chromosome must be both contained if either one of them is contained"/>
-        <expression value="(chromosome.empty() and genomeAssembly.empty()) or (chromosome.exists() and genomeAssembly.exists())"/>
-        <xpath value="(exists(f:chromosome) and exists(f:genomeAssembly)) or (not(exists(f:chromosome)) and not(exists(f:genomeAssembly)))"/>
+        <expression value="chromosome.exists() = genomeAssembly.exists()"/>
         <source value="http://hl7.org/fhir/StructureDefinition/MolecularSequence"/>
       </constraint>
       <isSummary value="true"/>
@@ -263,6 +282,8 @@
       <type>
         <code value="CodeableConcept"/>
       </type>
+      <condition value="msq-6"/>
+      <condition value="msq-5"/>
       <isSummary value="true"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -282,6 +303,7 @@
       <type>
         <code value="CodeableConcept"/>
       </type>
+      <condition value="msq-5"/>
       <isSummary value="true"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -309,6 +331,7 @@
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence"/>
       </type>
+      <condition value="msq-6"/>
       <isSummary value="true"/>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -362,7 +385,7 @@
     <element id="MolecularSequence.relative.startingSequence.strand">
       <path value="MolecularSequence.relative.startingSequence.strand"/>
       <short value="watson | crick"/>
-      <definition value="An absolute reference to a strand. The Watson strand is the strand whose 5&#39;-end is on the short arm of the chromosome, and the Crick strand as the one whose 5&#39;-end is on the long arm."/>
+      <definition value="An absolute reference to a strand. The Watson strand is the strand whose 5'-end is on the short arm of the chromosome, and the Crick strand as the one whose 5'-end is on the long arm."/>
       <min value="0"/>
       <max value="1"/>
       <type>

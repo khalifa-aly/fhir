@@ -18,11 +18,11 @@
   <url value="http://hl7.org/fhir/medicinal-product-special-measures"/>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
-    <value value="urn:oid:2.16.840.1.113883.4.642.1.1567"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.4.1915"/>
   </identifier>
-  <version value="4.6.0"/>
+  <version value="5.0.0"/>
   <name value="SpecialMeasures"/>
-  <title value="SpecialMeasures"/>
+  <title value="Special Measures"/>
   <status value="draft"/>
   <experimental value="false"/>
   <date value="2021-01-05T10:01:24+11:00"/>
@@ -37,13 +37,13 @@
       <value value="fhir@lists.hl7.org"/>
     </telecom>
   </contact>
-  <description value="Extra measures defined for a Medicinal Product, such as requirement to conduct post-authorisation studies."/>
+  <description value="Extra measures defined for a Medicinal Product, such as requirement to conduct post-authorization studies."/>
   <caseSensitive value="true"/>
   <valueSet value="http://hl7.org/fhir/ValueSet/medicinal-product-special-measures"/>
   <content value="complete"/>
   <concept>
-    <code value="Post-authorisationStudies"/>
-    <display value="Requirement to conduct post-authorisation studies"/>
-    <definition value="Requirement to conduct post-authorisation studies"/>
+    <code value="Post-authorizationStudies"/>
+    <display value="Requirement to conduct post-authorization studies"/>
+    <definition value="Requirement to conduct post-authorization studies"/>
   </concept>
 </CodeSystem>

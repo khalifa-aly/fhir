@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="Provenance"/>
   <meta>
@@ -23,8 +24,13 @@
     <valueCode value="Provenance are recorded, there is no update or delete. "/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/Provenance"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1317"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="Provenance"/>
+  <title value="Provenance"/>
   <status value="draft"/>
   <date value="2021-04-07T08:58:31.578+11:00"/>
   <publisher value="Health Level Seven International (Security)"/>
@@ -41,7 +47,7 @@
     </telecom>
   </contact>
   <description value="Provenance of a resource is a record that describes entities and processes involved in producing and delivering or otherwise influencing that resource. Provenance provides a critical foundation for assessing authenticity, enabling trust, and allowing reproducibility. Provenance assertions are a form of contextual metadata and can themselves become important records with their own provenance. Provenance statement indicates clinical significance in terms of confidence in authenticity, reliability, and trustworthiness, integrity, and stage in lifecycle (e.g. Document Completion - has the artifact been legally authenticated), all of which may impact security, privacy, and trust policies."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="workflow"/>
     <uri value="http://hl7.org/fhir/workflow"/>
@@ -76,9 +82,6 @@
     <element id="Provenance">
       <extension url="http://hl7.org/fhir/build/StructureDefinition/committee-notes">
         <valueString value="Sources of requirements: v2 EVN, Control Act, CDA, W3C provenance, ATNA."/>
-      </extension>
-      <extension url="http://hl7.org/fhir/build/StructureDefinition/svg">
-        <valueCode value="0,0"/>
       </extension>
       <path value="Provenance"/>
       <short value="Who, What, When for a set of resources"/>
@@ -150,7 +153,7 @@
       </type>
       <mapping>
         <identity value="workflow"/>
-        <map value="Event.occurred[x]"/>
+        <map value="Event.occurrence"/>
       </mapping>
       <mapping>
         <identity value="w5"/>
@@ -205,7 +208,7 @@
       </type>
       <mapping>
         <identity value="rim"/>
-        <map value="./inboundRelationship[isNormalActRelationship() and typeCode=&quot;SUBJ&quot;]/source[isNormalAct and subsumes(POLICY, classCode) and moodCode=EVN]/text[typeCode=&#39;ED&#39;/tel"/>
+        <map value="./inboundRelationship[isNormalActRelationship() and typeCode=&quot;SUBJ&quot;]/source[isNormalAct and subsumes(POLICY, classCode) and moodCode=EVN]/text[typeCode='ED'/tel"/>
       </mapping>
       <mapping>
         <identity value="fhirauditevent"/>
@@ -248,7 +251,7 @@
       <short value="Authorization (purposeOfUse) related to the event"/>
       <definition value="The authorization (e.g., PurposeOfUse) that was used during the event being recorded."/>
       <requirements value="Record of any relevant security context, not restricted to purposeOfUse valueSet. May include security compartments, refrain, obligation, or other security tags."/>
-	  <alias value="PurposeOfEvent"/>
+      <alias value="PurposeOfEvent"/>
       <min value="0"/>
       <max value="*"/>
       <type>
@@ -264,7 +267,7 @@
       </binding>
       <mapping>
         <identity value="workflow"/>
-        <map value="Event.reasonCode"/>
+        <map value="Event.reason"/>
       </mapping>
       <mapping>
         <identity value="w5"/>
@@ -356,15 +359,15 @@
         <identity value="w3c.prov"/>
         <map value="Activity.Activity"/>
       </mapping>
-    </element>    
-	<element id="Provenance.patient">
+    </element>
+    <element id="Provenance.patient">
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
         <valueCode value="trial-use"/>
       </extension>
       <path value="Provenance.patient"/>
       <short value="The patient is the subject of the data created/updated (.target) by the activity"/>
       <definition value="The patient element is available to enable deterministic tracking of activities that involve the patient as the subject of the data used in an activity."/>
-	  <requirements value="When the .patient is populated it shall be accurate to the subject of the target data. The .patient shall not be populated when the target data created/updated (.target) by the activity does not involve a subject. Note that when the patient is an agent, they will be recorded as an agent. When the Patient resource is Created, Updated, or Deleted it will be recorded as an entity."/>
+      <requirements value="When the .patient is populated it shall be accurate to the subject of the target data. The .patient shall not be populated when the target data created/updated (.target) by the activity does not involve a subject. Note that when the patient is an agent, they will be recorded as an agent. When the Patient resource is Created, Updated, or Deleted it will be recorded as an entity."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -373,11 +376,11 @@
       </type>
       <mapping>
         <identity value="workflow"/>
-        <map value="Event.patient"/>
+        <map value="Event.subject"/>
       </mapping>
       <mapping>
         <identity value="w5"/>
-        <map value="FiveWs.subject"/>
+        <map value="FiveWs.subject[x]"/>
       </mapping>
       <mapping>
         <identity value="rim"/>
@@ -388,7 +391,7 @@
         <map value="Entity.Identity"/>
       </mapping>
     </element>
-	<element id="Provenance.encounter">
+    <element id="Provenance.encounter">
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
         <valueCode value="trial-use"/>
       </extension>
@@ -419,8 +422,8 @@
       </mapping>
     </element>
     <element id="Provenance.agent">
-      <extension url="http://hl7.org/fhir/build/StructureDefinition/svg">
-        <valueCode value="0,200"/>
+      <extension url="http://hl7.org/fhir/build/StructureDefinition/uml-dir">
+        <valueCode value="right"/>
       </extension>
       <path value="Provenance.agent"/>
       <short value="Actor involved"/>
@@ -432,6 +435,27 @@
       <type>
         <code value="BackboneElement"/>
       </type>
+      <constraint>
+        <key value="prov-1"/>
+        <severity value="error"/>
+        <human value="Who and onBehalfOf cannot be the same"/>
+        <expression value="who.resolve().exists() and onBehalfOf.resolve().exists() implies who.resolve() != onBehalfOf.resolve()"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Provenance"/>
+      </constraint>
+      <constraint>
+        <key value="prov-2"/>
+        <severity value="error"/>
+        <human value="If who is a PractitionerRole, onBehalfOf can't reference the same Practitioner"/>
+        <expression value="who.resolve().ofType(PractitionerRole).practitioner.resolve().exists() and onBehalfOf.resolve().ofType(Practitioner).exists() implies who.resolve().practitioner.resolve() != onBehalfOf.resolve()"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Provenance"/>
+      </constraint>
+      <constraint>
+        <key value="prov-3"/>
+        <severity value="error"/>
+        <human value="If who is an organization, onBehalfOf can't be a PractitionerRole within that organization"/>
+        <expression value="who.resolve().ofType(Organization).exists() and onBehalfOf.resolve().ofType(PractitionerRole).organization.resolve().exists() implies who.resolve() != onBehalfOf.resolve().organization.resolve()"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Provenance"/>
+      </constraint>
       <isSummary value="true"/>
       <mapping>
         <identity value="workflow"/>
@@ -443,7 +467,7 @@
       </mapping>
       <mapping>
         <identity value="rim"/>
-        <map value="./participation[isNormalParticipation()]  OR  ./outboundRelationship[isNormalActRelationship() and typeCode=&#39;DRIV&#39;]"/>
+        <map value="./participation[isNormalParticipation()]  OR  ./outboundRelationship[isNormalActRelationship() and typeCode='DRIV']"/>
       </mapping>
       <mapping>
         <identity value="fhirauditevent"/>
@@ -494,7 +518,7 @@
     <element id="Provenance.agent.role">
       <path value="Provenance.agent.role"/>
       <short value="What the agents role was"/>
-      <definition value="The structural roles of the agent indicating the agent&#39;s competency. The security role enabling the agent with respect to the activity."/>
+      <definition value="The structural roles of the agent indicating the agent's competency. The security role enabling the agent with respect to the activity."/>
       <comment value="For example: Chief-of-Radiology, Nurse, Physician, Medical-Student, etc."/>
       <requirements value="Structural roles reflect the structural aspects of relationships between entities. Structural roles describe prerequisites, feasibilities, or competences for acts. Functional roles reflect functional aspects of relationships between entities. Functional roles are bound to the realization/performance of acts, where actions might be concatenated to an activity or even to a process. See ISO 21298:2018 - Health Informatics - Functional and structural roles, and ISO 22600-2:2014 - Health Informatics - Privilege Management and Access Control - Part 2: formal models.."/>
       <min value="0"/>
@@ -535,6 +559,9 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
       </type>
+      <condition value="prov-1"/>
+      <condition value="prov-2"/>
+      <condition value="prov-3"/>
       <isSummary value="true"/>
       <mapping>
         <identity value="workflow"/>
@@ -562,8 +589,10 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/CareTeam"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
       </type>
+      <condition value="prov-1"/>
+      <condition value="prov-2"/>
+      <condition value="prov-3"/>
       <mapping>
         <identity value="rim"/>
         <map value="Person, Practitioner, Organization, Device :* .role [classCode = RoleClassMutualRelationship; role.code and * .scopes[Role](classCode=IDENT) and *.plays [Role.Code]"/>
@@ -573,8 +602,8 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
         <valueCode value="trial-use"/>
       </extension>
-      <extension url="http://hl7.org/fhir/build/StructureDefinition/svg">
-        <valueCode value="440,30"/>
+      <extension url="http://hl7.org/fhir/build/StructureDefinition/uml-dir">
+        <valueCode value="right"/>
       </extension>
       <path value="Provenance.entity"/>
       <short value="An entity used in this activity"/>
@@ -660,8 +689,8 @@
     <element id="Provenance.entity.agent">
       <path value="Provenance.entity.agent"/>
       <short value="Entity is attributed to this agent"/>
-      <definition value="The entity is attributed to an agent to express the agent&#39;s responsibility for that entity, possibly along with other agents. This description can be understood as shorthand for saying that the agent was responsible for the activity which used the entity."/>
-      <comment value="A usecase where one Provenance.entity.agent is used where the Entity that was used in the creation/updating of the Target, is not in the context of the same custodianship as the Target, and thus the meaning of Provenance.entity.agent is to say that the entity referenced is managed elsewhere and that this Agent provided access to it.  This would be similar to where the Entity being referenced is managed outside FHIR, such as through HL7 v2, v3, or XDS. This might be where the Entity being referenced is managed in another FHIR resource server. Thus it explains the Provenance of that Entity&#39;s use in the context of this Provenance activity."/>
+      <definition value="The entity is attributed to an agent to express the agent's responsibility for that entity, possibly along with other agents. This description can be understood as shorthand for saying that the agent was responsible for the activity which used the entity."/>
+      <comment value="A usecase where one Provenance.entity.agent is used where the Entity that was used in the creation/updating of the Target, is not in the context of the same custodianship as the Target, and thus the meaning of Provenance.entity.agent is to say that the entity referenced is managed elsewhere and that this Agent provided access to it.  This would be similar to where the Entity being referenced is managed outside FHIR, such as through HL7 V2, v3, or XDS. This might be where the Entity being referenced is managed in another FHIR resource server. Thus it explains the Provenance of that Entity's use in the context of this Provenance activity."/>
       <min value="0"/>
       <max value="*"/>
       <contentReference value="#Provenance.agent"/>

@@ -24,8 +24,13 @@
     <valueCode value="n/a - this resource is never stored"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/Parameters"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1368"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="Parameters"/>
+  <title value="Parameters"/>
   <status value="active"/>
   <date value="2020-12-31T07:32:20+11:00"/>
   <publisher value="Health Level Seven International (FHIR Infrastructure)"/>
@@ -42,11 +47,11 @@
     </telecom>
   </contact>
   <description value="This resource is used to pass information into and back from an operation (whether invoked directly from REST or within a messaging environment).  It is not persisted or allowed to be referenced by other resources except as described in the definition of the Parameters resource."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
-    <name value="HL7 v2 Mapping"/>
+    <name value="HL7 V2 Mapping"/>
   </mapping>
   <mapping>
     <identity value="rim"/>
@@ -67,7 +72,7 @@
     <element id="Parameters">
       <path value="Parameters"/>
       <short value="Operation Request or Response"/>
-      <definition value="This resource is used to pass information into and back from an operation (whether invoked directly from REST or within a messaging environment).  It is not persisted or allowed to be referenced by other resources."/>      
+      <definition value="This resource is used to pass information into and back from an operation (whether invoked directly from REST or within a messaging environment).  It is not persisted or allowed to be referenced by other resources."/>
       <comment value="The parameters that may be used are defined by the OperationDefinition resource."/>
       <min value="0"/>
       <max value="*"/>
@@ -101,7 +106,6 @@
         <severity value="error"/>
         <human value="A parameter must have one and only one of (value, resource, part)"/>
         <expression value="(part.exists() and value.empty() and resource.empty()) or (part.empty() and (value.exists() xor resource.exists()))"/>
-        <xpath value="(exists(f:resource) or exists(f:part) or exists(f:*[starts-with(local-name(.), &#39;value&#39;)])) and not(exists(f:*[starts-with(local-name(.), &#39;value&#39;)])) and exists(f:resource))) and not(exists(f:*[starts-with(local-name(.), &#39;value&#39;)])) and exists(f:part))) and not(exists(f:part) and exists(f:resource))"/>
         <source value="http://hl7.org/fhir/StructureDefinition/Parameters"/>
       </constraint>
       <isSummary value="true"/>
@@ -283,7 +287,7 @@
       <path value="Parameters.parameter.resource"/>
       <short value="If parameter is a whole resource"/>
       <definition value="Conveys the content if the parameter is a whole resource."/>
-      <comment value="When resolving references in resources, the operation definition may specify how references may be resolved between parameters. If a reference cannot be resolved between the parameters, the application should fall back to it&#39;s general resource resolution methods."/>
+      <comment value="When resolving references in resources, the operation definition may specify how references may be resolved between parameters. If a reference cannot be resolved between the parameters, the application should fall back to its general resource resolution methods."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -296,10 +300,10 @@
       <path value="Parameters.parameter.part"/>
       <short value="Named part of a multi-part parameter"/>
       <definition value="A named part of a multi-part parameter."/>
-      <comment value="Only one level of nested parameters is allowed."/>
       <min value="0"/>
       <max value="*"/>
       <contentReference value="#Parameters.parameter"/>
+      <condition value="inv-1"/>
       <isSummary value="true"/>
     </element>
   </differential>

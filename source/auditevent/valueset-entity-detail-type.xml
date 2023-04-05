@@ -2,22 +2,6 @@
 
 <ValueSet xmlns="http://hl7.org/fhir">
   <id value="entity-detail-type"/>
-  <meta>
-    <lastUpdated value="2020-12-28T16:55:11.085+11:00"/>
-    <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
-  </meta>
-  <text>
-    <status value="generated"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">
-      <ul>
-        <li>Include all codes defined in 
-          <a href="codesystem-entity-detail-type.html">
-            <code>http://hl7.org/fhir/entity-detail-type</code>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </text>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="sec"/>
   </extension>
@@ -28,9 +12,23 @@
     <valueInteger value="3"/>
   </extension>
   <url value="http://hl7.org/fhir/ValueSet/network-type"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.3.456"/>
+  </identifier>
+  <identifier>
+    <use value="old"/>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.3.449"/>
+  </identifier>
+  <identifier>
+    <use value="old"/>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.2.265"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="AuditEventEntityDetailType"/>
-  <title value="AuditEventEntityDetailType"/>
+  <title value="Audit Event Entity Detail Type"/>
   <status value="draft"/>
   <experimental value="false"/>
   <date value="2021-10-02T16:55:11+11:00"/>

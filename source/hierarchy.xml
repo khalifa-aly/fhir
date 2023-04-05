@@ -13,124 +13,136 @@ signatures.html
        [- example]
       mappings
       -->
-<fhir>
+<fhir> 
   <page title="Home" note="(map + search) - focus on useful links" filename="index.html">
     <!-- indexing content, not owned by any particular module  (e.g. owned by the product director) -->
     <page title="Table of Contents" filename="toc.html" icon="index.png">
-      <page title="Documentation Index" filename="documentation.html"/>
       <page title="Resources" filename="resourcelist.html"/>
       <page title="Patterns" filename="patterns.html"/>
       <page title="Profiles" filename="profilelist.html"/>
-      <page title="Extensions" filename="extensibility-registry.html"/>
-      <page title="Operations" filename="operationslist.html"/>
+      <page title="Operations" filename="operationslist.html">
+        <page title="Operations for Large Resources" filename="operations-for-large-resources.html"/>
+      </page>
       <page title="Services" filename="servicelist.html"/>
       <page title="Namespace List" filename="ns.html"/>
+      <page title="OID List" filename="oids.html"/>
       <page title="Workgroup List" filename="wglist.html"/>
       <page title="Getting Started" filename="modules.html"/>
+      <page title="Broken Link Page" filename="broken-link.html"/>
       <page title="ANSI Documentation" filename="ansi.html">
+      <!---
         <page title="ANSI FHIR Infrastructure Standard" filename="ansi-infrastructure.html"/>
         <page title="ANSI FHIR Terminology &amp; Conformance Standard" filename="ansi-conformance.html"/>
         <page title="ANSI FHIR Patient Standard" filename="ansi-patient.html"/>
         <page title="ANSI FHIR Observation Standard" filename="ansi-observation.html"/>
-
+      -->
       </page>
       <page title="CI Build Search" filename="search-build.html"/>
-      <page title="Ballot Introduction" filename="ballot-intro.html"/>
+    <!--  <page title="Ballot Introduction" filename="ballot-intro.html"/> -->
     </page>
 
     <!-- foundation - quite a lot of documentation -->
     <page title="Foundation" filename="foundation-module.html" icon="foundation.png">
-      <page title="Conformance" filename="conformance-rules.html">
-        <page title="Best Practices" filename="best-practices.html"/>
-      </page>
-      <page title="Resource Life Cycles" filename="lifecycle.html"/>
-      <page title="References between Resources" filename="references.html">
-        <page title="Definitions" filename="references-definitions.html"/>
-      </page>
-      <page title="Narrative" filename="narrative.html">
-        <page title="Narrative Example" filename="narrative-example.html"/>
-        <page title="Definitions" filename="narrative-definitions.html"/>
-      </page>
-      <page title="Extensibility" filename="extensibility.html">
-        <page title="Defining Extensions" filename="defining-extensions.html"/>
-        <page title="Examples" filename="extensibility-examples.html"/>
-        <page title="Detailed Description" filename="extensibility-definitions.html"/>
-      </page>
-      <page title="Resource Definitions" filename="formats.html">
-        <page title="XML format" filename="xml.html"/>
-        <page title="JSON format" filename="json.html"/>
-        <page title="ND-JSON format" filename="nd-json.html"/>
-        <page title="RDF Definition" filename="rdf.html"/>
-        <page title="UML Definition" filename="uml.html"/>
-      </page>
-      <page title="Change Management and Versioning" filename="versions.html">
-        <page title="Timelines" filename="timelines.html"/>
-      </page>
-      <page title="Managing Multiple FHIR Versions" filename="versioning.html"/>
-      <page title="FHIRPath" filename="fhirpath.html"/>
-      <page title="Version History" filename="history.html"/>
-      <page title="Differences from Release 3" filename="diff.html"/>
-      <page title="Release 2/3 Transforms" filename="r3maps.html"/>
+      <page title="Documentation Index" filename="documentation.html">
+        <page title="Conformance" filename="conformance-rules.html">
+          <page title="Best Practices" filename="best-practices.html"/>
+        </page>
+        <page title="Resource Life Cycles" filename="lifecycle.html"/>
+        <page title="References between Resources" filename="references.html">
+          <page title="Definitions" filename="references-definitions.html"/>
+          <page title="Profiles" filename="references-profiles.html"/>
+          <page title="R4 Conversions" filename="references-version-maps.html"/>
+        </page>
+        <page title="Narrative" filename="narrative.html">
+          <page title="Narrative Example" filename="narrative-examples.html"/>
+          <page title="Definitions" filename="narrative-definitions.html"/>
+          <page title="R4 Conversions" filename="narrative-version-maps.html"/>
+        </page>
+        <page title="Extensibility" filename="extensibility.html">
+          <page title="Defining Extensions" filename="defining-extensions.html"/>
+          <page title="Examples" filename="extensibility-examples.html"/>
+          <page title="Detailed Description" filename="extensibility-definitions.html"/>
+          <page title="R4 Conversions" filename="extensibility-version-maps.html"/>
+        </page>
+        <page title="Resource Definitions" filename="formats.html">
+          <page title="UML Definition" filename="uml.html"/>
+          <page title="Resource Formats" filename="resource-formats.html"/>
+          <page title="XML format" filename="xml.html"/>
+          <page title="JSON format" filename="json.html"/>
+          <page title="ND-JSON format" filename="nd-json.html"/>
+          <page title="RDF Definition" filename="rdf.html"/>
+        </page>
+        <page title="Change Management and Versioning" filename="versions.html">
+          <page title="Timelines" filename="timelines.html"/>
+        </page>
+        <page title="Managing Multiple FHIR Versions" filename="versioning.html"/>
+        <page title="FHIRPath" filename="fhirpath.html"/>
+        <page title="NPM Packages" filename="packages.html"/>
+        <page title="Version History" filename="history.html"/>
+        <page title="Differences from Release 4" filename="diff.html"/>
+        <page title="Release 4/5 Transforms" filename="r4maps.html"/>
+        <page title="Logical models" filename="logical.html"/>
 
-      <page title="Introduction" filename="overview.html"/>
-      <page title="Developer Introduction" filename="overview-dev.html"/>
-      <page title="Clinical Introduction" filename="overview-clinical.html"/>
-      <page title="Architect's Introduction" filename="overview-arch.html"/>
-      <page title="Summary" filename="summary.html"/>
-      <page title="Glossary #1" filename="help.html"/>
-      <page title="Glossary #2" filename="glossary.html"/>
-      <page title="License and Legal Terms" filename="license.html"/>
-      <page title="Community and Credits" filename="credits.html"/>
-      <page title="Outstanding Issues" filename="todo.html"/>
-      <page title="Coming Challenges" filename="change.html"/>
+        <page title="Introduction" filename="overview.html"/>
+        <page title="Developer Introduction" filename="overview-dev.html"/>
+        <page title="Clinical Introduction" filename="overview-clinical.html"/>
+        <page title="Patient Introduction" filename="overview-patient.html"/>
+        <page title="Architect's Introduction" filename="overview-arch.html"/>
+        <page title="Summary" filename="summary.html"/>
+        <page title="Glossary #1" filename="help.html"/>
+        <page title="Glossary #2" filename="glossary.html"/>
+        <page title="License and Legal Terms" filename="license.html"/>
+        <page title="Community and Credits" filename="credits.html"/>
+        <page title="Outstanding Issues" filename="todo.html"/>
+        <page title="Coming Challenges" filename="change.html"/>
 
-      <page title="Type Framework" filename="types.html">
-        <page title="Detailed Descriptions" filename="types-definitions.html"/>
-        <page title="Profiles and Extensions" filename="types-extras.html"/>
-        <page title="Mappings" filename="types-mappings.html"/>
-        <page title="R3 Conversions" filename="types-version-maps.html"/>
+        <page title="Type Framework" filename="types.html">
+          <page title="Detailed Descriptions" filename="types-definitions.html"/>
+          <page title="Profiles" filename="types-profiles.html"/>
+          <page title="Mappings" filename="types-mappings.html"/>
+          <page title="R4 Conversions" filename="types-version-maps.html"/>
+          <page type="resource" resource="Resource">
+            <page title="Definitions" filename="resource-definitions.html"/>
+          </page>
+          <page type="resource" resource="DomainResource"/>
+          <page type="resource" resource="CanonicalResource"/>
+          <page type="resource" resource="MetadataResource"/>
+        </page>
+        <page title="DataTypes" filename="datatypes.html">
+          <page title="Examples" filename="datatypes-examples.html"/>
+          <page title="Detailed Descriptions" filename="datatypes-definitions.html"/>
+          <page title="Mappings" filename="datatypes-mappings.html"/>
+          <page title="Profiles" filename="datatypes-profiles.html"/>
+          <page title="R4 Conversions" filename="datatypes-version-maps.html"/>
+          <page title="MetaData Types" filename="metadatatypes.html">
+            <page title="Examples" filename="metadatatypes-examples.html"/>
+            <page title="Detailed Descriptions" filename="metadatatypes-definitions.html"/>
+            <page title="Mappings" filename="metadatatypes-mappings.html"/>
+            <page title="Profiles" filename="metadatatypes-profiles.html"/>
+            <page title="R4 Conversions" filename="metadatatypes-version-maps.html"/>
+          </page>
+          <page title="ElementDefinition" filename="elementdefinition.html">
+            <page title="ElementDefinition Examples" filename="elementdefinition-examples.html"/>
+            <page title="ElementDefinition Detailed Descriptions" filename="elementdefinition-definitions.html"/>
+            <page title="ElementDefinition Mappings" filename="elementdefinition-mappings.html"/>
+            <page title="Profiles" filename="elementdefinition-profiles.html"/>
+            <page title="R4 Conversions" filename="elementdefinition-version-maps.html"/>
+          </page>
+        </page>
+        <page title="Resource Guide" filename="resourceguide.html"/>
+        <page title="5Ws Pattern" filename="fivews.html"/>
+        <page title="FMG Process Page" filename="fmg.html"/>
       </page>
-      <page title="Data Types" filename="datatypes.html">
-        <page title="Examples" filename="datatypes-examples.html"/>
-        <page title="Detailed Descriptions" filename="datatypes-definitions.html"/>
-        <page title="Mappings" filename="datatypes-mappings.html"/>
-        <page title="Profiles and Extensions" filename="datatypes-extras.html"/>
-        <page title="R3 Conversions" filename="datatypes-version-maps.html"/>
-      </page>
-      <page title="MetaData Types" filename="metadatatypes.html">
-        <page title="Examples" filename="metadatatypes-examples.html"/>
-        <page title="Detailed Descriptions" filename="metadatatypes-definitions.html"/>
-        <page title="Mappings" filename="metadatatypes-mappings.html"/>
-      </page>
-      <page type="resource" resource="Resource">
-        <page title="Definitions" filename="resource-definitions.html"/>
-      </page>
-      <page type="resource" resource="DomainResource"/>
-      <page type="resource" resource="CanonicalResource"/>
-      <page type="resource" resource="MetadataResource"/>
-      <page title="ElementDefinition" filename="elementdefinition.html">
-        <page title="ElementDefinition Examples" filename="elementdefinition-examples.html"/>
-        <page title="ElementDefinition Detailed Descriptions" filename="elementdefinition-definitions.html"/>
-        <page title="ElementDefinition Mappings" filename="elementdefinition-mappings.html"/>
-        <page title="ElementDefinition Extensions" filename="elementdefinition-extras.html"/>
-      </page>
-
-      <page title="Resource Guide" filename="resourceguide.html"/>
-      <page title="5Ws Pattern" filename="fivews.html"/>
-      <page title="FMG Process Page" filename="fmg.html"/>
-
       <!-- infrastructure resources -->
       <page type="resource" resource="Basic"/>
       <page type="resource" resource="Binary"/>
       <page type="resource" resource="Bundle"/>
-
 
       <page type="resource" resource="Questionnaire"/>
       <page type="resource" resource="QuestionnaireResponse"/>
       <page type="resource" resource="List"/>
       <page type="resource" resource="Composition"/>
       <page type="resource" resource="DocumentReference"/>
-      <page type="resource" resource="DocumentManifest"/>
 <!--      <page type="resource" resource="ItemInstance"/> -->
 
       <page type="resource" resource="OperationOutcome"/>
@@ -143,6 +155,15 @@ signatures.html
     </page>
 
     <page title="Exchange" filename="exchange-module.html" icon="exchange.png">
+      <page title="Approaches to Exchanging FHIR Data" filename="exchanging.html">
+        <page title="Exchanging with FHIR Search" filename="exchanging-search.html"/>
+        <page title="Exchanging with FHIR REST" filename="exchanging-rest.html"/>
+        <page title="Exchanging with FHIR Subscription" filename="exchanging-subscription.html"/>
+        <page title="Exchanging with Polling" filename="exchanging-polling.html"/>
+        <page title="Exchanging with FHIR Operations" filename="exchanging-operation.html"/>
+        <page title="Exchanging with Messaging" filename="exchanging-messaging.html"/>
+        <page title="Exchanges Allowing Human Intervention" filename="exchanging-request.html"/>
+      </page>
       <page title="RESTful API" filename="http.html">
         <page title="Search" filename="search.html"/>
         <page title="GraphQL" filename="graphql.html"/>
@@ -153,6 +174,7 @@ signatures.html
           <page title="Asynchronous Bulk Data Request" filename="async-bulk.html"/>
           <page title="Asynchronous Interaction Request" filename="async-bundle.html"/>
         </page>
+        <page title="X-FHIR-Query" filename="fhir-xquery.html"/>
       </page>
       <page title="Operations" filename="operations.html">
         <page title="Example" filename="op-example-request.html"/>
@@ -168,25 +190,9 @@ signatures.html
 
     <page title="Terminology" filename="terminology-module.html" icon="terminology.png">
       <page title="Using Codes" filename="terminologies.html"/>
-        <page title="Terminology Binding Examples" filename="terminologies-binding-examples.html"/>
+      <page title="Terminology Binding Examples" filename="terminologies-binding-examples.html"/>
       <page title="Code Systems" filename="terminologies-systems.html">
-        <page title="SNOMED CT" filename="snomedct.html">
-          <page title="SNOMED CT Usage Report" filename="snomedct-usage.html"/>
-        </page>
-        <page title="RxNorm" filename="rxnorm.html"/>
-        <page title="LOINC" filename="loinc.html"/>
-        <page title="pCLOCD" filename="pclocd.html"/>
-        <page title="UCUM" filename="ucum.html"/>
-        <page title="NCI Metothesuaras" filename="ncimeta.html"/>
-        <page title="MED-RT" filename="medrt.html"/>
-        <page title="NDFRT" filename="ndfrt.html"/>
-        <page title="UNII" filename="unii.html"/>
-        <page title="CVX" filename="cvx.html"/>
-        <page title="CPT" filename="cpt.html"/>
-        <page title="NDC" filename="ndc.html"/>
-        <page title="ICD-X" filename="icd.html"/>
-        <page title="ISO-3166" filename="iso3166.html"/>
-        <page title="MDC Codes" filename="mdc.html"/>
+        <page title="SNOMED CT Usage Report" filename="snomedct-usage.html"/>
         <pages type="codesystem" filename="template-codesystem.html"/>
         <pages type="v2-table" filename="template-v2.html"/>
         <page title="Code Systems" filename="terminologies-v3.html"/>
@@ -209,8 +215,8 @@ signatures.html
       <page title="Profiling FHIR" filename="profiling.html">
         <page title="Examples" filename="profiling-examples.html"/>
       </page>
+      <page title="Implementation Obligations" filename="obligations.html"/>
       <page type="resource" resource="CapabilityStatement"/>
-      <page type="resource" resource="CapabilityStatement2"/>
       <page type="resource" resource="StructureDefinition"/>
       <page type="resource" resource="OperationDefinition"/>
       <page type="resource" resource="SearchParameter"/>
@@ -218,6 +224,8 @@ signatures.html
       <page type="resource" resource="DataElement"/>
       <page type="resource" resource="ImplementationGuide"/>
       <page type="resource" resource="GraphDefinition"/>
+      <page type="resource" resource="ActorDefinition"/>
+      <page type="resource" resource="Requirements"/>
     </page>
 
     <page title="Security and Privacy" filename="secpriv-module.html" icon="secpriv.jpg">
@@ -235,6 +243,7 @@ signatures.html
       <page title="Downloads" filename="downloads.html"/>
 
       <page title="Testing FHIR" filename="testing.html"/>
+      <page type="resource" resource="TestPlan" />
       <page type="resource" resource="TestScript" />
       <page type="resource" resource="TestReport" />
       <page title="Validating Resources" filename="validation.html"/>
@@ -277,10 +286,12 @@ signatures.html
 
       <page type="resource" resource="EpisodeOfCare"/>
       <page type="resource" resource="Encounter"/>
+      <page type="resource" resource="EncounterHistory"/>
       <page type="resource" resource="Account"/>
       <page type="resource" resource="Flag"/>
 
       <page type="resource" resource="Device"/>
+      <page type="resource" resource="DeviceAssociation"/>
       <page type="resource" resource="DeviceDefinition"/>
       <page type="resource" resource="DeviceMetric"/>
       <page type="resource" resource="Substance"/>
@@ -290,8 +301,9 @@ signatures.html
       <page type="resource" resource="CommunicationRequest"/>
       <page type="resource" resource="ResearchStudy"/>
       <page type="resource" resource="ResearchSubject"/>
+      <page type="resource" resource="BiologicallyDerivedProduct"/>
   	  <page type="resource" resource="ChargeItem"/>
-	  <page type="resource" resource="ChargeItemDefinition"/>
+  	  <page type="resource" resource="ChargeItemDefinition"/>
   	  <page type="resource" resource="ObservationDefinition"/>
   	  <page type="resource" resource="SpecimenDefinition"/>
       <page title="Product Pattern" filename="product.html"/>
@@ -329,10 +341,8 @@ signatures.html
       <page type="resource" resource="ImagingSelection"/>
       <page type="resource" resource="MolecularSequence"/>
       <page type="resource" resource="Specimen"/>
-      <page type="resource" resource="SpecimenDefinition"/>
       <page type="resource" resource="BodyStructure"/>
       <page title="Genomics Implementer Guidance" filename="genomics.html"/>
-      <page type="resource" resource="BiologicallyDerivedProduct"/>
     </page>
 
 
@@ -340,7 +350,7 @@ signatures.html
       <page type="resource" resource="MedicationRequest"/>
       <page type="resource" resource="MedicationAdministration"/>
       <page type="resource" resource="MedicationDispense"/>
-      <page type="resource" resource="MedicationUsage"/>
+      <page type="resource" resource="MedicationStatement"/>
       <page type="resource" resource="Medication"/>
       <page type="resource" resource="MedicationKnowledge"/>
       <page type="resource" resource="Immunization"/>
@@ -350,6 +360,8 @@ signatures.html
         <page title="Examples" filename="dosage-examples.html"/>
         <page title="Detailed Descriptions" filename="dosage-definitions.html"/>
         <page title="Dosage Mappings" filename="dosage-mappings.html"/>
+        <page title="Dosage Profiles" filename="dosage-profiles.html"/>
+        <page title="R4 Conversions" filename="dosage-version-maps.html"/>
       </page>
       <page type="resource" resource="FormularyItem"/>
     </page>
@@ -388,8 +400,9 @@ signatures.html
       <page type="resource" resource="SupplyRequest"/>
       <page type="resource" resource="SupplyDelivery"/>
       <page type="resource" resource="InventoryReport"/>
+      <page type="resource" resource="InventoryItem"/>
+      <page type="resource" resource="BiologicallyDerivedProductDispense"/>
       <page type="resource" resource="ExampleScenario"/>
-
     </page>
 
     <page title="Financial" filename="financial-module.html" icon="financial.png">
@@ -429,12 +442,12 @@ signatures.html
       <page type="resource" resource="EvidenceVariable"/>
       <page type="resource" resource="Library"/>
       <page type="resource" resource="GuidanceResponse"/>
-      <page type="resource" resource="RequestGroup"/>
+      <page type="resource" resource="RequestOrchestration"/>
       <page type="resource" resource="Measure"/>
       <page type="resource" resource="MeasureReport"/>
     </page>
 
-    <page title="Medication Definition" filename="medication-definition-module.html" icon="medication.png">
+      <page title="Medication Definition" filename="medication-definition-module.html" icon="medication-icon-16.png">
       <page type="resource" resource="MedicinalProductDefinition"/>
       <page type="resource" resource="PackagedProductDefinition"/>
       <page type="resource" resource="RegulatedAdministrableProduct"/>
@@ -453,21 +466,22 @@ signatures.html
         <page title="Examples" filename="marketingstatus-examples.html"/>
         <page title="Detailed Descriptions" filename="marketingstatus-definitions.html"/>
         <page title="Mappings" filename="marketingstatus-mappings.html"/>
+        <page title="Profiles" filename="marketingstatus-profiles.html"/>
+        <page title="R4 Conversions" filename="marketingstatus-version-maps.html"/>
       </page>
-      <page title="Population" filename="population.html">
+      <!--page title="Population" filename="population.html">
         <page title="Examples" filename="population-examples.html"/>
         <page title="Detailed Descriptions" filename="population-definitions.html"/>
         <page title="Mappings" filename="population-mappings.html"/>
-      </page>
-      <!--page title="ProdCharacteristic" filename="prodcharacteristic.html">
-        <page title="Examples" filename="prodcharacteristic-examples.html"/>
-        <page title="Detailed Descriptions" filename="prodcharacteristic-definitions.html"/>
-        <page title="Mappings" filename="prodcharacteristic-mappings.html"/>
+        <page title="Profiles" filename="population-profiles.html"/>
+        <page title="R4 Conversions" filename="population-version-maps.html"/>
       </page-->
       <page title="ProductShelfLife" filename="productshelflife.html">
         <page title="Examples" filename="productshelflife-examples.html"/>
         <page title="Detailed Descriptions" filename="productshelflife-definitions.html"/>
         <page title="Mappings" filename="productshelflife-mappings.html"/>
+        <page title="Profiles" filename="productshelflife-profiles.html"/>
+        <page title="R4 Conversions" filename="productshelflife-version-maps.html"/>
       </page>
     </page>
 

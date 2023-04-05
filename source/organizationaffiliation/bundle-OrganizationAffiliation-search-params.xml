@@ -7,7 +7,7 @@
       <SearchParameter>
         <id value="OrganizationAffiliation-active"/>
         <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-          <valueCode value="normative"/>
+          <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
           <valueString value="OrganizationAffiliation.active"/>
@@ -17,8 +17,7 @@
         <code value="active"/>
         <type value="token"/>
         <expression value="OrganizationAffiliation.active"/>
-        <xpath value="f:OrganizationAffiliation/f:active"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -37,8 +36,7 @@
         <code value="date"/>
         <type value="date"/>
         <expression value="OrganizationAffiliation.period"/>
-        <xpath value="f:OrganizationAffiliation/f:period"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -50,15 +48,14 @@
           <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
-          <valueString value="OrganizationAffiliation.telecom(system=email)"/>
+          <valueString value="OrganizationAffiliation.contact.telecom(system=email)"/>
         </extension>
         <url value="http://hl7.org/fhir/build/SearchParameter/OrganizationAffiliation-email"/>
         <description value="A value in an email contact"/>
         <code value="email"/>
         <type value="token"/>
-        <expression value="OrganizationAffiliation.telecom.where(system=&#39;email&#39;)"/>
-        <xpath value="f:OrganizationAffiliation/f:telecom[system/@value=&#39;email&#39;]"/>
-        <xpathUsage value="normal"/>
+        <expression value="OrganizationAffiliation.contact.telecom.where(system='email')"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -77,8 +74,7 @@
         <code value="endpoint"/>
         <type value="reference"/>
         <expression value="OrganizationAffiliation.endpoint"/>
-        <xpath value="f:OrganizationAffiliation/f:endpoint"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -93,12 +89,11 @@
           <valueString value="OrganizationAffiliation.identifier"/>
         </extension>
         <url value="http://hl7.org/fhir/build/SearchParameter/OrganizationAffiliation-identifier"/>
-        <description value="An organization affiliation&#39;s Identifier"/>
+        <description value="An organization affiliation's Identifier"/>
         <code value="identifier"/>
         <type value="token"/>
         <expression value="OrganizationAffiliation.identifier"/>
-        <xpath value="f:OrganizationAffiliation/f:identifier"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -117,8 +112,7 @@
         <code value="location"/>
         <type value="reference"/>
         <expression value="OrganizationAffiliation.location"/>
-        <xpath value="f:OrganizationAffiliation/f:location"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -133,12 +127,11 @@
           <valueString value="OrganizationAffiliation.network"/>
         </extension>
         <url value="http://hl7.org/fhir/build/SearchParameter/OrganizationAffiliation-network"/>
-        <description value="Health insurance provider network in which the participatingOrganization provides the role&#39;s services (if defined) at the indicated locations (if defined)"/>
+        <description value="Health insurance provider network in which the participatingOrganization provides the role's services (if defined) at the indicated locations (if defined)"/>
         <code value="network"/>
         <type value="reference"/>
         <expression value="OrganizationAffiliation.network"/>
-        <xpath value="f:OrganizationAffiliation/f:network"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -157,8 +150,7 @@
         <code value="participating-organization"/>
         <type value="reference"/>
         <expression value="OrganizationAffiliation.participatingOrganization"/>
-        <xpath value="f:OrganizationAffiliation/f:participatingOrganization"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -170,15 +162,14 @@
           <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
-          <valueString value="OrganizationAffiliation.telecom(system=phone)"/>
+          <valueString value="OrganizationAffiliation.contact.telecom(system=phone)"/>
         </extension>
         <url value="http://hl7.org/fhir/build/SearchParameter/OrganizationAffiliation-phone"/>
         <description value="A value in a phone contact"/>
         <code value="phone"/>
         <type value="token"/>
-        <expression value="OrganizationAffiliation.telecom.where(system=&#39;phone&#39;)"/>
-        <xpath value="f:OrganizationAffiliation/f:telecom[system/@value=&#39;phone&#39;]"/>
-        <xpathUsage value="normal"/>
+        <expression value="OrganizationAffiliation.contact.telecom.where(system='phone')"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -197,8 +188,7 @@
         <code value="primary-organization"/>
         <type value="reference"/>
         <expression value="OrganizationAffiliation.organization"/>
-        <xpath value="f:OrganizationAffiliation/f:organization"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -217,8 +207,7 @@
         <code value="role"/>
         <type value="token"/>
         <expression value="OrganizationAffiliation.code"/>
-        <xpath value="f:OrganizationAffiliation/f:code"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -237,8 +226,7 @@
         <code value="service"/>
         <type value="reference"/>
         <expression value="OrganizationAffiliation.healthcareService"/>
-        <xpath value="f:OrganizationAffiliation/f:healthcareService"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -257,8 +245,7 @@
         <code value="specialty"/>
         <type value="token"/>
         <expression value="OrganizationAffiliation.specialty"/>
-        <xpath value="f:OrganizationAffiliation/f:specialty"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -270,15 +257,14 @@
           <valueCode value="trial-use"/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
-          <valueString value="OrganizationAffiliation.telecom"/>
+          <valueString value="OrganizationAffiliation.contact.telecom"/>
         </extension>
         <url value="http://hl7.org/fhir/build/SearchParameter/OrganizationAffiliation-telecom"/>
         <description value="The value in any kind of contact"/>
         <code value="telecom"/>
         <type value="token"/>
-        <expression value="OrganizationAffiliation.telecom"/>
-        <xpath value="f:OrganizationAffiliation/f:telecom"/>
-        <xpathUsage value="normal"/>
+        <expression value="OrganizationAffiliation.contact.telecom"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>

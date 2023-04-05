@@ -18,11 +18,11 @@
   <url value="http://hl7.org/fhir/medicinal-product-additional-monitoring"/>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
-    <value value="urn:oid:2.16.840.1.113883.4.642.1.1565"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.4.1919"/>
   </identifier>
-  <version value="4.6.0"/>
+  <version value="5.0.0"/>
   <name value="AdditionalMonitoring"/>
-  <title value="AdditionalMonitoring"/>
+  <title value="Additional Monitoring"/>
   <status value="draft"/>
   <experimental value="false"/>
   <date value="2021-01-05T10:01:24+11:00"/>

@@ -16,9 +16,8 @@
         <description value="A use context assigned to the {{title}}"/>
         <code value="context"/>
         <type value="token"/>
-        <expression value="({{name}}.useContext.value as CodeableConcept)"/>
-        <xpath value="f:CanonicalResource/f:useContext/f:valueCodeableConcept"/>
-        <xpathUsage value="normal"/>
+        <expression value="({{name}}.useContext.value.ofType(CodeableConcept))"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -36,9 +35,8 @@
         <description value="A quantity- or range-valued use context assigned to the {{title}}"/>
         <code value="context-quantity"/>
         <type value="quantity"/>
-        <expression value="({{name}}.useContext.value as Quantity) | ({{name}}.useContext.value as Range)"/>
-        <xpath value="f:CanonicalResource/f:useContext/f:valueQuantity | f:CanonicalResource/f:useContext/f:valueRange"/>
-        <xpathUsage value="normal"/>
+        <expression value="({{name}}.useContext.value.ofType(Quantity)) | ({{name}}.useContext.value.ofType(Range))"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -57,8 +55,7 @@
         <code value="context-type"/>
         <type value="token"/>
         <expression value="{{name}}.useContext.code"/>
-        <xpath value="f:CanonicalResource/f:useContext/f:code"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -74,14 +71,14 @@
         <code value="context-type-quantity"/>
         <type value="composite"/>
         <expression value="{{name}}.useContext"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
         <component>
           <definition value="context-type"/>
           <expression value="code"/>
         </component>
         <component>
           <definition value="context-quantity"/>
-          <expression value="value.as(Quantity) | value.as(Range)"/>
+          <expression value="value.ofType(Quantity) | value.ofType(Range)"/>
         </component>
       </SearchParameter>
     </resource>
@@ -98,15 +95,31 @@
         <code value="context-type-value"/>
         <type value="composite"/>
         <expression value="{{name}}.useContext"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
         <component>
           <definition value="context-type"/>
           <expression value="code"/>
         </component>
         <component>
           <definition value="context"/>
-          <expression value="value.as(CodeableConcept)"/>
+          <expression value="value.ofType(CodeableConcept)"/>
         </component>
+      </SearchParameter>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <SearchParameter>
+        <id value="CanonicalResource-context-reference"/>
+        <extension url="http://http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+          <valueCode value="trial-use"/>
+        </extension>
+        <url value="http://hl7.org/fhir/build/SearchParameter/CanonicalResource-context-reference"/>
+        <description value="A use context reference assigned to the {{title}}"/>
+        <code value="context-reference"/>
+        <type value="reference"/>
+        <expression value="{{name}}.useContext.value"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -125,8 +138,7 @@
         <code value="date"/>
         <type value="date"/>
         <expression value="{{name}}.date"/>
-        <xpath value="f:CanonicalResource/f:date"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -145,8 +157,7 @@
         <code value="description"/>
         <type value="string"/>
         <expression value="{{name}}.description"/>
-        <xpath value="f:CanonicalResource/f:description"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -165,8 +176,7 @@
         <code value="identifier"/>
         <type value="token"/>
         <expression value="{{name}}.identifier"/>
-        <xpath value="f:CanonicalResource/f:identifier"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -185,8 +195,7 @@
         <code value="jurisdiction"/>
         <type value="token"/>
         <expression value="{{name}}.jurisdiction"/>
-        <xpath value="f:CanonicalResource/f:jurisdiction"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -205,8 +214,7 @@
         <code value="name"/>
         <type value="string"/>
         <expression value="{{name}}.name"/>
-        <xpath value="f:CanonicalResource/f:name"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -225,8 +233,7 @@
         <code value="publisher"/>
         <type value="string"/>
         <expression value="{{name}}.publisher"/>
-        <xpath value="f:CanonicalResource/f:publisher"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -245,8 +252,7 @@
         <code value="status"/>
         <type value="token"/>
         <expression value="{{name}}.status"/>
-        <xpath value="f:CanonicalResource/f:status"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -265,8 +271,7 @@
         <code value="title"/>
         <type value="string"/>
         <expression value="{{name}}.title"/>
-        <xpath value="f:CanonicalResource/f:title"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -285,8 +290,7 @@
         <code value="url"/>
         <type value="uri"/>
         <expression value="{{name}}.url"/>
-        <xpath value="f:CanonicalResource/f:url"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -305,8 +309,7 @@
         <code value="version"/>
         <type value="token"/>
         <expression value="{{name}}.version"/>
-        <xpath value="f:CanonicalResource/f:version"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>

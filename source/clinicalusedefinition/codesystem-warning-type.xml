@@ -18,11 +18,11 @@
   <url value="http://hl7.org/fhir/warning-type"/>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
-    <value value="urn:oid:2.16.840.1.113883.4.642.1.1546"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.4.1996"/>
   </identifier>
-  <version value="4.6.0"/>
+  <version value="5.0.0"/>
   <name value="WarningType"/>
-  <title value="WarningType"/>
+  <title value="Warning Type"/>
   <status value="draft"/>
   <experimental value="false"/>
   <date value="2021-08-15T16:55:11+11:00"/>
@@ -91,17 +91,4 @@
     <display value="Wash contaminated clothing before reuse.."/>
     <definition value="Wash contaminated clothing before reuse."/>
   </concept>
-  
-  <!--
-  : 
-  : 
-  : 
-  : 
-  : 
-  : 
-  : 
-  : 
-  : -->
-  
-  
 </CodeSystem>

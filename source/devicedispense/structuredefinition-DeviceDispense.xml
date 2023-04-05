@@ -1,135 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <StructureDefinition xmlns="http://hl7.org/fhir">
-	<id value="DeviceDispense"/>
-	<meta>
-		<lastUpdated value="2021-01-02T08:58:31.578+11:00"/>
-	</meta>
-	<extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-category">
-		<valueString value="Clinical.Device"/>
-	</extension>
-	<extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
-		<valueCode value="trial-use"/>
-	</extension>
-	<extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
-		<valueInteger value="1"/>
-	</extension>
-	<extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category">
-		<valueCode value="business"/>
-	</extension>
-	<extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
-		<valueCode value="phx"/>
-	</extension>
-	<extension url="http://hl7.org/fhir/build/StructureDefinition/entered-in-error-status">
-		<valueCode value=".status = entered-in-error"/>
-	</extension>
-	<url value="http://hl7.org/fhir/StructureDefinition/DeviceDispense"/>
-	<version value="4.5.0"/>
-	<name value="DeviceDispense"/>
-	<status value="draft"/>
-	<date value="2021-01-02T08:58:31+11:00"/>
-	<publisher value="Health Level Seven International (Pharmacy)"/>
-	<contact>
-		<telecom>
-			<system value="url"/>
-			<value value="http://hl7.org/fhir"/>
-		</telecom>
-	</contact>
-	<contact>
-		<telecom>
-			<system value="url"/>
-			<value value="http://www.hl7.org/Special/committees/medication/index.cfm"/>
-		</telecom>
-	</contact>
+  <id value="DeviceDispense"/>
+  <meta>
+    <lastUpdated value="2021-01-02T08:58:31.578+11:00"/>
+  </meta>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-category">
+    <valueString value="Clinical.Device"/>
+  </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+    <valueCode value="trial-use"/>
+  </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+    <valueInteger value="1"/>
+  </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category">
+    <valueCode value="business"/>
+  </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+    <valueCode value="phx"/>
+  </extension>
+  <extension url="http://hl7.org/fhir/build/StructureDefinition/entered-in-error-status">
+    <valueCode value=".status = entered-in-error"/>
+  </extension>
+  <url value="http://hl7.org/fhir/StructureDefinition/DeviceDispense"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1257"/>
+  </identifier>
+  <version value="5.0.0"/>
+  <name value="DeviceDispense"/>
+  <title value="Device Dispense"/>
+  <status value="draft"/>
+  <date value="2021-01-02T08:58:31+11:00"/>
+  <publisher value="Health Level Seven International (Pharmacy)"/>
+  <contact>
+    <telecom>
+      <system value="url"/>
+      <value value="http://hl7.org/fhir"/>
+    </telecom>
+  </contact>
+  <contact>
+    <telecom>
+      <system value="url"/>
+      <value value="http://www.hl7.org/Special/committees/medication/index.cfm"/>
+    </telecom>
+  </contact>
   <description value="Indicates that a device is to be or has been dispensed for a named person/patient.  This includes a description of the product (supply) provided and the instructions for using the device."/>
-	<fhirVersion value="4.5.0"/>
-	<mapping>
-		<identity value="w5"/>
-		<uri value="http://hl7.org/fhir/fivews"/>
-		<name value="FiveWs Pattern Mapping"/>
-	</mapping>
-	<mapping>
-		<identity value="v2"/>
-		<uri value="http://hl7.org/v2"/>
-		<name value="HL7 v2 Mapping"/>
-	</mapping>
+  <fhirVersion value="5.0.0"/>
+  <mapping>
+    <identity value="w5"/>
+    <uri value="http://hl7.org/fhir/fivews"/>
+    <name value="FiveWs Pattern Mapping"/>
+  </mapping>
+  <mapping>
+    <identity value="v2"/>
+    <uri value="http://hl7.org/v2"/>
+    <name value="HL7 V2 Mapping"/>
+  </mapping>
   <mapping>
     <identity value="workflow"/>
     <uri value="http://hl7.org/fhir/workflow"/>
     <name value="Workflow Pattern"/>
   </mapping>
-	<mapping>
-		<identity value="rim"/>
-		<uri value="http://hl7.org/v3"/>
-		<name value="RIM Mapping"/>
-	</mapping>
-	<kind value="resource"/>
-	<abstract value="false"/>
-	<type value="DeviceDispense"/>
-	<baseDefinition value="http://hl7.org/fhir/StructureDefinition/DomainResource"/>
-	<derivation value="specialization"/>
-	<differential>
-		<element id="DeviceDispense">
-			<extension url="http://hl7.org/fhir/build/StructureDefinition/svg">
-				<valueCode value="-170,0"/>
-			</extension>
-			<path value="DeviceDispense"/>
-			<short value="Device Dispense"/>
-			<definition value="A record of dispensation of a device."/>
-			<min value="0"/>
-			<max value="*"/>
+  <mapping>
+    <identity value="rim"/>
+    <uri value="http://hl7.org/v3"/>
+    <name value="RIM Mapping"/>
+  </mapping>
+  <kind value="resource"/>
+  <abstract value="false"/>
+  <type value="DeviceDispense"/>
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/DomainResource"/>
+  <derivation value="specialization"/>
+  <differential>
+    <element id="DeviceDispense">
+      <extension url="http://hl7.org/fhir/build/StructureDefinition/svg">
+        <valueCode value="-170,0"/>
+      </extension>
+      <path value="DeviceDispense"/>
+      <short value="A record of dispensation of a device"/>
+      <definition value="A record of dispensation of a device - i.e., assigning a device to a patient, or to a professional for their use."/>
+      <min value="0"/>
+      <max value="*"/>
+      <mapping>
+        <identity value="workflow"/>
+        <map value="Event"/>
+      </mapping>
       <mapping>
         <identity value="w5"/>
         <map value="administrative.device"/>
       </mapping>
-		</element>
-		<element id="DeviceDispense.identifier">
-			<path value="DeviceDispense.identifier"/>
-			<short value="Business identifier for this dispensation"/>
-			<definition value="Business identifier for this dispensation."/>
-			<comment value="This is a business identifier, not a resource identifier."/>
-			<min value="0"/>
-			<max value="*"/>
-			<type>
-				<code value="Identifier"/>
-			</type>
+    </element>
+    <element id="DeviceDispense.identifier">
+      <path value="DeviceDispense.identifier"/>
+      <short value="Business identifier for this dispensation"/>
+      <definition value="Business identifier for this dispensation."/>
+      <comment value="This is a business identifier, not a resource identifier."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Identifier"/>
+      </type>
+      <isSummary value="true"/>
       <mapping>
         <identity value="w5"/>
         <map value="FiveWs.identifier"/>
       </mapping>
-			<isSummary value="true"/>
-		</element>
-
-		<element id="DeviceDispense.basedOn">
-			<path value="DeviceDispense.basedOn"/>
-			<short value="The order or request that this dispense is fulfilling"/>
-			<definition value="The order or request that this dispense is fulfilling."/>
-			<min value="0"/>
-			<max value="*"/>
-			<type>
-				<code value="Reference"/>
-				<targetProfile value="http://hl7.org/fhir/StructureDefinition/CarePlan"/>
-				<targetProfile value="http://hl7.org/fhir/StructureDefinition/DeviceRequest"/>
-			</type>
-		</element>
-		<element id="DeviceDispense.partOf">
-			<path value="DeviceDispense.partOf"/>
-			<short value="The bigger event that this dispense is a part of"/>
-			<definition value="The bigger event that this dispense is a part of."/>
-			<min value="0"/>
-			<max value="*"/>
-			<type>
-				<code value="Reference"/>
-	           <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure"/>
-			</type>
-		<mapping>
-			<identity value="workflow"/>
-			<map value="Event.partOf"/>
-		</mapping>
-		<mapping>
-			<identity value="rim"/>
-			<map value=".outboundRelationship[typeCode=COMP]/target[classCode=PROC,moodCode=EVN]"/>
-		</mapping>
-		</element>
+    </element>
+    <element id="DeviceDispense.basedOn">
+      <path value="DeviceDispense.basedOn"/>
+      <short value="The order or request that this dispense is fulfilling"/>
+      <definition value="The order or request that this dispense is fulfilling."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/CarePlan"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DeviceRequest"/>
+      </type>
+    </element>
+    <element id="DeviceDispense.partOf">
+      <path value="DeviceDispense.partOf"/>
+      <short value="The bigger event that this dispense is a part of"/>
+      <definition value="The bigger event that this dispense is a part of."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure"/>
+      </type>
+      <mapping>
+        <identity value="workflow"/>
+        <map value="Event.partOf"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value=".outboundRelationship[typeCode=COMP]/target[classCode=PROC,moodCode=EVN]"/>
+      </mapping>
+    </element>
     <element id="DeviceDispense.status">
       <path value="DeviceDispense.status"/>
       <short value="preparation | in-progress | cancelled | on-hold | completed | entered-in-error | stopped | declined | unknown"/>
@@ -147,7 +156,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="DeviceDispenseStatus"/>
         </extension>
-        <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/binding-definition">
           <valueString value="A coded concept specifying the state of the dispense event."/>
         </extension>
         <extension url="http://hl7.org/fhir/build/StructureDefinition/v3-map">
@@ -184,7 +193,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="DeviceDispenseStatusReason"/>
         </extension>
-        <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/binding-definition">
           <valueString value="A code describing why a dispense was or was not performed."/>
         </extension>
         <strength value="example"/>
@@ -199,7 +208,6 @@
         <map value=".outboundRelationship[typeCode=RSON]/target[classCode=OBS,moodCode=EVN, code=&quot;not done reason&quot;].value"/>
       </mapping>
     </element>
-
     <element id="DeviceDispense.category">
       <path value="DeviceDispense.category"/>
       <short value="Type of device dispense"/>
@@ -211,7 +219,6 @@
         <code value="CodeableConcept"/>
       </type>
     </element>
-
     <element id="DeviceDispense.device">
       <path value="DeviceDispense.device"/>
       <short value="What device was supplied"/>
@@ -232,8 +239,7 @@
         <identity value="w5"/>
         <map value="FiveWs.what[x]"/>
       </mapping>
-   </element>
-
+    </element>
     <element id="DeviceDispense.subject">
       <path value="DeviceDispense.subject"/>
       <short value="Who the dispense is for"/>
@@ -244,6 +250,7 @@
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner"/>
       </type>
       <isSummary value="true"/>
       <mapping>
@@ -262,14 +269,26 @@
         <identity value="rim"/>
         <map value=".participation[typeCode=SBJ].role[classCode=PAT]"/>
       </mapping>
+    </element>
+    <element id="DeviceDispense.receiver">
+      <path value="DeviceDispense.receiver"/>
+      <short value="Who collected the device or where the medication was delivered"/>
+      <definition value="Identifies the person who picked up the device or the person or location where the device was delivered.  This may be a patient or their caregiver, but some cases exist where it can be a healthcare professional or a location."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole"/>
+      </type>
       <mapping>
-        <identity value="w5"/>
-        <map value="FiveWs.subject"/>
+        <identity value="rim"/>
+        <map value=".participation[typeCode=RCV].role"/>
       </mapping>
     </element>
-
-
-
     <element id="DeviceDispense.encounter">
       <path value="DeviceDispense.encounter"/>
       <short value="Encounter associated with event"/>
@@ -282,7 +301,7 @@
       </type>
       <mapping>
         <identity value="workflow"/>
-        <map value="Event.context"/>
+        <map value="Event.encounter"/>
       </mapping>
       <mapping>
         <identity value="rim"/>
@@ -303,10 +322,7 @@
         <identity value="w5"/>
         <map value="FiveWs.context"/>
       </mapping>
-
     </element>
-
-
     <element id="DeviceDispense.performer">
       <path value="DeviceDispense.performer"/>
       <short value="Who performed event"/>
@@ -365,9 +381,6 @@
         <map value=".role"/>
       </mapping>
     </element>
-
-
-
     <element id="DeviceDispense.location">
       <path value="DeviceDispense.location"/>
       <short value="Where the dispense occurred"/>
@@ -385,7 +398,7 @@
     </element>
     <element id="DeviceDispense.type">
       <path value="DeviceDispense.type"/>
-      <short value="Trial fill, partial fill, emergency fill, etc."/>
+      <short value="Trial fill, partial fill, emergency fill, etc"/>
       <definition value="Indicates the type of dispensing event that is performed."/>
       <min value="0"/>
       <max value="1"/>
@@ -408,7 +421,6 @@
         <map value=".quantity"/>
       </mapping>
     </element>
-
     <element id="DeviceDispense.preparedDate">
       <extension url="http://hl7.org/fhir/build/StructureDefinition/committee-notes">
         <valueString value="This is time of dispense (preparation).  The time of supply to the patient is a separate attribute."/>
@@ -427,7 +439,6 @@
         <map value=".effectiveTime[xmi:type=IVL_TS].low"/>
       </mapping>
     </element>
-
     <element id="DeviceDispense.whenHandedOver">
       <extension url="http://hl7.org/fhir/build/StructureDefinition/committee-notes">
         <valueString value="The time of handing over to the patient (pickup/handover in community or supply in inpatient)."/>
@@ -449,7 +460,6 @@
         <map value=".effectiveTime[xmi:type=IVL_TS].high"/>
       </mapping>
     </element>
-
     <element id="DeviceDispense.destination">
       <extension url="http://hl7.org/fhir/build/StructureDefinition/committee-notes">
         <valueString value="for inpatient setting this is core, but this might not be core for community setting.  Also core for internet pharmacy.  Core for radioactive materials  Will service delivery location be defined by another group?"/>
@@ -494,15 +504,14 @@
       <min value="0"/>
       <max value="1"/>
       <type>
-        <code value="string"/>
+        <code value="markdown"/>
       </type>
     </element>
-
     <element id="DeviceDispense.eventHistory">
       <path value="DeviceDispense.eventHistory"/>
       <short value="A list of relevant lifecycle events"/>
       <definition value="A summary of the events of interest that have occurred, such as when the dispense was verified."/>
-      <comment value="This might not include provenances for all versions of the request &#x2013; only those deemed &#x201C;relevant&#x201D; or important. This SHALL NOT include the Provenance associated with this current version of the resource. (If that provenance is deemed to be a &#x201C;relevant&#x201D; change, it will need to be added as part of a later update. Until then, it can be queried directly as the Provenance that points to this version using _revinclude All Provenances should have some historical version of this Request as their subject.)."/>
+      <comment value="This might not include provenances for all versions of the request – only those deemed “relevant” or important. This SHALL NOT include the Provenance associated with this current version of the resource. (If that provenance is deemed to be a “relevant” change, it will need to be added as part of a later update. Until then, it can be queried directly as the Provenance that points to this version using _revinclude All Provenances should have some historical version of this Request as their subject.)."/>
       <min value="0"/>
       <max value="*"/>
       <type>
@@ -514,81 +523,5 @@
         <map value=".inboundRelationship(typeCode=SUBJ].source[classCode=CACT, moodCode=EVN]"/>
       </mapping>
     </element>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	</differential>
+  </differential>
 </StructureDefinition>

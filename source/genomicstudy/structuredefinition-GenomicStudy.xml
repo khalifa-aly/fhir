@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<StructureDefinition xmlns="http://hl7.org/fhir">
+<?xml version="1.0" encoding="UTF-8"?><StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="GenomicStudy"/>
   <title value="Genomic Study"/>
   <meta>
@@ -13,7 +11,7 @@
     <valueCode value="trial-use"/>
   </extension>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
-    <valueInteger value="0"/>
+    <valueInteger value="1"/>
   </extension>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category">
     <valueCode value="patient"/>
@@ -25,7 +23,11 @@
     <valueCode value=".status = entered-in-error"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/GenomicStudy"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1109"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="GenomicStudy"/>
   <status value="draft"/>
   <date value="2021-01-02T08:58:31+11:00"/>
@@ -42,8 +44,8 @@
       <value value="http://www.hl7.org/Special/committees/imagemgt/index.cfm"/>
     </telecom>
   </contact>
-  <description value="A Genomic Study is a set of analysis performed to analyze and generate genomic data."/>
-  <fhirVersion value="4.6.0"/>
+  <description value="A set of analyses performed to analyze and generate genomic data."/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="workflow"/>
     <uri value="http://hl7.org/fhir/workflow"/>
@@ -62,7 +64,7 @@
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
-    <name value="HL7 v2 Mapping"/>
+    <name value="HL7 V2 Mapping"/>
   </mapping>
   <kind value="resource"/>
   <abstract value="false"/>
@@ -76,9 +78,13 @@
       </extension>
       <path value="GenomicStudy"/>
       <short value="Genomic Study"/>
-      <definition value="A Genomic Study is a set of analysis performed to analyze and generate genomic data."/>
+      <definition value="A GenomicStudy is a set of analyses performed to analyze and generate genomic data."/>
       <min value="0"/>
       <max value="*"/>
+      <mapping>
+        <identity value="workflow"/>
+        <map value="Event"/>
+      </mapping>
       <mapping>
         <identity value="w5"/>
         <map value="clinical.diagnostics"/>
@@ -93,15 +99,16 @@
       <type>
         <code value="Identifier"/>
       </type>
+      <isSummary value="true"/>
     </element>
     <element id="GenomicStudy.status">
       <path value="GenomicStudy.status"/>
-      <short value="The status of the genomic study"/>
+      <short value="registered | available | cancelled | entered-in-error | unknown"/>
       <definition value="The status of the genomic study."/>
       <min value="1"/>
       <max value="1"/>
       <type>
-        <code value="CodeableConcept"/>
+        <code value="code"/>
       </type>
       <isModifier value="true"/>
       <isModifierReason value="This element is labeled as a modifier because it is a status element that contains status entered-in-error which means that the resource should not be treated as valid"/>
@@ -133,13 +140,22 @@
     </element>
     <element id="GenomicStudy.type">
       <path value="GenomicStudy.type"/>
-      <short value="The type of the study"/>
-      <definition value="The type of the study."/>
+      <short value="The type of the study (e.g., Familial variant segregation, Functional variation detection, or Gene expression profiling)"/>
+      <definition value="The type of the study, e.g., Familial variant segregation, Functional variation detection, or Gene expression profiling."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="*"/>
       <type>
         <code value="CodeableConcept"/>
       </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="GenomicStudyType"/>
+        </extension>
+        <strength value="example"/>
+        <description value="The type relevant to GenomicStudy."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/genomicstudy-type"/>
+      </binding>
+      <isSummary value="true"/>
     </element>
     <element id="GenomicStudy.subject">
       <path value="GenomicStudy.subject"/>
@@ -150,6 +166,10 @@
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Substance"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/BiologicallyDerivedProduct"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/NutritionProduct"/>
       </type>
       <isSummary value="true"/>
     </element>
@@ -163,6 +183,7 @@
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Encounter"/>
       </type>
+      <isSummary value="true"/>
     </element>
     <element id="GenomicStudy.startDate">
       <path value="GenomicStudy.startDate"/>
@@ -222,6 +243,27 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation"/>
       </type>
     </element>
+    <element id="GenomicStudy.instantiatesCanonical">
+      <path value="GenomicStudy.instantiatesCanonical"/>
+      <short value="The defined protocol that describes the study"/>
+      <definition value="The defined protocol that describes the study."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="canonical"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PlanDefinition"/>
+      </type>
+    </element>
+    <element id="GenomicStudy.instantiatesUri">
+      <path value="GenomicStudy.instantiatesUri"/>
+      <short value="The URL pointing to an externally maintained protocol that describes the study"/>
+      <definition value="The URL pointing to an externally maintained protocol that describes the study."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="uri"/>
+      </type>
+    </element>
     <element id="GenomicStudy.note">
       <path value="GenomicStudy.note"/>
       <short value="Comments related to the genomic study"/>
@@ -239,10 +281,9 @@
       <min value="0"/>
       <max value="1"/>
       <type>
-        <code value="string"/>
+        <code value="markdown"/>
       </type>
     </element>
-
     <element id="GenomicStudy.analysis">
       <path value="GenomicStudy.analysis"/>
       <short value="Genomic Analysis Event"/>
@@ -262,48 +303,66 @@
       <type>
         <code value="Identifier"/>
       </type>
+      <isSummary value="true"/>
     </element>
     <element id="GenomicStudy.analysis.methodType">
       <path value="GenomicStudy.analysis.methodType"/>
-      <short value="Type of the methods used in the analysis"/>
-      <definition value="Type of the methods used in the analysis."/>
+      <short value="Type of the methods used in the analysis (e.g., FISH, Karyotyping, MSI)"/>
+      <definition value="Type of the methods used in the analysis, e.g., Fluorescence in situ hybridization (FISH), Karyotyping, or Microsatellite instability testing (MSI)."/>
       <min value="0"/>
       <max value="*"/>
       <type>
         <code value="CodeableConcept"/>
       </type>
+      <isSummary value="true"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="GenomicStudyMethodType"/>
+        </extension>
+        <strength value="example"/>
+        <description value="The method type of the GenomicStudy analysis."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/genomicstudy-methodtype"/>
+      </binding>
     </element>
     <element id="GenomicStudy.analysis.changeType">
       <path value="GenomicStudy.analysis.changeType"/>
-      <short value="Type of the genomic changes studied in the analysis"/>
-      <definition value="Type of the genomic changes studied in the analysis such as insertion, inversion, or deletion."/>
+      <short value="Type of the genomic changes studied in the analysis (e.g., DNA, RNA, or AA change)"/>
+      <definition value="Type of the genomic changes studied in the analysis, e.g., DNA, RNA, or amino acid change."/>
       <min value="0"/>
       <max value="*"/>
       <type>
         <code value="CodeableConcept"/>
       </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="GenomicStudyChangeType"/>
+        </extension>
+        <strength value="example"/>
+        <description value="The change type relevant to GenomicStudy analysis."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/genomicstudy-changetype"/>
+      </binding>
     </element>
     <element id="GenomicStudy.analysis.genomeBuild"> <!-- Genome build -->
-    <path value="GenomicStudy.analysis.genomeBuild"/>
-    <short value="Genome build that is used in this analysis"/>
-    <definition value="The reference genome build that is used in this analysis."/>
-    <min value="0"/>
-    <max value="1"/>
-    <type>
-      <code value="CodeableConcept"/>
-    </type>
-    <binding>
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-        <valueString value="HumanRefSeqNCBIBuildId"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/build/StructureDefinition/copyright">
-        <valueString value="Copyright © 2022 Regenstrief Institute, Inc. All Rights Reserved."/>
-      </extension>
-      <strength value="extensible"/>
-      <description value="Human reference sequence NCBI build ID"/>
-      <valueSet value="http://loinc.org/vs/LL1040-6"/>
-     </binding>
-  </element>
+      <path value="GenomicStudy.analysis.genomeBuild"/>
+      <short value="Genome build that is used in this analysis"/>
+      <definition value="The reference genome build that is used in this analysis."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="HumanRefSeqNCBIBuildId"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/build/StructureDefinition/copyright">
+          <valueString value="Copyright © 2022 Regenstrief Institute, Inc. All Rights Reserved."/>
+        </extension>
+        <strength value="extensible"/>
+        <description value="Human reference sequence NCBI build ID"/>
+        <valueSet value="http://loinc.org/vs/LL1040-6"/>
+      </binding>
+    </element>
     <element id="GenomicStudy.analysis.instantiatesCanonical">
       <path value="GenomicStudy.analysis.instantiatesCanonical"/>
       <short value="The defined protocol that describes the analysis"/>
@@ -313,6 +372,7 @@
       <type>
         <code value="canonical"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/PlanDefinition"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ActivityDefinition"/>
       </type>
     </element>
     <element id="GenomicStudy.analysis.instantiatesUri">
@@ -334,28 +394,32 @@
       <type>
         <code value="string"/>
       </type>
+      <isSummary value="true"/>
     </element>
-    <element id="GenomicStudy.analysis.subject">
-      <path value="GenomicStudy.analysis.subject"/>
-      <short value="The subject of the analysis event"/>
-      <definition value="The subject of the analysis event."/>
+    <element id="GenomicStudy.analysis.focus">
+      <path value="GenomicStudy.analysis.focus"/>
+      <short value="What the genomic analysis is about, when it is not about the subject of record"/>
+      <definition value="The focus of a genomic analysis when it is not the patient of record representing something or someone associated with the patient such as a spouse, parent, child, or sibling. For example, in trio testing, the GenomicStudy.subject would be the child (proband) and the GenomicStudy.analysis.focus of a specific analysis would be the parent."/>
+      <comment value="If the focus of the analysis is not known, the value of this field SHALL use the data absent extension."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="*"/>
       <type>
         <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource"/>
       </type>
+      <isSummary value="true"/>
     </element>
     <element id="GenomicStudy.analysis.specimen">
       <path value="GenomicStudy.analysis.specimen"/>
       <short value="The specimen used in the analysis event"/>
       <definition value="The specimen used in the analysis event."/>
       <min value="0"/>
-      <max value="1"/>
+      <max value="*"/>
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Specimen"/>
       </type>
+      <isSummary value="true"/>
     </element>
     <element id="GenomicStudy.analysis.date">
       <path value="GenomicStudy.analysis.date"/>
@@ -433,16 +497,25 @@
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference"/>
       </type>
+      <isSummary value="true"/>
     </element>
     <element id="GenomicStudy.analysis.input.type">
       <path value="GenomicStudy.analysis.input.type"/>
-      <short value="Type of input data"/>
-      <definition value="Type input data."/>
+      <short value="Type of input data (e.g., BAM, CRAM, or FASTA)"/>
+      <definition value="Type of input data, e.g., BAM, CRAM, or FASTA."/>
       <min value="0"/>
       <max value="1"/>
       <type>
         <code value="CodeableConcept"/>
       </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="GenomicStudyDataFormat"/>
+        </extension>
+        <strength value="example"/>
+        <description value="The data format of the data file."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/genomicstudy-dataformat"/>
+      </binding>
     </element>
     <element id="GenomicStudy.analysis.input.generatedBy[x]">
       <path value="GenomicStudy.analysis.input.generatedBy[x]"/>
@@ -456,27 +529,6 @@
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/GenomicStudy"/>
-      </type>
-    </element>
-    <element id="GenomicStudy.analysis.input.subject">
-      <path value="GenomicStudy.analysis.input.subject"/>
-      <short value="The subject of the input data"/>
-      <definition value="The subject of the input data."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
-      </type>
-    </element>
-    <element id="GenomicStudy.analysis.input.role">
-      <path value="GenomicStudy.analysis.input.role"/>
-      <short value="Role of the subject for this input"/>
-      <definition value="Role of the subject for this input."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="CodeableConcept"/>
       </type>
     </element>
     <element id="GenomicStudy.analysis.output">
@@ -499,16 +551,26 @@
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference"/>
       </type>
+      <isSummary value="true"/>
     </element>
     <element id="GenomicStudy.analysis.output.type">
       <path value="GenomicStudy.analysis.output.type"/>
-      <short value="Type of output data"/>
-      <definition value="Type output data."/>
+      <short value="Type of output data (e.g., VCF, MAF, or BAM)"/>
+      <definition value="Type of output data, e.g., VCF, MAF, or BAM."/>
       <min value="0"/>
       <max value="1"/>
       <type>
         <code value="CodeableConcept"/>
       </type>
+      <isSummary value="true"/>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="GenomicStudyDataFormat"/>
+        </extension>
+        <strength value="example"/>
+        <description value="The data format of the data file."/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/genomicstudy-dataformat"/>
+      </binding>
     </element>
     <element id="GenomicStudy.analysis.performer">
       <path value="GenomicStudy.analysis.performer"/>
@@ -575,19 +637,5 @@
         <code value="CodeableConcept"/>
       </type>
     </element>
-
-
-<!--   <element id="GenomicStudy.analysis.uncallableRegions">
-    <path value="GenomicStudy.analysis.uncallableRegions"/>
-    <short value="Genomic regions uncallable by the analysis event (BED file)"/>
-    <definition value="Genomic regions uncallable by the analysis event (BED file)."/>
-    <min value="0"/>
-    <max value="1"/>
-    <type>
-      <code value="Reference"/>
-      <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference"/>
-    </type>
-   </element> -->
-
   </differential>
 </StructureDefinition>

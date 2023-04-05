@@ -78,7 +78,27 @@ If you have a highly structured report, then use DiagnosticReport - it has data 
 </p>
 
 <p>
-Image and media representations of the report and supporting images and data are referenced in the DiagnosticReport resource.  The details and actual image instances can be referenced directly in Diagnostic report using the "imaging" element or by indirect reference through the <a href="imagingstudy.html">ImagingStudy</a> resources which represent the content produced in a DICOM imaging study or set of DICOM Instances for a patient.
+Diagnostic studies, such as those involving radiologic images or genomic data, are referenced via the "study" element. 
+</p>
+
+<p>
+For image studies, the details and actual image instances can be referenced in the DiagnosticReport using the "media" element or through the "study" element to reference <a href="imagingstudy.html">ImagingStudy</a> resources which represent the content produced in a DICOM imaging study or set of DICOM Instances for a patient.
+</p>
+
+<p>
+When a report includes genomic testing, the complex metadata about the analysis performed can be captured referenced through the "study" element to reference  <a href="genomicstudy.html">GenomicStudy</a> resources. 
+</p>
+
+<p>
+As other complex laboratory areas develop resources to capture metadata about different types of studies, this attribute will be extended to reference those.
+</p>
+
+<p>
+Image and media representations of the report and supporting images and data are referenced in the "media" element.
+</p>
+
+<p>
+A DiagnosticReport has overlapping characteristics with DocumentReference. The DiagnosticReport is appropriate to reflect a set of discrete results (Observations) and associated contextual details for a specific report, and within those results any further structure within the Observation instances, while a DocumentReference typically reflects a non-FHIR object that is not a FHIR Document (e.g., an existing C-CDA document, a scan of a drivers license, or narrative note). There is some overlap potential such as a scan of a CBC report that can either be referenced by way of a DocumentReference, or included in a DiagnosticReport as a representedForm together with the structured, discrete data. Specific implementation guides would further clarify when one approach is more appropriate than another.
 </p>
 
 </div>

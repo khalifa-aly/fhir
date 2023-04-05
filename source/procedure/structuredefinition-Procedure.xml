@@ -24,8 +24,13 @@
     <valueCode value=".status = entered-in-error"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/Procedure"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1283"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="Procedure"/>
+  <title value="Procedure"/>
   <status value="draft"/>
   <date value="2021-01-02T08:58:31+11:00"/>
   <publisher value="Health Level Seven International (Patient Care)"/>
@@ -42,7 +47,7 @@
     </telecom>
   </contact>
   <description value="An action that is or was performed on or for a patient, practitioner, device, organization, or location. For example, this can be a physical intervention on a patient like an operation, or less invasive like long term services, counseling, or hypnotherapy.  This can be a quality or safety inspection for a location, organization, or device.  This can be an accreditation procedure on a practitioner for licensing."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="workflow"/>
     <uri value="http://hl7.org/fhir/workflow"/>
@@ -61,7 +66,7 @@
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
-    <name value="HL7 v2 Mapping"/>
+    <name value="HL7 V2 Mapping"/>
   </mapping>
   <kind value="resource"/>
   <abstract value="false"/>
@@ -198,6 +203,9 @@
       <min value="0"/>
       <max value="*"/>
       <type>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-hierarchy">
+          <valueBoolean value="true"/>
+        </extension>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation"/>
@@ -224,7 +232,7 @@
       <path value="Procedure.status"/>
       <short value="preparation | in-progress | not-done | on-hold | stopped | completed | entered-in-error | unknown"/>
       <definition value="A code specifying the state of the procedure. Generally, this will be the in-progress or completed state."/>
-      <comment value="The &quot;unknown&quot; code is not to be used to convey other statuses.  The &quot;unknown&quot; code should be used when one of the statuses applies, but the authoring system doesn&#39;t know the current state of the procedure.&#xA;&#xA;This element is labeled as a modifier because the status contains codes that mark the resource as not currently valid."/>
+      <comment value="The &quot;unknown&quot; code is not to be used to convey other statuses.  The &quot;unknown&quot; code should be used when one of the statuses applies, but the authoring system doesn't know the current state of the procedure.&#xA;&#xA;This element is labeled as a modifier because the status contains codes that mark the resource as not currently valid."/>
       <min value="1"/>
       <max value="1"/>
       <type>
@@ -364,7 +372,7 @@
       </extension>
       <path value="Procedure.subject"/>
       <short value="Individual or entity the procedure was performed on"/>
-      <definition value="On whom or what the procedure was performed. This is usually an individual human, but can also be performed on animals, groups of humans or animals, organizations or practitioners (for licensing), locations or devices (for safety inspections or regulatory authorizations)."/>
+      <definition value="On whom or on what the procedure was performed. This is usually an individual human, but can also be performed on animals, groups of humans or animals, organizations or practitioners (for licensing), locations or devices (for safety inspections or regulatory authorizations).  If the actual focus of the procedure is different from the subject, the focus element specifies the actual focus of the procedure."/>
       <alias value="patient"/>
       <min value="1"/>
       <max value="1"/>
@@ -394,9 +402,31 @@
         <identity value="rim"/>
         <map value=".participation[typeCode=SBJ].role"/>
       </mapping>
+    </element>
+    <element id="Procedure.focus">
+      <extension url="http://hl7.org/fhir/build/StructureDefinition/committee-notes">
+        <valueString value="J#32504, J#33394"/>
+      </extension>
+      <path value="Procedure.focus"/>
+      <short value="Who is the target of the procedure when it is not the subject of record only"/>
+      <definition value="Who is the target of the procedure when it is not the subject of record only.  If focus is not present, then subject is the focus.  If focus is present and the subject is one of the targets of the procedure, include subject as a focus as well. If focus is present and the subject is not included in focus, it implies that the procedure was only targeted on the focus. For example, when a caregiver is given education for a patient, the caregiver would be the focus and the procedure record is associated with the subject (e.g. patient).  For example, use focus when recording the target of the education, training, or counseling is the parent or relative of a patient."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/CareTeam"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole"/>
+		<targetProfile value="http://hl7.org/fhir/StructureDefinition/Specimen"/>
+      </type>
+      <isSummary value="true"/>
       <mapping>
         <identity value="w5"/>
-        <map value="FiveWs.subject"/>
+        <map value="FiveWs.subject[x]"/>
       </mapping>
     </element>
     <element id="Procedure.encounter">
@@ -413,7 +443,7 @@
       <isSummary value="true"/>
       <mapping>
         <identity value="workflow"/>
-        <map value="Event.context"/>
+        <map value="Event.encounter"/>
       </mapping>
       <mapping>
         <identity value="w5"/>
@@ -479,7 +509,7 @@
         <valueString value="GF#20602, J#24938."/>
       </extension>
       <path value="Procedure.recorded"/>
-      <short value="When the procedure was first captured in the subject&#39;s record"/>
+      <short value="When the procedure was first captured in the subject's record"/>
       <definition value="The date the occurrence of the procedure was first captured in the record regardless of Procedure.status (potentially after the occurrence of the event)."/>
       <min value="0"/>
       <max value="1"/>
@@ -532,7 +562,7 @@
       </extension>
       <path value="Procedure.reported[x]"/>
       <short value="Reported rather than primary record"/>
-      <definition value="Indicates if this record was captured as a secondary &#39;reported&#39; record rather than as an original primary source-of-truth record.  It may also indicate the source of the report."/>
+      <definition value="Indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record.  It may also indicate the source of the report."/>
       <requirements value="Reported data may have different rules on editing and may be visually distinguished from primary data."/>
       <alias value="informer"/>
       <min value="0"/>
@@ -567,13 +597,20 @@
         <valueCode value="400,80"/>
       </extension>
       <path value="Procedure.performer"/>
-      <short value="The people who performed the procedure"/>
-      <definition value="Limited to &quot;real&quot; people rather than equipment."/>
+      <short value="Who performed the procedure and what they did"/>
+      <definition value="Indicates who or what performed the procedure and how they were involved."/>
       <min value="0"/>
       <max value="*"/>
       <type>
         <code value="BackboneElement"/>
       </type>
+      <constraint>
+        <key value="prc-1"/>
+        <severity value="error"/>
+        <human value="Procedure.performer.onBehalfOf can only be populated when performer.actor isn't Practitioner or PractitionerRole"/>
+        <expression value="onBehalfOf.exists() and actor.resolve().exists() implies actor.resolve().where($this is Practitioner or $this is PractitionerRole).empty()"/>
+        <source value="http://hl7.org/fhir/StructureDefinition/Procedure"/>
+      </constraint>
       <isSummary value="true"/>
       <mapping>
         <identity value="workflow"/>
@@ -641,6 +678,7 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/HealthcareService"/>
       </type>
       <isSummary value="true"/>
+	    <condition value="prc-1"/>
       <mapping>
         <identity value="workflow"/>
         <map value="Event.performer.actor"/>
@@ -661,7 +699,8 @@
     <element id="Procedure.performer.onBehalfOf">
       <path value="Procedure.performer.onBehalfOf"/>
       <short value="Organization the device or practitioner was acting for"/>
-      <definition value="The organization the device or practitioner was acting on behalf of."/>
+      <definition value="The Organization the Patient, RelatedPerson, Device, CareTeam, and HealthcareService was acting on behalf of."/>
+	  <comment value="Organization, Patient, RelatedPerson, Device, CareTeam, and HealthcareService can be associated with multiple organizations. This element indicates which organization they were acting on behalf of when performing the action."/>
       <requirements value="Practitioners and Devices can be associated with multiple organizations.  This element indicates which organization they were acting on behalf of when performing the action."/>
       <min value="0"/>
       <max value="1"/>
@@ -669,16 +708,29 @@
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization"/>
       </type>
+	    <condition value="prc-1"/>
       <mapping>
         <identity value="rim"/>
         <map value=".scoper"/>
       </mapping>
     </element>
+    <element id="Procedure.performer.period">
+      <extension url="http://hl7.org/fhir/build/StructureDefinition/committee-notes">
+        <valueString value="J33392"/>
+      </extension>
+      <path value="Procedure.performer.period"/>
+      <short value="When the performer performed the procedure"/>
+      <definition value="Time period during which the performer performed the procedure."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Period"/>
+      </type>
+    </element>
     <element id="Procedure.location">
       <path value="Procedure.location"/>
       <short value="Where the procedure happened"/>
       <definition value="The location where the procedure actually happened.  E.g. a newborn at home, a tracheostomy at a restaurant."/>
-      <requirements value="Ties a procedure to where the records are likely kept."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -702,8 +754,8 @@
     <element id="Procedure.reason">
       <path value="Procedure.reason"/>
       <short value="The justification that the procedure was performed"/>
-      <definition value="The coded reason or reference why the procedure was performed. This may be a coded entity of some type, or may simply be present as text, or may be a reference to one of several resources that justify the procedure."/>
-      <comment value="Use Procedure.reason.concept when a code sufficiently describes the reason.  Use Procedure.reason.reference when referencing a resource, which allows more information to be conveyed, such as onset date. Procedure.reason.concept and Procedure.reason.reference are not meant to be duplicative.  For a single reason, either Procedure.reason.concept or Procedure.reason.reference can be used.  Procedure.reason.concept may be a summary code, or Procedure.reason.reference may be used to reference a very precise definition of the reason using Condition | Observation | Procedure | DiagnosticReport | DocumentReference.  Both Procedure.reason.concept and Procedure.reason.reference can be used if they are describing different reasons for the procedure."/>
+      <definition value="The coded reason or reference why the procedure was performed. This may be a coded entity of some type, be present as text, or be a reference to one of several resources that justify the procedure."/>
+      <comment value="Use Procedure.reason.concept when a code sufficiently describes the reason. Use Procedure.reason.reference when referencing a resource, which allows more information to be conveyed, such as onset date.  For a single Procedure.reason, if both Procedure.reason.concept and Procedure.reason.reference are present, they are expected to be consistent with each other."/>
       <min value="0"/>
       <max value="*"/>
       <type>
@@ -744,7 +796,7 @@
       <path value="Procedure.bodySite"/>
       <short value="Target body sites"/>
       <definition value="Detailed and structured anatomical location information. Multiple locations are allowed - e.g. multiple punch biopsies of a lesion."/>
-      <comment value="If the use case requires attributes from the BodySite resource (e.g. to identify and track separately) then use the standard extension [procedure-targetbodystructure](extension-procedure-targetbodystructure.html)."/>
+      <comment value="If the use case requires attributes from the BodySite resource (e.g. to identify and track separately) then use the standard extension [[[http://hl7.org/fhir/StructureDefinition/procedure-targetBodyStructure]]]."/>
       <min value="0"/>
       <max value="*"/>
       <type>
@@ -755,7 +807,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="BodySite"/>
         </extension>
-        <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/binding-definition">
           <valueString value="Codes describing anatomical locations. May include laterality."/>
         </extension>
         <strength value="example"/>
@@ -814,14 +866,18 @@
       </mapping>
     </element>
     <element id="Procedure.complication">
+      <extension url="http://hl7.org/fhir/build/StructureDefinition/committee-notes">
+        <valueString value="J32511"/>
+      </extension>
       <path value="Procedure.complication"/>
       <short value="Complication following the procedure"/>
-      <definition value="Any complications that occurred during the procedure, or in the immediate post-performance period. These are generally tracked separately from the notes, which will typically describe the procedure itself rather than any &#39;post procedure&#39; issues."/>
-      <comment value="If complications are only expressed by the narrative text, they can be captured using the CodeableConcept.text."/>
+      <definition value="Any complications that occurred during the procedure, or in the immediate post-performance period. These are generally tracked separately from the notes, which will typically describe the procedure itself rather than any 'post procedure' issues."/>
+      <comment value="If complications are only expressed by the narrative text, they can be captured using the CodeableReference.concept.text."/>
       <min value="0"/>
       <max value="*"/>
       <type>
-        <code value="CodeableConcept"/>
+        <code value="CodeableReference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition"/>
       </type>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -831,22 +887,6 @@
         <description value="Codes describing complications that resulted from a procedure."/>
         <valueSet value="http://hl7.org/fhir/ValueSet/condition-code"/>
       </binding>
-      <mapping>
-        <identity value="rim"/>
-        <map value=".outboundRelationship[typeCode=OUTC].target[classCode=OBS, code=&quot;complication&quot;, moodCode=EVN].value"/>
-      </mapping>
-    </element>
-    <element id="Procedure.complicationDetail">
-      <path value="Procedure.complicationDetail"/>
-      <short value="A condition that is a result of the procedure"/>
-      <definition value="Any complications that occurred during the procedure, or in the immediate post-performance period."/>
-      <requirements value="This is used to document a condition that is a result of the procedure, not the condition that was the reason for the procedure."/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="Reference"/>
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition"/>
-      </type>
       <mapping>
         <identity value="rim"/>
         <map value=".outboundRelationship[typeCode=OUTC].target[classCode=OBS, code=&quot;complication&quot;, moodCode=EVN].value"/>
@@ -954,7 +994,7 @@
       <path value="Procedure.used"/>
       <short value="Items used during procedure"/>
       <definition value="Identifies medications, devices and any other substance used as part of the procedure."/>
-      <comment value="For devices actually implanted or removed, use Procedure.device."/>
+      <comment value="For devices actually implanted or removed, use Procedure.focalDevice.manipulated."/>
       <requirements value="Used for tracking contamination, etc."/>
       <min value="0"/>
       <max value="*"/>

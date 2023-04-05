@@ -12,7 +12,7 @@
     <valueCode value="trial-use"/>
   </extension>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
-    <valueInteger value="3"/>
+    <valueInteger value="4"/>
   </extension>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category">
     <valueCode value="individual"/>
@@ -24,8 +24,13 @@
     <valueCode value=".active = false"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/Practitioner"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1083"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="Practitioner"/>
+  <title value="Practitioner"/>
   <status value="draft"/>
   <date value="2021-01-02T08:58:31+11:00"/>
   <publisher value="Health Level Seven International (Patient Administration)"/>
@@ -41,13 +46,13 @@
       <value value="http://www.hl7.org/Special/committees/pafm/index.cfm"/>
     </telecom>
   </contact>
-  <description value="A person who is directly or indirectly involved in the provisioning of healthcare."/>
+  <description value="A person who is directly or indirectly involved in the provisioning of healthcare or related services."/>
   <purpose value="Need to track doctors, staff, locums etc. for both healthcare practitioners, funders, etc."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
-    <name value="HL7 v2 Mapping"/>
+    <name value="HL7 V2 Mapping"/>
   </mapping>
   <mapping>
     <identity value="rim"/>
@@ -78,7 +83,7 @@
     <element id="Practitioner">
       <path value="Practitioner"/>
       <short value="A person with a  formal responsibility in the provisioning of healthcare or related services"/>
-      <definition value="A person who is directly or indirectly involved in the provisioning of healthcare."/>
+      <definition value="A person who is directly or indirectly involved in the provisioning of healthcare or related services."/>
       <min value="0"/>
       <max value="*"/>
       <mapping>
@@ -139,8 +144,8 @@
     </element>
     <element id="Practitioner.active">
       <path value="Practitioner.active"/>
-      <short value="Whether this practitioner&#39;s record is in active use"/>
-      <definition value="Whether this practitioner&#39;s record is in active use."/>
+      <short value="Whether this practitioner's record is in active use"/>
+      <definition value="Whether this practitioner's record is in active use."/>
       <comment value="If the practitioner is not in use by one organization, then it should mark the period on the PractitonerRole with an end date (even if they are active) as they may be active in another role."/>
       <requirements value="Need to be able to mark a practitioner record as not to be used because it was created in error."/>
       <min value="0"/>
@@ -149,6 +154,8 @@
         <code value="boolean"/>
       </type>
       <meaningWhenMissing value="This resource is generally assumed to be active if no value is provided for the active element"/>
+      <isModifier value="true"/>
+      <isModifierReason value="This element is labelled as a modifier because it is a status element that can indicate that a record should not be treated as valid"/>
       <isSummary value="true"/>
       <mapping>
         <identity value="w5"/>
@@ -219,54 +226,6 @@
       <mapping>
         <identity value="servd"/>
         <map value="./ContactPoints"/>
-      </mapping>
-    </element>
-    <element id="Practitioner.deceased[x]">
-      <path value="Practitioner.deceased[x]"/>
-      <short value="Indicates if the practitioner is deceased or not"/>
-      <definition value="Indicates if the practitioner is deceased or not."/>
-      <comment value="If there&#39;s no value in the instance, it means there is no statement on whether or not the practitioner is deceased. Most systems will interpret the absence of a value as a sign of the person being alive."/>
-      <min value="0"/>
-      <max value="1"/>
-      <type>
-        <code value="boolean"/>
-      </type>
-      <type>
-        <code value="dateTime"/>
-      </type>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="rim"/>
-        <map value="player[classCode=PSN|ANM and determinerCode=INSTANCE]/deceasedInd, player[classCode=PSN|ANM and determinerCode=INSTANCE]/deceasedTime"/>
-      </mapping>
-    </element>
-    <element id="Practitioner.address">
-      <path value="Practitioner.address"/>
-      <short value="Address(es) of the practitioner that are not role specific (typically home address)"/>
-      <definition value="Address(es) of the practitioner that are not role specific (typically home address). &#xD;Work addresses are not typically entered in this property as they are usually role dependent."/>
-      <comment value="The PractitionerRole does not have an address value on it, as it is expected that the location property be used for this purpose (which has an address)."/>
-      <requirements value="The home/mailing address of the practitioner is often required for employee administration purposes, and also for some rostering services where the start point (practitioners home) can be used in calculations."/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="Address"/>
-      </type>
-      <isSummary value="true"/>
-      <mapping>
-        <identity value="v2"/>
-        <map value="ORC-24, STF-11, ROL-11, PRT-14"/>
-      </mapping>
-      <mapping>
-        <identity value="rim"/>
-        <map value="./addr"/>
-      </mapping>
-      <mapping>
-        <identity value="interface"/>
-        <map value="ParticipantContactable.address"/>
-      </mapping>
-      <mapping>
-        <identity value="servd"/>
-        <map value="./Addresses"/>
       </mapping>
     </element>
     <element id="Practitioner.gender">
@@ -342,6 +301,54 @@
         <map value="(not represented in ServD)"/>
       </mapping>
     </element>
+    <element id="Practitioner.deceased[x]">
+      <path value="Practitioner.deceased[x]"/>
+      <short value="Indicates if the practitioner is deceased or not"/>
+      <definition value="Indicates if the practitioner is deceased or not."/>
+      <comment value="If there's no value in the instance, it means there is no statement on whether or not the practitioner is deceased. Most systems will interpret the absence of a value as a sign of the person being alive."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="boolean"/>
+      </type>
+      <type>
+        <code value="dateTime"/>
+      </type>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="player[classCode=PSN|ANM and determinerCode=INSTANCE]/deceasedInd, player[classCode=PSN|ANM and determinerCode=INSTANCE]/deceasedTime"/>
+      </mapping>
+    </element>
+    <element id="Practitioner.address">
+      <path value="Practitioner.address"/>
+      <short value="Address(es) of the practitioner that are not role specific (typically home address)"/>
+      <definition value="Address(es) of the practitioner that are not role specific (typically home address). &#xD;Work addresses are not typically entered in this property as they are usually role dependent."/>
+      <comment value="The PractitionerRole does not have an address value on it, as it is expected that the location property be used for this purpose (which has an address)."/>
+      <requirements value="The home/mailing address of the practitioner is often required for employee administration purposes, and also for some rostering services where the start point (practitioners home) can be used in calculations."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Address"/>
+      </type>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="v2"/>
+        <map value="ORC-24, STF-11, ROL-11, PRT-14"/>
+      </mapping>
+      <mapping>
+        <identity value="rim"/>
+        <map value="./addr"/>
+      </mapping>
+      <mapping>
+        <identity value="interface"/>
+        <map value="ParticipantContactable.address"/>
+      </mapping>
+      <mapping>
+        <identity value="servd"/>
+        <map value="./Addresses"/>
+      </mapping>
+    </element>
     <element id="Practitioner.photo">
       <path value="Practitioner.photo"/>
       <short value="Image of the person"/>
@@ -367,11 +374,12 @@
     </element>
     <element id="Practitioner.qualification">
       <extension url="http://hl7.org/fhir/build/StructureDefinition/svg">
-        <valueCode value="350,200"/>
+        <valueCode value="350,0"/>
       </extension>
       <path value="Practitioner.qualification"/>
-      <short value="Certification, licenses, or training pertaining to the provision of care"/>
-      <definition value="The official certifications, training, and licenses that authorize or otherwise pertain to the provision of care by the practitioner.  For example, a medical license issued by a medical board authorizing the practitioner to practice medicine within a certain locality."/>
+      <short value="Qualifications, certifications, accreditations, licenses, training, etc. pertaining to the provision of care"/>
+      <definition value="The official qualifications, certifications, accreditations, training, licenses (and other types of educations/skills/capabilities) that authorize or otherwise pertain to the provision of care by the practitioner.&#xD;&#xD;For example, a medical license issued by a medical board of licensure authorizing the practitioner to practice medicine within a certain locality."/>
+      <comment value="The PractitionerRole.specialty defines the functional role that they are practicing at a given organization or location.  Those specialties may or might not require a qualification, and are not defined on the practitioner."/>
       <min value="0"/>
       <max value="*"/>
       <type>
@@ -393,7 +401,7 @@
     <element id="Practitioner.qualification.identifier">
       <path value="Practitioner.qualification.identifier"/>
       <short value="An identifier for this qualification for the practitioner"/>
-      <definition value="An identifier that applies to this person&#39;s qualification in this role."/>
+      <definition value="An identifier that applies to this person's qualification."/>
       <requirements value="Often, specific identities are assigned for the qualification."/>
       <min value="0"/>
       <max value="*"/>
@@ -466,16 +474,31 @@
       </mapping>
     </element>
     <element id="Practitioner.communication">
-      <extension url="http://hl7.org/fhir/build/StructureDefinition/committee-notes">
-        <valueString value="Note: cannot be named &quot;language&quot; because of technical reasons."/>
+      <extension url="http://hl7.org/fhir/build/StructureDefinition/svg">
+        <valueCode value="40,270"/>
       </extension>
       <path value="Practitioner.communication"/>
-      <short value="A language the practitioner can use in patient communication"/>
-      <definition value="A language the practitioner can use in patient communication."/>
-      <comment value="The structure aa-BB with this exact casing is one the most widely used notations for locale. However not all systems code this but instead have it as free text. Hence CodeableConcept instead of code as the data type."/>
-      <requirements value="Knowing which language a practitioner speaks can help in facilitating communication with patients."/>
+      <short value="A language which may be used to communicate with the practitioner"/>
+      <definition value="A language which may be used to communicate with the practitioner, often for correspondence/administrative purposes.&#xD;&#xD;The `PractitionerRole.communication` property should be used for publishing the languages that a practitioner is able to communicate with patients (on a per Organization/Role basis)."/>
+      <comment value="If no language is specified, this *implies* that the default local language is spoken.  If you need to convey proficiency for multiple modes, then you need multiple Practitioner.Communication associations.&#xD;&#xD;For animals, language is not a relevant field, and should be absent from the instance."/>
       <min value="0"/>
       <max value="*"/>
+      <type>
+        <code value="BackboneElement"/>
+      </type>
+      <mapping>
+        <identity value="rim"/>
+        <map value="LanguageCommunication"/>
+      </mapping>
+    </element>
+    <element id="Practitioner.communication.language">
+      <path value="Practitioner.communication.language"/>
+      <short value="The language code used to communicate with the practitioner"/>
+      <definition value="The ISO-639-1 alpha 2 code in lower case for the language, optionally followed by a hyphen and the ISO-3166-1 alpha 2 code for the region in upper case; e.g. &quot;en&quot; for English, or &quot;en-US&quot; for American English versus &quot;en-AU&quot; for Australian English."/>
+      <comment value="The structure aa-BB with this exact casing is one the most widely used notations for locale. However not all systems actually code this but instead have it as free text. Hence CodeableConcept instead of code as the data type."/>
+      <requirements value="Most systems in multilingual countries will want to convey language. Not all systems actually need the regional dialect."/>
+      <min value="1"/>
+      <max value="1"/>
       <type>
         <code value="CodeableConcept"/>
       </type>
@@ -486,31 +509,37 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
           <valueBoolean value="true"/>
         </extension>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet">
-          <valueCanonical value="http://hl7.org/fhir/ValueSet/all-languages"/>
-        </extension>
-        <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
-          <valueString value="A human language."/>
-        </extension>
-        <strength value="preferred"/>
-        <description value="IETF language tag"/>
-        <valueSet value="http://hl7.org/fhir/ValueSet/languages"/>
+        <strength value="required"/>
+        <description value="IETF language tag for a human language"/>
+        <valueSet value="http://hl7.org/fhir/ValueSet/all-languages"/>
+        <additional>
+          <purpose value="starter"/>
+          <valueSet value="http://hl7.org/fhir/ValueSet/languages"/>
+        </additional>
       </binding>
       <mapping>
         <identity value="v2"/>
-        <map value="PID-15, NK1-20, LAN-2"/>
+        <map value="PID-15, LAN-2"/>
       </mapping>
       <mapping>
         <identity value="rim"/>
-        <map value="./languageCommunication"/>
+        <map value="player[classCode=PSN|ANM and determinerCode=INSTANCE]/languageCommunication/code"/>
       </mapping>
+    </element>
+    <element id="Practitioner.communication.preferred">
+      <path value="Practitioner.communication.preferred"/>
+      <short value="Language preference indicator"/>
+      <definition value="Indicates whether or not the person prefers this language (over other languages he masters up a certain level)."/>
+      <comment value="This language is specifically identified for communicating directly with the practitioner (typically un-related to patient communications)."/>
+      <requirements value="People that master multiple languages up to certain level may prefer one or more, i.e. feel more confident in communicating in a particular language making other languages sort of a fall back method."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="boolean"/>
+      </type>
       <mapping>
-        <identity value="interface"/>
-        <map value="ParticipantLiving.communication"/>
-      </mapping>
-      <mapping>
-        <identity value="servd"/>
-        <map value="./Languages.LanguageSpokenCode"/>
+        <identity value="rim"/>
+        <map value="preferenceInd"/>
       </mapping>
     </element>
   </differential>

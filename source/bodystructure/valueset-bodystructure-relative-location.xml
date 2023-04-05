@@ -13,10 +13,11 @@
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:oid:2.16.840.1.113883.4.642.3.140"/>
   </identifier>
-  <version value="4.6.0"/>
+  <version value="5.0.0"/>
   <name value="BodystructureLocationQualifier"/>
   <title value="Bodystructure Location Qualifier"/>
   <status value="draft"/>
+  <experimental value="true"/>
   <publisher value="Order and Observation Workgroup"/>
   <contact>
     <telecom>
@@ -25,22 +26,34 @@
     </telecom>
   </contact>
   <description value="SNOMED-CT concepts modifying the anatomic location"/>
-  <copyright value="This value set includes content from SNOMED CT, which is copyright &#xA9; 2002+ International Health Terminology Standards Development Organisation (IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer use of SNOMED CT is not covered by this agreement"/>
+  <copyright value="This value set includes content from SNOMED CT, which is copyright © 2002+ International Health Terminology Standards Development Organisation (IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer use of SNOMED CT is not covered by this agreement"/>
   <compose>
     <include>
       <system value="http://snomed.info/sct"/>
       <concept>
-        <code value="419161000"/>
-        <display value="Unilateral left"/>
+        <code value="7771000"/>
+        <display value="Left (qualifier value)"/>
       </concept>
       <concept>
-        <code value="419465000"/>
-        <display value="Unilateral right"/>
+        <code value="24028007"/>
+        <display value="Right (qualifier value)"/>
       </concept>
       <concept>
         <code value="51440002"/>
         <display value="Bilateral"/>
       </concept>
+      <concept>	
+				<code value ="46053002"/>
+				<display value ="Distal"/>
+			</concept>	
+			<concept>	
+				<code value ="255554000"/>
+				<display value ="Dorsal"/>
+			</concept>	
+			<concept>	
+				<code value ="264147007"/>
+				<display value ="Plantar"/>
+			</concept>		
       <concept>
         <code value="261183002"/>
         <display value="Upper"/>

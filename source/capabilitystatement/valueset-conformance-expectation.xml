@@ -13,8 +13,21 @@
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:oid:2.16.840.1.113883.4.642.3.919"/>
   </identifier>
-  <version value="4.6.0"/>
+  <identifier>
+    <use value="old"/>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.3.838"/>
+  </identifier>
+  <identifier>
+    <use value="old"/>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.2.381"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="ConformanceExpectation"/>
+  <title value="Conformance Expectation"/>
+  <status value="active"/>
+  <experimental value="true"/>
   <description value="Description Needed Here"/>
   <compose>
     <include>

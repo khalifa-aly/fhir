@@ -17,8 +17,7 @@
         <code value="device"/>
         <type value="reference"/>
         <expression value="AdministrableProductDefinition.device"/>
-        <xpath value="f:AdministrableProductDefinition/f:device"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -37,8 +36,7 @@
         <code value="dose-form"/>
         <type value="token"/>
         <expression value="AdministrableProductDefinition.administrableDoseForm"/>
-        <xpath value="f:AdministrableProductDefinition/f:administrableDoseForm"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -57,8 +55,7 @@
         <code value="identifier"/>
         <type value="token"/>
         <expression value="AdministrableProductDefinition.identifier"/>
-        <xpath value="f:AdministrableProductDefinition/f:identifier"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -77,8 +74,7 @@
         <code value="ingredient"/>
         <type value="token"/>
         <expression value="AdministrableProductDefinition.ingredient"/>
-        <xpath value="f:AdministrableProductDefinition/f:ingredient"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -97,8 +93,7 @@
         <code value="manufactured-item"/>
         <type value="reference"/>
         <expression value="AdministrableProductDefinition.producedFrom"/>
-        <xpath value="f:AdministrableProductDefinition/f:producedFrom"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -117,8 +112,7 @@
         <code value="route"/>
         <type value="token"/>
         <expression value="AdministrableProductDefinition.routeOfAdministration.code"/>
-        <xpath value="f:AdministrableProductDefinition/f:routeOfAdministration/f:code"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -137,8 +131,7 @@
         <code value="form-of"/>
         <type value="reference"/>
         <expression value="AdministrableProductDefinition.formOf"/>
-        <xpath value="f:AdministrableProductDefinition/f:formOf"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>
@@ -157,8 +150,26 @@
         <code value="target-species"/>
         <type value="token"/>
         <expression value="AdministrableProductDefinition.routeOfAdministration.targetSpecies.code"/>
-        <xpath value="f:AdministrableProductDefinition/f:routeOfAdministration/f:targetSpecies/f:code"/>
-        <xpathUsage value="normal"/>
+        <processingMode value="normal"/>
+      </SearchParameter>
+    </resource>
+  </entry>
+  <entry>
+    <resource>
+      <SearchParameter>
+        <id value="AdministrableProductDefinition-status"/>
+        <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+          <valueCode value="trial-use"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/build/StructureDefinition/path">
+          <valueString value="AdministrableProductDefinition.status"/>
+        </extension>
+        <url value="http://hl7.org/fhir/build/SearchParameter/AdministrableProductDefinition-status"/>
+        <description value="The status of this administrable product. Enables tracking the life-cycle of the content."/>
+        <code value="status"/>
+        <type value="token"/>
+        <expression value="AdministrableProductDefinition.status"/>
+        <processingMode value="normal"/>
       </SearchParameter>
     </resource>
   </entry>

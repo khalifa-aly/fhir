@@ -12,7 +12,7 @@
     <valueCode value="trial-use"/>
   </extension>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
-    <valueInteger value="0"/>
+    <valueInteger value="1"/>
   </extension>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category">
     <valueCode value="business"/>
@@ -24,8 +24,13 @@
     <valueCode value=".status = entered-in-error"/>
   </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/TestReport"/>
-  <version value="4.6.0"/>
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.5.1271"/>
+  </identifier>
+  <version value="5.0.0"/>
   <name value="TestReport"/>
+  <title value="Test Report"/>
   <status value="draft"/>
   <date value="2021-01-02T08:58:31+11:00"/>
   <publisher value="Health Level Seven International (FHIR Infrastructure)"/>
@@ -42,7 +47,7 @@
     </telecom>
   </contact>
   <description value="A summary of information based on the results of executing a TestScript."/>
-  <fhirVersion value="4.6.0"/>
+  <fhirVersion value="5.0.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -134,7 +139,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="TestReportStatus"/>
         </extension>
-        <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/binding-definition">
           <valueString value="The current status of the test report."/>
         </extension>
         <strength value="required"/>
@@ -173,7 +178,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="TestReportResult"/>
         </extension>
-        <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/binding-definition">
           <valueString value="The reported execution result."/>
         </extension>
         <strength value="required"/>
@@ -310,7 +315,6 @@
         <severity value="error"/>
         <human value="Setup action SHALL contain either an operation or assert but not both."/>
         <expression value="operation.exists() xor assert.exists()"/>
-        <xpath value="(f:operation or f:assert) and not(f:operation and f:assert)"/>
         <source value="http://hl7.org/fhir/StructureDefinition/TestReport"/>
       </constraint>
     </element>
@@ -326,6 +330,8 @@
       <type>
         <code value="BackboneElement"/>
       </type>
+      <condition value="inv-1"/>
+      <condition value="inv-2"/>
     </element>
     <element id="TestReport.setup.action.operation.result">
       <path value="TestReport.setup.action.operation.result"/>
@@ -340,7 +346,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="TestReportActionResult"/>
         </extension>
-        <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/binding-definition">
           <valueString value="The results of executing an action."/>
         </extension>
         <strength value="required"/>
@@ -380,6 +386,8 @@
       <type>
         <code value="BackboneElement"/>
       </type>
+      <condition value="inv-1"/>
+      <condition value="inv-2"/>
     </element>
     <element id="TestReport.setup.action.assert.result">
       <path value="TestReport.setup.action.assert.result"/>
@@ -394,7 +402,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="TestReportActionResult"/>
         </extension>
-        <extension url="http://hl7.org/fhir/build/StructureDefinition/definition">
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/binding-definition">
           <valueString value="The results of executing an action."/>
         </extension>
         <strength value="required"/>
@@ -420,6 +428,31 @@
       <max value="1"/>
       <type>
         <code value="string"/>
+      </type>
+    </element>
+    <element id="TestReport.setup.action.assert.requirement">
+      <path value="TestReport.setup.action.assert.requirement"/>
+      <short value="Links or references to the testing requirements"/>
+      <definition value="Links or references providing traceability to the testing requirements for this assert."/>
+      <comment value="TestScript and TestReport instances are typically (and expected to be) based on known, defined test requirements and documentation. These links provide traceability from the executable/executed TestScript and TestReport tests to these requirements."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="BackboneElement"/>
+      </type>
+    </element>
+    <element id="TestReport.setup.action.assert.requirement.link[x]">
+      <path value="TestReport.setup.action.assert.requirement.link[x]"/>
+      <short value="Link or reference to the testing requirement"/>
+      <definition value="Link or reference providing traceability to the testing requirement for this test."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="uri"/>
+      </type>
+      <type>
+        <code value="canonical"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Requirements"/>
       </type>
     </element>
     <element id="TestReport.test">
@@ -476,7 +509,6 @@
         <severity value="error"/>
         <human value="Test action SHALL contain either an operation or assert but not both."/>
         <expression value="operation.exists() xor assert.exists()"/>
-        <xpath value="(f:operation or f:assert) and not(f:operation and f:assert)"/>
         <source value="http://hl7.org/fhir/StructureDefinition/TestReport"/>
       </constraint>
     </element>

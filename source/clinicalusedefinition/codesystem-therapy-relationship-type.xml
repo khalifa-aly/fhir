@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <CodeSystem xmlns="http://hl7.org/fhir">
   <id value="therapy-relationship-type"/>
   <meta>
@@ -17,11 +18,11 @@
   <url value="http://hl7.org/fhir/therapy-relationship-type"/>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
-    <value value="urn:oid:2.16.840.1.113883.4.642.1.1560"/>
+    <value value="urn:oid:2.16.840.1.113883.4.642.4.1994"/>
   </identifier>
-  <version value="4.6.0"/>
+  <version value="5.0.0"/>
   <name value="TherapyRelationshipType"/>
-  <title value="TherapyRelationshipType"/>
+  <title value="Therapy Relationship Type"/>
   <status value="draft"/>
   <experimental value="false"/>
   <date value="2021-08-15T16:55:11+11:00"/>
@@ -61,7 +62,7 @@
     <definition value="Indicated except when the other therapy is given"/>
   </concept>
   <concept>
-    <code value="indicated-only-before"/>
+    <code value="indicated-only-after"/>
     <display value="Indicated only if the other therapy is planned to be given afterwards (prep)"/>
     <definition value="Indicated only if the other therapy is planned to be given afterwards (prep)"/>
   </concept>

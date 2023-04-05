@@ -26,7 +26,7 @@
   <p>All of the interactions defined in the <a href="http.html">RESTful API</a> are described as synchronous operations
     - that is, the client makes a query and waits for the server to respond with the outcome in the HTTP response. This
     pattern is not always suitable when substantial amounts of data must be returned.</p>
-  <p>A good example of this is the <a href="https://hl7.org/fhir/uv/bulkdata/export.html">$export operation</a>, where
+  <p>A good example of this is the <a href="http://hl7.org/fhir/uv/bulkdata/export.html">$export operation</a>, where
     simple searches may result in large amounts of data. </p>
   <p>The asynchronous request pattern, based on <a href="https://tools.ietf.org/html/rfc7240#section-4.1">rfc 7240</a>,
     caters to this use case and is applicable for for use in <a href="operations.html">Operations</a> and
@@ -48,7 +48,7 @@
       <p><code>Accept</code> (string)</p>
       <p>Specifies the format of the optional <a href="operationoutcome.html">OperationOutcome Resource</a> response to
         the kick-off request. A client SHOULD provide this header. A server may support any subset of the <a
-          href="formats.html#wire">Serialization Format Representations</a>. If omitted, the server MAY return an error
+          href="resource-formats.html#wire">Serialization Format Representations</a>. If omitted, the server MAY return an error
         or MAY process the request and return a format selected by the server.</p>
     </li>
     <li>
@@ -121,10 +121,12 @@
     timing of future polling requests. The server SHOULD keep an accounting of status queries received from a given
     client, and if a client is polling too frequently, the server SHOULD respond with a
     <code>429 Too Many Requests</code> status code in addition to a <code>Retry-After</code> header, and optionally a <a
-      href="operationoutcome.html">OperationOutcome Resource</a> with further explanation. If excessively frequent
-    status queries persist, the server MAY return a <code>429 Too Many Requests</code> status code and terminate the
-    session. Other standard HTTP <code>4XX</code> as well as <code>5XX</code> status codes may be used to identify
-    errors as mentioned.
+    href="operationoutcome.html">OperationOutcome Resource</a> with further explanation. If excessively frequent status queries 
+    persist, the server MAY return a <code>429 Too Many Requests</code> status code without returning a status answer. It may 
+    either return a Retry-after header with the 429 indicating the amount of time that needs to pass before it will again 
+    respond to a status check, or it may choose to abandon the asynchronous operation entirely and force a retry. 
+    Other standard HTTP <code>4XX</code> as well as <code>5XX</code> status codes may be used to identify
+  errors as mentioned.
   </p>
 
   <p>When requesting status, the client SHOULD use an <code>Accept</code> header indicating a content type of
@@ -163,7 +165,7 @@
     populated with one or more files in ndjson format containing <a href="operationoutcome.html">OperationOutcome
       Resources</a> to indicate what went wrong (see below). In the case of a partial success, the server SHALL use a
     <code>200</code> status code instead of <code>4XX</code> or <code>5XX</code>. The choice of when to determine that
-    an job has failed in its entirety (error status) vs. returning a partial success (complete status) is left up to the
+    a job has failed in its entirety (error status) vs. returning a partial success (complete status) is left up to the
     server implementer.
   </p>
 
@@ -362,7 +364,7 @@
     When <code>requiresAccessToken</code> is set to <code>false</code> and no additional authorization-related
     extensions are present on the completion manifest's output entry, then the output URLs SHALL be dereferenceable
     directly, and SHALL be short lived following the expiration timing requirement that have been documented for bearer
-    tokens in the <a href="https://hl7.org/fhir/uv/bulkdata/authorization/index.html">SMART Backend Services
+    tokens in the <a href="http://hl7.org/fhir/uv/bulkdata/authorization/index.html">SMART Backend Services
       Authorization Guide</a>. In this case, a client MAY re-fetch the output manifest if output links have expired and
     MAY use the Expires header on the output response, when present, as a hint to know when capability URLs will expire.
   </p>
@@ -421,7 +423,7 @@
     set to <code>false</code> and no additional authorization-related extensions are present on a the Complete Status
     body's output entry, the url location SHALL be dereferenceable directly, and SHALL be short lived following the 
     expiration timing requirement that have been documented for bearer
-    tokens in the <a href="https://hl7.org/fhir/uv/bulkdata/authorization/index.html">SMART Backend Services Authorization Guide</a>.
+    tokens in the <a href="http://hl7.org/fhir/uv/bulkdata/authorization/index.html">SMART Backend Services Authorization Guide</a>.
   </p>
 
   <p>Note that if a server copies files to the Bulk Data output endpoint or proxies requests to facilitate access from
